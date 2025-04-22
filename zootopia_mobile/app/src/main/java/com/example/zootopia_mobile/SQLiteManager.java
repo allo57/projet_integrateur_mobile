@@ -45,7 +45,7 @@ public class SQLiteManager extends SQLiteOpenHelper
     public void addTicket(SQLiteDatabase sqLiteDatabase) {
     }
 
-    public void addUser(Utilisateur utilisateur) {
-
-    }
+//    public void addUser(Utilisateur utilisateur) {
+//
+//    }
 }
