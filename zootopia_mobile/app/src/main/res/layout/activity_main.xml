@@ -7,13 +7,47 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F1F7ED">
 
+        <ImageView
+            android:id="@+id/imageLoutres"
+            android:layout_width="270dp"
+            android:layout_height="195dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="150dp"
+            app:srcCompat="@drawable/zj7ek4hv" />
+
+        <TextView
+            android:id="@+id/textAccueil"
+            android:layout_width="230dp"
+            android:layout_height="270dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="130dp"
+            android:text="Découvrez notre parc zoologique extraordinaire où la magie de la nature prend vie! Situé au cœur d'un cadre naturel préservé, Zootopia vous invite à une aventure inoubliable à la rencontre de plus de 2000 animaux venus des quatre coins du monde.
+Notre mission: émerveiller, éduquer et contribuer à la conservation des espèces menacées.
+Que vous soyez en famille, entre amis ou en solo, l'application Zootopia vous guidera à travers nos différents univers thématiques: la savane africaine, la forêt tropicale, la banquise polaire et bien d'autres encore!
+Prêt à commencer votre safari? Explorez notre carte interactive, découvrez nos animations quotidiennes et créez votre parcours personnalisé!"
+            android:textAlignment="center"
+            android:textSize="12dp" />
+
+        <ImageButton
+            android:id="@+id/imageButtonPaw"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginRight="140dp"
+            android:layout_marginTop="20dp"
+            android:background="@null"
+            app:srcCompat="@drawable/lion" />
+        <ImageView
+            android:id="@+id/imageViewZootopia"
+            android:layout_width="150dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center_horizontal"
+            app:srcCompat="@drawable/zootopia"/>
+
+    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

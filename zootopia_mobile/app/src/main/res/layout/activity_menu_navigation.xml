@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".menuNavigation">
+
+    <FrameLayout
+        android:layout_width="410dp"
+        android:layout_height="847dp"
+        android:background="#F1F7ED"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
+
+        <Button
+            android:id="@+id/buttonInscription"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center_vertical"
+            android:background="#F1F7ED"
+            app:backgroundTint="@null"
+            android:text="Inscription"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/buttonSeConnecter"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginTop="80dp"
+            android:layout_gravity="center_vertical"
+            android:background="#F1F7ED"
+            app:backgroundTint="@null"
+            android:text="Se connecter"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/buttonAIdeEnLigne"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginTop="250dp"
+            android:layout_gravity="center_vertical"
+            android:background="#F1F7ED"
+            android:text="Aide en ligne"
+            app:backgroundTint="@null"
+            android:textColor="@color/black" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/frame"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:background="#82B366"
+        android:backgroundTint="#D5E8D4"
+        tools:ignore="MissingConstraints">
+
+        <ImageButton
+            android:id="@+id/imageButtonFermerNav"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="8dp"
+            android:background="@null"
+            app:srcCompat="@drawable/remove" />
+
+        <ImageView
+            android:id="@+id/imageZootopiaNav"
+            android:layout_width="140dp"
+            android:layout_height="50dp"
+            app:srcCompat="@drawable/zootopia"
+            android:layout_gravity="center_horizontal"/>
+
+        <ImageButton
+            android:id="@+id/imageButtonNotifNav"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/notification"
+            android:layout_gravity="right"
+            android:background="@null"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="20dp"/>
+
+        <TextView
+            android:id="@+id/textCalenActivi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CALENDRIER DES ACTIVITÉS"
+            android:layout_gravity="center_vertical"
+            android:textStyle="bold"
+            android:layout_marginBottom="70dp"
+            android:layout_marginLeft="30dp"/>
+
+        <TextView
+            android:id="@+id/textAnimaux"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="NOS ANIMAUX"
+            android:layout_gravity="center_vertical"
+            android:textStyle="bold"
+            android:layout_marginLeft="30dp"
+            android:layout_marginBottom="40dp"/>
+        <TextView
+            android:id="@+id/textBilletterie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BILLETTERIE"
+            android:layout_gravity="center_vertical"
+            android:textStyle="bold"
+            android:layout_marginLeft="30dp"
+            android:layout_marginBottom="8dp"/>
+        <TextView
+            android:id="@+id/textAPropos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="À PROPOS DU ZOO"
+            android:layout_gravity="center_vertical"
+            android:textStyle="bold"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="45dp"
+            android:layout_gravity="center_vertical"
+            android:text="LOCALISATION"
+            android:textStyle="bold"
+            android:layout_marginLeft="30dp"/>
+
+        <ImageButton
+            android:id="@+id/imageButtonCalenActivit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:layout_gravity="center_vertical"
+            app:srcCompat="@drawable/turn"
+            android:layout_marginBottom="75dp"
+            android:layout_marginLeft="300dp"/>
+        <ImageButton
+            android:id="@+id/imageButtonAnimaux"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:layout_gravity="center_vertical"
+            app:srcCompat="@drawable/turn"
+            android:layout_marginBottom="45dp"
+            android:layout_marginLeft="300dp"/>
+        <ImageButton
+            android:id="@+id/imageButtonBilletterie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:layout_gravity="center_vertical"
+            app:srcCompat="@drawable/turn"
+            android:layout_marginBottom="12dp"
+            android:layout_marginLeft="300dp"/>
+        <ImageButton
+            android:id="@+id/imageButtonAPropos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:layout_gravity="center_vertical"
+            app:srcCompat="@drawable/turn"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="300dp"/>
+        <ImageButton
+            android:id="@+id/imageButtonLocalisation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:layout_gravity="center_vertical"
+            app:srcCompat="@drawable/turn"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="300dp"/>
+    </FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">zootopia_mobile</string>
+    <string name="title_activity_zoo_location">ZooLocation</string>
 </resources>
