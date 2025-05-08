@@ -22,22 +22,29 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalView
         this.animaux = animaux;
     }
 
+    public void setAnimaux(List<Animal> animaux) {
+        this.animaux = animaux;
+        notifyDataSetChanged();
+    }
+
     @NonNull
     @Override
     public AnimalViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_animal, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_recyler_animaux, parent, false);
         return new AnimalViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull AnimalViewHolder holder, int position) {
         Animal animal = animaux.get(position);
-        holder.nomAnimal.setText(animal.getNom());
+        holder.nomTextView.setText(animal.getNom());
 
-        Glide.with(holder.imageAnimal.getContext())
-                .load(animal.getImageUrl())
-                .placeholder(R.drawable.lion)
-                .into(holder.imageAnimal);
+        // Charger l'image avec Glide (si image est un nom de fichier, ajouter l’URL de base)
+        String url = "https://ton_serveur/images/" + animal.getImage(); // à adapter
+        Glide.with(holder.imageView.getContext())
+                .load(url)
+                .placeholder(R.drawable.lion) // image par défaut si vide
+                .into(holder.imageView);
     }
 
     @Override
@@ -46,19 +53,15 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalView
     }
 
     static class AnimalViewHolder extends RecyclerView.ViewHolder {
-        ImageView imageAnimal;
-        TextView nomAnimal;
+        TextView nomTextView;
+        ImageView imageView;
 
-        public AnimalViewHolder(@NonNull View itemView) {
+        AnimalViewHolder(@NonNull View itemView) {
             super(itemView);
-            imageAnimal = itemView.findViewById(R.id.imageAnimal);
-            nomAnimal = itemView.findViewById(R.id.nomAnimal);
+            nomTextView = itemView.findViewById(R.id.textViewNomAnimal);
+            imageView = itemView.findViewById(R.id.imageViewAnimal);
         }
     }
-
-    public void setAnimaux(List<Animal> newAnimaux) {
-        this.animaux = newAnimaux;
-        notifyDataSetChanged();
-    }
 }
+
 

@@ -41,18 +41,18 @@ public class AffichageAnimaux extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         ApiService apiService = ApiClient.getClient().create(ApiService.class);
-        apiService.getAnimaux().enqueue(new Callback<List<Animal>>() {
+        apiService.getAnimaux().enqueue(new Callback<ReponseAnimaux>() {
             @Override
-            public void onResponse(Call<List<Animal>> call, Response<List<Animal>> response) {
+            public void onResponse(Call<ReponseAnimaux> call, Response<ReponseAnimaux> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    adapter.setAnimaux(response.body());
+                    adapter.setAnimaux(response.body().getData());
                 } else {
                     Toast.makeText(AffichageAnimaux.this, "Erreur de réponse", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<List<Animal>> call, Throwable t) {
+            public void onFailure(Call<ReponseAnimaux> call, Throwable t) {
                 Toast.makeText(AffichageAnimaux.this, "Erreur API : " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });

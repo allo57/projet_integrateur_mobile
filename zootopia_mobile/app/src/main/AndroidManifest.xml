@@ -20,6 +20,9 @@
         android:theme="@style/Theme.Zootopia_mobile"
         tools:targetApi="31">
         <activity
+            android:name=".animaux.RecylerAnimaux"
+            android:exported="false" />
+        <activity
             android:name=".animaux.AffichageAnimaux"
             android:exported="false" />
         <activity

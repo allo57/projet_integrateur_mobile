@@ -2,6 +2,7 @@ package com.example.zootopia_mobile.api;
 
 import com.example.zootopia_mobile.activite.ActiviteResponse;
 import com.example.zootopia_mobile.animaux.Animal;
+import com.example.zootopia_mobile.animaux.ReponseAnimaux;
 
 import java.util.List;
 
@@ -13,7 +14,7 @@ public interface ApiService {
     Call<ActiviteResponse> getActivites();
 
     @GET("animaux")
-    Call<List<Animal>> getAnimaux();
+    Call<ReponseAnimaux> getAnimaux();
 }
 
 
