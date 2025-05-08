@@ -13,6 +13,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.zootopia_mobile.activite.Activite;
+import com.example.zootopia_mobile.animaux.AffichageAnimaux;
 
 public class menuNavigation extends AppCompatActivity implements View.OnClickListener {
 
@@ -38,11 +39,13 @@ public class menuNavigation extends AppCompatActivity implements View.OnClickLis
         buttonFermerNav = (ImageButton) findViewById(R.id.imageButtonFermerNav);
         imageButtonLocalisation = (ImageButton) findViewById(R.id.imageButtonLocalisation);
         imageButtonCalenActivite = (ImageButton) findViewById(R.id.imageButtonCalenActivit);
+        imageButtonAnimaux = (ImageButton) findViewById(R.id.imageButtonAnimaux);
 
         //On set le OnClickListener
         buttonFermerNav.setOnClickListener(this);
         imageButtonLocalisation.setOnClickListener(this);
         imageButtonCalenActivite.setOnClickListener(this);
+        imageButtonAnimaux.setOnClickListener(this);
 
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -62,6 +65,9 @@ public class menuNavigation extends AppCompatActivity implements View.OnClickLis
             startActivity(intent);
         } else if (v.getId()==R.id.imageButtonLocalisation) {
             Intent intent = new Intent(menuNavigation.this, ZooLocation.class);
+            startActivity(intent);
+        } else if (v.getId()==R.id.imageButtonAnimaux) {
+            Intent intent = new Intent(menuNavigation.this, AffichageAnimaux.class);
             startActivity(intent);
         }
     }
