@@ -1,12 +1,9 @@
 package com.example.zootopia_mobile;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
@@ -15,11 +12,13 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.zootopia_mobile.activite.Activite;
+
 public class menuNavigation extends AppCompatActivity implements View.OnClickListener {
 
     private ImageButton buttonFermerNav;
     private ImageButton imageButtonNotifNav;
-    private ImageButton imageButtonCalenActivit;
+    private ImageButton imageButtonCalenActivite;
     private ImageButton imageButtonAnimaux;
     private ImageButton imageButtonBilletterie;
     private ImageButton imageButtonAPropos;
@@ -38,10 +37,12 @@ public class menuNavigation extends AppCompatActivity implements View.OnClickLis
         //Différents buttons
         buttonFermerNav = (ImageButton) findViewById(R.id.imageButtonFermerNav);
         imageButtonLocalisation = (ImageButton) findViewById(R.id.imageButtonLocalisation);
+        imageButtonCalenActivite = (ImageButton) findViewById(R.id.imageButtonCalenActivit);
 
         //On set le OnClickListener
         buttonFermerNav.setOnClickListener(this);
         imageButtonLocalisation.setOnClickListener(this);
+        imageButtonCalenActivite.setOnClickListener(this);
 
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -53,8 +54,11 @@ public class menuNavigation extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
-        if (v.getId()==R.id.imageButtonFermerNav){
+        if (v.getId()==R.id.imageButtonFermerNav) {
             Intent intent = new Intent(menuNavigation.this, MainActivity.class);
+            startActivity(intent);
+        }else if(v.getId() == R.id.imageButtonCalenActivit){
+            Intent intent = new Intent(menuNavigation.this, Activite.class);
             startActivity(intent);
         } else if (v.getId()==R.id.imageButtonLocalisation) {
             Intent intent = new Intent(menuNavigation.this, ZooLocation.class);
