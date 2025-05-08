@@ -7,7 +7,8 @@ public class ActiviteModel {
     private String date;
     private String heure_debut;
     private String heure_fin;
-    private int id_type;
+
+    private String type;
     private String infrastructure;
 
     public String getTitre() {
@@ -18,7 +19,11 @@ public class ActiviteModel {
         return description;
     }
 
-    public String getTag() {
+    public String getTag(){
+        return type;
+    }
+
+    public String getInfrastructure() {
         return infrastructure;
     }
 }

@@ -19,7 +19,6 @@ public class ActiviteAdapter extends RecyclerView.Adapter<ActiviteAdapter.Activi
 
     // Constructor
     public ActiviteAdapter(List<ActiviteModel> activites) {
-        // Si la liste est null, utilise une liste vide
         this.activites = activites != null ? activites : new ArrayList<>();
     }
 
@@ -37,7 +36,8 @@ public class ActiviteAdapter extends RecyclerView.Adapter<ActiviteAdapter.Activi
         holder.titre.setText(activite.getTitre());
         holder.description.setText(activite.getDescription());
         holder.tag.setText(activite.getTag());
-        holder.image.setImageResource(R.drawable.lion); // Image par défaut
+        holder.infrastructure.setText(activite.getInfrastructure());
+        holder.image.setImageResource(R.drawable.lion_activite);
     }
 
     @Override
@@ -51,6 +51,7 @@ public class ActiviteAdapter extends RecyclerView.Adapter<ActiviteAdapter.Activi
         TextView titre;
         TextView description;
         TextView tag;
+        TextView infrastructure;
 
         public ActiviteViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -58,6 +59,7 @@ public class ActiviteAdapter extends RecyclerView.Adapter<ActiviteAdapter.Activi
             titre = itemView.findViewById(R.id.titre_activite);
             description = itemView.findViewById(R.id.description_activite);
             tag = itemView.findViewById(R.id.tag);
+            infrastructure = itemView.findViewById(R.id.infrastructure);
         }
     }
 }
