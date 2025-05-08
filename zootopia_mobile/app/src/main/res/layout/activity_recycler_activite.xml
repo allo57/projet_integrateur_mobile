@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/lion" />
+        android:src="@drawable/lion_activite" />
 
     <TextView
         android:id="@+id/titre_activite"
@@ -42,6 +42,19 @@
 
         <TextView
             android:id="@+id/tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Non-payant"
+            android:backgroundTint="@color/bleuActivite"
+            android:textColor="@android:color/white"
+            android:layout_marginEnd="8dp"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="6dp"
+            android:textSize="12sp"
+            android:background="@drawable/rectangle_tag" />
+
+        <TextView
+            android:id="@+id/infrastructure"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Non-payant"
