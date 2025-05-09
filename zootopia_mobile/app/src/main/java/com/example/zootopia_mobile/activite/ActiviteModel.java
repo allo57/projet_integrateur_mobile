@@ -7,7 +7,6 @@ public class ActiviteModel {
     private String date;
     private String heure_debut;
     private String heure_fin;
-
     private String type;
     private String infrastructure;
 
@@ -25,5 +24,17 @@ public class ActiviteModel {
 
     public String getInfrastructure() {
         return infrastructure;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public String getHeure_debut() {
+        return heure_debut;
+    }
+
+    public String getHeure_fin() {
+        return heure_fin;
     }
 }

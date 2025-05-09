@@ -7,36 +7,62 @@
     android:layout_height="match_parent"
     tools:context=".activite.Activite">
 
-    <FrameLayout
-        android:id="@+id/frameLayout"
+    <LinearLayout
+        android:id="@+id/headerLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#F1F7ED">
+        android:layout_height="120dp"
+        android:background="#D5E8D4"
+        android:orientation="vertical">
 
-        <ImageButton
-            android:id="@+id/imageButtonPaw"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="140dp"
-            android:background="@null"
-            app:srcCompat="@drawable/lion" />
-
-        <ImageView
-            android:id="@+id/imageViewZootopia"
-            android:layout_width="150dp"
-            android:layout_height="100dp"
-            android:layout_gravity="center_horizontal"
-            app:srcCompat="@drawable/zootopia" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="120dp"/>
+            android:layout_height="match_parent">
 
-    </FrameLayout>
+            <ImageButton
+                android:id="@+id/imageButtonFermerNav"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@null"
+                android:contentDescription="Close Button"
+                android:src="@drawable/remove" />
+
+            <ImageView
+                android:id="@+id/imageZootopiaNav"
+                android:layout_width="140dp"
+                android:layout_height="50dp"
+                android:layout_centerInParent="true"
+                android:contentDescription="Zootopia Logo"
+                android:src="@drawable/zootopia" />
+
+            <TextView
+                android:id="@+id/titre_activités"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="8dp"
+                android:text="NOS ACTIVITÉS"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/headerLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

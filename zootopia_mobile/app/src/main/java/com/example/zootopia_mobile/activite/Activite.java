@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.zootopia_mobile.R;
+import com.example.zootopia_mobile.animaux.AffichageAnimaux;
 import com.example.zootopia_mobile.api.ApiService;
 import com.example.zootopia_mobile.api.RetrofitInstance;
 import com.example.zootopia_mobile.menuNavigation;
@@ -36,14 +37,10 @@ public class Activite extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_activite);
-        ImageButton buttonNav = (ImageButton) findViewById(R.id.imageButtonPaw);
-
-        buttonNav.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Activite.this, menuNavigation.class);
-                startActivity(intent);
-            }
+        ImageButton buttonNav = findViewById(R.id.imageButtonFermerNav);
+        buttonNav.setOnClickListener(v -> {
+            Intent intent = new Intent(Activite.this, menuNavigation.class);
+            startActivity(intent);
         });
 
         recyclerView = findViewById(R.id.recyclerView);

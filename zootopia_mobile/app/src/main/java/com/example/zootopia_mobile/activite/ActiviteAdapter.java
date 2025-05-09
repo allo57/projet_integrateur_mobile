@@ -10,8 +10,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.zootopia_mobile.R;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class ActiviteAdapter extends RecyclerView.Adapter<ActiviteAdapter.ActiviteViewHolder> {
 
@@ -33,11 +36,18 @@ public class ActiviteAdapter extends RecyclerView.Adapter<ActiviteAdapter.Activi
     @Override
     public void onBindViewHolder(@NonNull ActiviteViewHolder holder, int position) {
         ActiviteModel activite = activites.get(position);
+        String dateOriginale = activite.getDate();
+        LocalDate date = LocalDate.parse(dateOriginale);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMMM yyyy", Locale.FRENCH);
+        String dateFormatee = date.format(formatter);
+        holder.date.setText(dateFormatee);
+        String heureDebutFormattee = activite.getHeure_debut().substring(0, 5);
+        String heureFinFormattee = activite.getHeure_fin().substring(0, 5);
+        holder.heure.setText(heureDebutFormattee + " - " + heureFinFormattee);
         holder.titre.setText(activite.getTitre());
         holder.description.setText(activite.getDescription());
         holder.tag.setText(activite.getTag());
         holder.infrastructure.setText(activite.getInfrastructure());
-        holder.image.setImageResource(R.drawable.lion_activite);
     }
 
     @Override
@@ -47,7 +57,8 @@ public class ActiviteAdapter extends RecyclerView.Adapter<ActiviteAdapter.Activi
 
     static class ActiviteViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView image;
+        TextView date;
+        TextView heure;
         TextView titre;
         TextView description;
         TextView tag;
@@ -55,7 +66,8 @@ public class ActiviteAdapter extends RecyclerView.Adapter<ActiviteAdapter.Activi
 
         public ActiviteViewHolder(@NonNull View itemView) {
             super(itemView);
-            image = itemView.findViewById(R.id.image_activite);
+            date = itemView.findViewById(R.id.date);
+            heure = itemView.findViewById(R.id.heure);
             titre = itemView.findViewById(R.id.titre_activite);
             description = itemView.findViewById(R.id.description_animal);
             tag = itemView.findViewById(R.id.tag);
