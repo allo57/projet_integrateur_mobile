@@ -1,8 +1,10 @@
 package com.example.zootopia_mobile.animaux;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,11 +16,17 @@ import com.example.zootopia_mobile.R;
 
 import java.util.List;
 
+import android.content.Context;
+import android.content.Intent;
+import android.widget.Button;
 public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalViewHolder> {
 
     private List<Animal> animaux;
 
-    public AnimalAdapter(List<Animal> animaux) {
+    private Context context;
+
+    public AnimalAdapter(Context context, List<Animal> animaux) {
+        this.context = context;
         this.animaux = animaux;
     }
 
@@ -37,13 +45,23 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalView
     @Override
     public void onBindViewHolder(@NonNull AnimalViewHolder holder, int position) {
         Animal animal = animaux.get(position);
-        holder.nomTextView.setText(animal.getNom());
+        holder.buttonNomAnimal.setText(animal.getNom());
         holder.descriptionTextView.setText(couperTexte(animal.getDescription(), 25));
 
         Glide.with(holder.itemView.getContext())
                 .load("http://10.0.2.2:8000/img/" + animal.getImage())
-                .placeholder(R.drawable.animal_default) // une image par défaut
+                .placeholder(R.drawable.animal_default)
                 .into(holder.imageView);
+
+        holder.buttonNomAnimal.setOnClickListener(v -> {
+            Intent intent = new Intent(context, AffichageAnimalUnique.class);
+            intent.putExtra("nom", animal.getNom());
+            intent.putExtra("description", animal.getDescription());
+            intent.putExtra("date_naissance", animal.getDate_naissance());
+            intent.putExtra("etat", animal.getEtat());
+            intent.putExtra("image", animal.getImage());
+            context.startActivity(intent);
+        });
     }
 
     @Override
@@ -56,12 +74,13 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalView
     }
 
     static class AnimalViewHolder extends RecyclerView.ViewHolder {
-        TextView nomTextView, descriptionTextView;
+        Button buttonNomAnimal;
+        TextView descriptionTextView;
         ImageView imageView;
 
         AnimalViewHolder(@NonNull View itemView) {
             super(itemView);
-            nomTextView = itemView.findViewById(R.id.textViewNomAnimal);
+            buttonNomAnimal = itemView.findViewById(R.id.buttonNomAnimal);
             imageView = itemView.findViewById(R.id.imageViewAnimal);
             descriptionTextView = itemView.findViewById(R.id.description_animal);
         }

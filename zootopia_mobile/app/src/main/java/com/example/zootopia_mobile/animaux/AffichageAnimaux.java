@@ -37,7 +37,7 @@ public class AffichageAnimaux extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.recyclerViewAnimaux);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
 
-        AnimalAdapter adapter = new AnimalAdapter(new ArrayList<>());
+        AnimalAdapter adapter = new AnimalAdapter(this, new ArrayList<>());
         recyclerView.setAdapter(adapter);
 
         ApiService apiService = ApiClient.getClient().create(ApiService.class);
