@@ -38,12 +38,11 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalView
     public void onBindViewHolder(@NonNull AnimalViewHolder holder, int position) {
         Animal animal = animaux.get(position);
         holder.nomTextView.setText(animal.getNom());
+        holder.descriptionTextView.setText(couperTexte(animal.getDescription(), 25));
 
-        // Charger l'image avec Glide (si image est un nom de fichier, ajouter l’URL de base)
-        String url = "https://ton_serveur/images/" + animal.getImage(); // à adapter
-        Glide.with(holder.imageView.getContext())
-                .load(url)
-                .placeholder(R.drawable.lion) // image par défaut si vide
+        Glide.with(holder.itemView.getContext())
+                .load("http://10.0.2.2:8000/img/" + animal.getImage())
+                .placeholder(R.drawable.animal_default) // une image par défaut
                 .into(holder.imageView);
     }
 
@@ -52,14 +51,19 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalView
         return animaux.size();
     }
 
+    private String couperTexte(String texte, int longueurMax) {
+        return texte.length() > longueurMax ? texte.substring(0, longueurMax) + "..." : texte;
+    }
+
     static class AnimalViewHolder extends RecyclerView.ViewHolder {
-        TextView nomTextView;
+        TextView nomTextView, descriptionTextView;
         ImageView imageView;
 
         AnimalViewHolder(@NonNull View itemView) {
             super(itemView);
             nomTextView = itemView.findViewById(R.id.textViewNomAnimal);
             imageView = itemView.findViewById(R.id.imageViewAnimal);
+            descriptionTextView = itemView.findViewById(R.id.description_animal);
         }
     }
 }

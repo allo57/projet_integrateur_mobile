@@ -57,7 +57,7 @@ public class ActiviteAdapter extends RecyclerView.Adapter<ActiviteAdapter.Activi
             super(itemView);
             image = itemView.findViewById(R.id.image_activite);
             titre = itemView.findViewById(R.id.titre_activite);
-            description = itemView.findViewById(R.id.description_activite);
+            description = itemView.findViewById(R.id.description_animal);
             tag = itemView.findViewById(R.id.tag);
             infrastructure = itemView.findViewById(R.id.infrastructure);
         }
