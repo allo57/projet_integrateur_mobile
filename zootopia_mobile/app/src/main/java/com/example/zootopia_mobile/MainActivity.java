@@ -1,7 +1,9 @@
 package com.example.zootopia_mobile;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -49,6 +51,74 @@ public class MainActivity extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
+        });
+
+        // FACEBOOK
+        ImageButton btnFacebook = findViewById(R.id.btnFacebook);
+        btnFacebook.setOnClickListener(v -> {
+            Intent intent;
+            try {
+                getPackageManager().getPackageInfo("com.facebook.katana", 0);
+                intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com"));
+            } catch (Exception e) {
+                intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com"));
+            }
+            startActivity(intent);
+        });
+
+        // INSTAGRAM
+        ImageButton btnInstagram = findViewById(R.id.btnInstagram);
+        btnInstagram.setOnClickListener(v -> {
+            Uri uri = Uri.parse("http://instagram.com");
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            intent.setPackage("com.instagram.android");
+
+            try {
+                startActivity(intent);
+            } catch (ActivityNotFoundException e) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://instagram.com")));
+            }
+        });
+
+        // REDDIT
+        ImageButton btnReddit = findViewById(R.id.btnReddit);
+        btnReddit.setOnClickListener(v -> {
+            Uri uri = Uri.parse("https://www.reddit.com/user/YOUR_USERNAME");
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            intent.setPackage("com.reddit.frontpage");
+
+            try {
+                startActivity(intent);
+            } catch (ActivityNotFoundException e) {
+                startActivity(new Intent(Intent.ACTION_VIEW, uri));
+            }
+        });
+
+        // PINTEREST
+        ImageButton btnPinterest = findViewById(R.id.btnPinterest);
+        btnPinterest.setOnClickListener(v -> {
+            Uri uri = Uri.parse("https://www.pinterest.com");
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            intent.setPackage("com.pinterest");
+
+            try {
+                startActivity(intent);
+            } catch (ActivityNotFoundException e) {
+                startActivity(new Intent(Intent.ACTION_VIEW, uri));
+            }
+        });
+
+        // TWITTER
+        ImageButton btnTwitter = findViewById(R.id.btnTwitter);
+        btnTwitter.setOnClickListener(v -> {
+            Intent intent;
+            try {
+                getPackageManager().getPackageInfo("com.twitter.android", 0);
+                intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com"));
+            } catch (Exception e) {
+                intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com"));
+            }
+            startActivity(intent);
         });
     }
 }

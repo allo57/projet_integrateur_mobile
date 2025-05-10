@@ -40,9 +40,9 @@ public class RecyclerReservation extends RecyclerView.Adapter<RecyclerReservatio
         holder.numero.setText("Numéro de la réservation : " + reservations[position]);
         holder.nom.setText("Nom de la réservation : " + reservations[position]);
         holder.no_tel.setText("Numéro de la contact : " + reservations[position]);
-        holder.modifier.setImageResource(R.drawable.edit);
+        //holder.modifier.setImageResource(R.drawable.edit);
         holder.modifier.setBackground(null);
-        holder.supprimer.setImageResource(R.drawable.delete);
+        //holder.supprimer.setImageResource(R.drawable.delete);
         holder.supprimer.setBackground(null);
 
         holder.infoTransaction.setOnClickListener(v-> {
