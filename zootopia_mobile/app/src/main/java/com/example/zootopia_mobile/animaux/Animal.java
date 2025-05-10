@@ -6,6 +6,7 @@ public class Animal {
     private String description;
     private String date_naissance;
     private String etat;
+    private String etat_desc;
     private String image;
 
     public int getId_animal() {
@@ -26,6 +27,10 @@ public class Animal {
 
     public String getEtat() {
         return etat;
+    }
+
+    public String getEtatDesc() {
+        return etat_desc;
     }
 
     public String getImage() {
