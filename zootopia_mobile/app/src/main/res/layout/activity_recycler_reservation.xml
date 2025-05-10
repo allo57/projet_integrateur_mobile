@@ -4,68 +4,84 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#FCFFFA"
+    android:layout_height="wrap_content"
     android:gravity="center_horizontal"
+    android:orientation="vertical"
     tools:context=".reservation.RecyclerReservation">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:background="@drawable/detail"
+        android:orientation="horizontal">
 
-        <Space
+        <LinearLayout
+            android:id="@+id/infoTransaction"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingLeft="20px">
 
-        <TextView
-            android:id="@+id/numero"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Numéro de la réservation : "
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="32px" />
 
-        <TextView
-            android:id="@+id/nom"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Nom de la réservation : "
-            android:textSize="18sp" />
+            <TextView
+                android:id="@+id/numero"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Numéro de la réservation : "
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/no_tel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Numéro de contact :"
-            android:textSize="18sp" />
+            <TextView
+                android:id="@+id/nom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nom de la réservation : "
+                android:textSize="18sp" />
 
-        <Space
+            <TextView
+                android:id="@+id/no_tel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Numéro de contact :"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/modifier"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/green_button" />
+
+            <ImageButton
+                android:id="@+id/supprimer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/green_button" />
+
+        </LinearLayout>
+
     </LinearLayout>
 
-    <LinearLayout
+    <Space
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="3"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:minHeight="16px"
+        tools:visibility="visible" />
 
-        <ImageButton
-            android:id="@+id/imageButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/green_button" />
-
-        <ImageButton
-            android:id="@+id/imageButton2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/green_button" />
-    </LinearLayout>
 </LinearLayout>

@@ -189,7 +189,7 @@
         android:layout_weight="1" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/ajouter"
+        android:id="@+id/ajout_reservation"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:background="@drawable/border"
@@ -202,7 +202,7 @@
         android:layout_weight="1" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/annuler"
+        android:id="@+id/annuler_ajout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/border"
