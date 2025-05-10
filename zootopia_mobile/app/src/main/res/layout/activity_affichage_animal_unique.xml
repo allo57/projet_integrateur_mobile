@@ -7,8 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-
-        <!-- Header -->
+        
         <LinearLayout
             android:id="@+id/headerLayout"
             android:layout_width="match_parent"
@@ -54,7 +53,6 @@
             </RelativeLayout>
         </LinearLayout>
 
-        <!-- Titre -->
         <TextView
             android:id="@+id/textViewNomAnimal"
             android:layout_width="wrap_content"
@@ -66,7 +64,6 @@
             android:layout_marginTop="16dp"
             android:layout_marginLeft="10dp"/>
 
-        <!-- Image -->
         <ImageView
             android:id="@+id/imageViewAnimal"
             android:layout_width="match_parent"
@@ -74,14 +71,13 @@
             android:scaleType="centerCrop"
             android:layout_marginLeft="24dp"
             android:layout_marginRight="24dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:src="@drawable/ic_launcher_foreground"
             android:background="@drawable/rounded_border"
             android:clipToOutline="true"
             android:layout_marginBottom="16dp" />
 
 
-        <!-- Carte infos -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="348dp"
