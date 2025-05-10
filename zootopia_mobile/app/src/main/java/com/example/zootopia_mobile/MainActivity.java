@@ -31,6 +31,10 @@ public class MainActivity extends AppCompatActivity {
         SQLiteDatabase database = db.getWritableDatabase();
 
         db.ajoutUser("Test", "A1A1A1", "1234567890", 1, "test@email.com", "pass123");
+        db.ajoutUser("Heidi", "J1J 1J1", "(566) 569-5656", 1, "heidi@gmail.com", "user1234");
+
+        // db.deleteUser("Test");
+
         ImageButton buttonNav = (ImageButton) findViewById(R.id.imageButtonPaw);
 
         buttonNav.setOnClickListener(new View.OnClickListener() {
