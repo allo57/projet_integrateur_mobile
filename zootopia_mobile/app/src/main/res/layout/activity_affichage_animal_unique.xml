@@ -1,115 +1,206 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF">
 
+    <!-- Header -->
     <LinearLayout
+        android:id="@+id/headerLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="120dp"
+        android:background="#D5E8D4"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-        <LinearLayout
-            android:id="@+id/headerLayout"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:background="#D5E8D4"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageButton
-                    android:id="@+id/imageButtonFermerNav"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:background="@null"
-                    android:contentDescription="Close Button"
-                    android:src="@drawable/remove" />
-
-                <ImageView
-                    android:id="@+id/imageZootopiaNav"
-                    android:layout_width="140dp"
-                    android:layout_height="50dp"
-                    android:layout_centerInParent="true"
-                    android:contentDescription="Zootopia Logo"
-                    android:src="@drawable/zootopia" />
-
-                <TextView
-                    android:id="@+id/titre_animaux"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginBottom="8dp"
-                    android:text="NOS ANIMAUX"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-            </RelativeLayout>
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/textViewNomAnimal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Nom de l'animal"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="12dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginLeft="10dp"/>
-
-        <ImageView
-            android:id="@+id/imageViewAnimal"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:scaleType="centerCrop"
-            android:layout_marginLeft="24dp"
-            android:layout_marginRight="24dp"
-            android:layout_marginTop="8dp"
-            android:src="@drawable/ic_launcher_foreground"
-            android:background="@drawable/rounded_border"
-            android:clipToOutline="true"
-            android:layout_marginBottom="16dp" />
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="348dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginRight="24dp"
-            android:background="@drawable/rounded_border"
-            android:backgroundTint="#9416476B"
-            android:elevation="4dp"
-            android:orientation="vertical"
-            android:padding="16dp"
-            android:layout_marginTop="16dp"
-            >
-
-            <TextView
-                android:id="@+id/textViewAge"
+            <ImageButton
+                android:id="@+id/imageButtonFermerNav"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@null"
+                android:contentDescription="Close Button"
+                android:src="@drawable/remove" />
+
+            <ImageView
+                android:id="@+id/imageZootopiaNav"
+                android:layout_width="140dp"
+                android:layout_height="50dp"
+                android:layout_centerInParent="true"
+                android:contentDescription="Zootopia Logo"
+                android:src="@drawable/zootopia" />
+
+            <TextView
+                android:id="@+id/titre_animaux"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="20dp"
                 android:layout_marginBottom="8dp"
-                android:text="Âge : XX mois"
-                android:textSize="16sp"
+                android:text="NOS ANIMAUX"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/textViewDescription"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:lineSpacingExtra="6dp"
-                android:text="Description de l'animal"
-                android:textSize="14sp" />
-
-        </LinearLayout>
-
+        </RelativeLayout>
     </LinearLayout>
 
-</ScrollView>
+    <!-- Contenu scrollable avec infos + recyclerView -->
+    <ScrollView
+        android:id="@+id/scrollViewContent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toBottomOf="@id/headerLayout"
+        app:layout_constraintBottom_toTopOf="@id/footerLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="16dp">
+
+            <TextView
+                android:id="@+id/textViewNomAnimal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nom de l'animal"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="12dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="10dp"/>
+
+            <ImageView
+                android:id="@+id/imageViewAnimal"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:scaleType="centerCrop"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/ic_launcher_foreground"
+                android:background="@drawable/rounded_border"
+                android:clipToOutline="true"
+                android:layout_marginBottom="16dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:background="@drawable/rounded_border"
+                android:backgroundTint="#9416476B"
+                android:elevation="4dp"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:layout_marginTop="16dp">
+
+                <TextView
+                    android:id="@+id/textViewAge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="Âge : XX mois"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textViewDescription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="6dp"
+                    android:text="Description de l'animal"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <!-- RecyclerView INSIDE scroll (attention si long) -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="16dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Footer fixe -->
+    <LinearLayout
+        android:id="@+id/footerLayout"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="8dp"
+        android:background="#D5E8D4"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageButton
+            android:id="@+id/btnPaw"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            android:src="@drawable/paws" />
+
+        <ImageButton
+            android:id="@+id/btnMap"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            android:src="@drawable/map" />
+
+        <ImageButton
+            android:id="@+id/btnPanier"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            android:src="@drawable/panier" />
+
+        <ImageButton
+            android:id="@+id/btnActivite"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            android:src="@drawable/activity"/>
+
+        <ImageButton
+            android:id="@+id/btnReservation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            android:src="@drawable/info" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

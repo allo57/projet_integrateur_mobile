@@ -7,21 +7,14 @@
     android:layout_height="match_parent"
     tools:context=".animaux.AffichageAnimaux">
 
-    <View
-        android:id="@+id/backgroundViewBelowHeader"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:background="#F3F8F0"
-        app:layout_constraintTop_toBottomOf="@id/headerLayout"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
+    <!-- HEADER -->
     <LinearLayout
         android:id="@+id/headerLayout"
         android:layout_width="match_parent"
         android:layout_height="120dp"
         android:background="#D5E8D4"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -57,20 +50,87 @@
                 android:text="NOS ANIMAUX"
                 android:textSize="20sp"
                 android:textStyle="bold" />
-
         </RelativeLayout>
     </LinearLayout>
 
+    <!-- RECYCLER VIEW -->
+
+    <!-- FOOTER -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewAnimaux"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/headerLayout"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/footerLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/headerLayout"
         tools:listitem="@layout/activity_recyler_animaux" />
 
+    <LinearLayout
+        android:id="@+id/footerLayout"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:background="#D5E8D4"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        android:translationZ="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageButton
+            android:id="@+id/btnPaw"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:src="@drawable/paws" />
+
+        <ImageButton
+            android:id="@+id/btnMap"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:src="@drawable/map" />
+
+        <ImageButton
+            android:id="@+id/btnPanier"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:src="@drawable/panier" />
+
+        <ImageButton
+            android:id="@+id/btnActivite"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:src="@drawable/activity" />
+
+        <ImageButton
+            android:id="@+id/btnReservation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:src="@drawable/info" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
