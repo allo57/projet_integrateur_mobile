@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -21,6 +20,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".reservation.SupprimerReservation"
+            android:exported="false" />
+        <activity
             android:name=".animaux.AffichageAnimalUnique"
             android:exported="false" />
         <activity
@@ -34,9 +36,6 @@
             android:exported="false" />
         <activity
             android:name=".activite.RecyclerActivite"
-            android:exported="false" />
-        <activity
-            android:name=".reservation.RecyclerReservation"
             android:exported="false" />
         <activity
             android:name=".magasin.RecyclerPanier"
@@ -60,7 +59,7 @@
             android:name=".reservation.DetailReservtion"
             android:exported="false" />
         <activity
-            android:name=".reservation.ListeReservation"
+            android:name=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".reservation.ModifierReservation"
@@ -87,7 +86,7 @@
             android:name=".menuNavigation"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".reservation.ListeReservation"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
