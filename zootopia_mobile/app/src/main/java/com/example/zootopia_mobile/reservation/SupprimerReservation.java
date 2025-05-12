@@ -1,5 +1,6 @@
 package com.example.zootopia_mobile.reservation;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +12,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.zootopia_mobile.R;
+import com.example.zootopia_mobile.SQLiteManager;
 import com.example.zootopia_mobile.api.ApiService;
 import com.example.zootopia_mobile.api.RetrofitInstance;
 
@@ -21,6 +23,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class SupprimerReservation extends AppCompatActivity {
+    Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,16 +31,27 @@ public class SupprimerReservation extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_supprimer_reservation);
 
+        Intent data = getIntent();
+        int user_id = data.getIntExtra("id_utilisateur", 0);
+        int reservation_id = data.getIntExtra("id_reservation", 0);
+
+
         ApiService apiService = RetrofitInstance.getApi();
-        Call<ResponseReservation> call = apiService.deleteReservation("1", "1");
+        Call<ResponseReservation> call = apiService.deleteReservation(user_id, reservation_id);
 
         call.enqueue(new Callback<ResponseReservation>() {
             @Override
             public void onResponse(Call<ResponseReservation> call, Response<ResponseReservation> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     Log.e("TEST", "Deleted");
+
+                    SQLiteManager sqLiteManager = SQLiteManager.instanceOfDatabase(context);
+                    sqLiteManager.deleteReservation(reservation_id);
+
                     Intent intent = new Intent(SupprimerReservation.this, ListeReservation.class);
                     startActivity(intent);
+                    finish();
+
                 } else {
                     Log.e("API", "Code d'erreur HTTP : " + response.code());
                     if (response.errorBody() != null) {

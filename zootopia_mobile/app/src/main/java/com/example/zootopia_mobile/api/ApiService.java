@@ -30,7 +30,7 @@ public interface ApiService {
     Call<ResponseReservation> editReservation();
 
     @GET("supprimerReservation/{user_id}&{reservation_id}")
-    Call<ResponseReservation> deleteReservation(@Path("user_id") String user_id, @Path("reservation_id") String reservation_id);
+    Call<ResponseReservation> deleteReservation(@Path("user_id") int user_id, @Path("reservation_id") int reservation_id);
 
     //@GET("/billets")
     //Call<> getBillets();

@@ -51,6 +51,20 @@
                     android:layout_weight="1" />
 
                 <TextView
+                    android:id="@+id/label_no_tel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="Numéro de téléphone"
+                    android:textSize="16sp" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <TextView
                     android:id="@+id/label_nb_personnes"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -96,7 +110,7 @@
                 android:orientation="vertical">
 
                 <EditText
-                    android:id="@+id/nom"
+                    android:id="@+id/reservation_ajout_nom"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -113,7 +127,7 @@
                     android:layout_weight="1" />
 
                 <EditText
-                    android:id="@+id/nb_personnes"
+                    android:id="@+id/reservation_ajout_no_tel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -130,7 +144,24 @@
                     android:layout_weight="1" />
 
                 <EditText
-                    android:id="@+id/date"
+                    android:id="@+id/reservation_ajout_nb_personnes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_border"
+                    android:ems="10"
+                    android:gravity="center_horizontal"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:textSize="16sp" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <EditText
+                    android:id="@+id/reservation_ajout_date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -147,7 +178,7 @@
                     android:layout_weight="1" />
 
                 <Spinner
-                    android:id="@+id/spinner"
+                    android:id="@+id/reservation_ajout_heure"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -166,7 +197,7 @@
             android:textSize="16sp" />
 
         <EditText
-            android:id="@+id/note"
+            android:id="@+id/reservation_ajout_note"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0"

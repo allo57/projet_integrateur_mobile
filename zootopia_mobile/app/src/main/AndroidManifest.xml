@@ -83,10 +83,10 @@
             android:exported="false"
             android:label="@string/title_activity_zoo_location" />
         <activity
-            android:name=".menuNavigation"
+            android:name=".reservation.ListeReservation"
             android:exported="false" />
         <activity
-            android:name=".reservation.ListeReservation"
+            android:name=".menuNavigation"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

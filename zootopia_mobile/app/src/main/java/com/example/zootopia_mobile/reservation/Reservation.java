@@ -1,18 +1,42 @@
 package com.example.zootopia_mobile.reservation;
 
+import android.util.Log;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 public class Reservation {
     private int id_reservation;
     private String nom;
     private int no_tel;
-    private LocalDateTime _date_heure;
+    private String date_heure;
     private int nb_personnes;
     private String note;
     private String description;
     private int id_etat_reservation;
     private int id_utilisateur;
+
+    public static ArrayList<Reservation> reservationArrayList = new ArrayList<>();
+
+    public Reservation() {
+        this.id_reservation = 0;
+        this.nom = "";
+        this.no_tel = 0;
+        this.date_heure = "";
+        this.nb_personnes = 0;
+        this.note = "";
+        this.description = "";
+        this.id_etat_reservation = 0;
+        this.id_utilisateur = 0;
+    }
+    public Reservation (String nom, int no_tel, int nb_personnes, String date, String heure, String note) {
+        set_nom(nom);
+        set_no_tel(no_tel);
+        set_nb_personnes(nb_personnes);
+        this.date_heure = date + " " + heure;
+        set_note(note);
+    }
 
     public int get_id_reservation() {
         return this.id_reservation;
@@ -38,12 +62,12 @@ public class Reservation {
         this.no_tel = no_tel;
     }
 
-    public LocalDateTime get_date_heure() {
-        return this._date_heure;
+    public String get_date_heure() {
+        return this.date_heure;
     }
 
-    public void set_date_heure(LocalDateTime date_heure) {
-        this._date_heure = date_heure;
+    public void set_date_heure(String date_heure) {
+        this.date_heure = date_heure;
     }
 
     public int get_nb_personnes() {
@@ -88,12 +112,16 @@ public class Reservation {
 
     public String get_heure() {
         DateTimeFormatter objFormat = DateTimeFormatter.ofPattern("HH:mm");
-        return this._date_heure.format(objFormat);
+        DateTimeFormatter currentFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime dateTime = LocalDateTime.parse(date_heure, currentFormat);
+        return dateTime.format(objFormat).toString();
     }
 
     public String get_date() {
-        DateTimeFormatter objFormat = DateTimeFormatter.ofPattern("dd MM yyyy");
-        return this._date_heure.format(objFormat);
+        DateTimeFormatter objFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter currentFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime dateTime = LocalDateTime.parse(date_heure, currentFormat);
+        return dateTime.format(objFormat).toString();
     }
 
     @Override
@@ -102,7 +130,7 @@ public class Reservation {
                 "id_reservation=" + id_reservation +
                 ", nom='" + nom + '\'' +
                 ", no_tel=" + no_tel +
-                ", date_heure=" + (_date_heure != null ? _date_heure.toString() : "null") +
+                ", date_heure=" + get_date_heure() +
                 ", nb_personnes=" + nb_personnes +
                 ", note='" + note + '\'' +
                 ", description='" + description + '\'' +

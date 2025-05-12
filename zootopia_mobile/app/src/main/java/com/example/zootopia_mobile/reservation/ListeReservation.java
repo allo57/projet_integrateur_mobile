@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.zootopia_mobile.R;
+import com.example.zootopia_mobile.SQLiteManager;
 import com.example.zootopia_mobile.api.ApiService;
 import com.example.zootopia_mobile.api.RetrofitInstance;
 
@@ -41,9 +42,6 @@ public class ListeReservation extends AppCompatActivity implements View.OnClickL
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        AppCompatButton ajouter = findViewById(R.id.ajouter);
-
-
         ApiService apiService = RetrofitInstance.getApi();
         Call<ResponseReservation> call = apiService.getUserReservations("1");
 
@@ -55,16 +53,25 @@ public class ListeReservation extends AppCompatActivity implements View.OnClickL
                     Log.e("TEST", "Response: " + liste.toString());
                     adapter = new RecyclerReservation(context, liste);
                     recyclerView.setAdapter(adapter);
+
+                    SQLiteManager sqLiteManager = SQLiteManager.instanceOfDatabase(context);
+                    for (int i = 0; i < liste.size(); i++) {
+                        sqLiteManager.ajoutReservation(liste.get(i));
+                    }
+
+
                 } else {
                     Log.e("API", "Code d'erreur HTTP : " + response.code());
                     if (response.errorBody() != null) {
                         try {
                             Log.e("API", "Erreur body : " + response.errorBody().string());
+                            // Ajoute les nouvelles données et modifie les anciennes données
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
                     } else {
                         Log.e("API", "Erreur body null");
+                        // Check if la base de données n'est pas nulle
                     }
                 }
             }
@@ -76,6 +83,7 @@ public class ListeReservation extends AppCompatActivity implements View.OnClickL
             }
         });
 
+        AppCompatButton ajouter = findViewById(R.id.ajouter);
         ajouter.setOnClickListener(this);
     }
 

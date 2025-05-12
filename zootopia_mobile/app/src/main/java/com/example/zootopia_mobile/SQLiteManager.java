@@ -2,14 +2,20 @@ package com.example.zootopia_mobile;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
+import com.example.zootopia_mobile.reservation.Reservation;
+
+import java.util.ArrayList;
 
 public class SQLiteManager extends SQLiteOpenHelper
 {
     private static SQLiteManager sqLiteManager;
     private static final String DATABASE_NAME = "Zootopia";
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 5;
 
     public SQLiteManager(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -102,6 +108,8 @@ public class SQLiteManager extends SQLiteOpenHelper
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS reservations;");
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS users;");
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS billets;");
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS etat_reservations;");
+
         onCreate(sqLiteDatabase);
     }
 
@@ -132,18 +140,17 @@ public class SQLiteManager extends SQLiteOpenHelper
         db.insert("billets", null, values);
     }
 
-    public void ajoutReservation(long id_reservation, String nom, long no_tel, String date_heure, int nb_personnes, String note, String description, int id_etatReservation, long id_utilisateur) {
+    public void ajoutReservation(Reservation reservation) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put("id_reservation", id_reservation);
-        values.put("nom", nom);
-        values.put("no_tel", no_tel);
-        values.put("date_heure", date_heure);
-        values.put("nb_personnes", nb_personnes);
-        values.put("note", note);
-        values.put("description", description);
-        values.put("id_etat_reservation", id_etatReservation);
-        values.put("id_utilisateur", id_utilisateur);
+        values.put("id_reservation", reservation.get_id_reservation());
+        values.put("nom", reservation.get_nom());
+        values.put("no_tel", reservation.get_no_tel());
+        values.put("date_heure", reservation.get_date_heure());
+        values.put("nb_personnes", reservation.get_nb_personnes());
+        values.put("note", reservation.get_note());
+        values.put("id_etat_reservation", reservation.get_id_reservation());
+        values.put("id_utilisateur", reservation.get_id_utilisateur());
         db.insert("reservations", null, values);
     }
 
@@ -173,5 +180,87 @@ public class SQLiteManager extends SQLiteOpenHelper
         values.put("id_utilisateur", id_utilisateur);
         values.put("id_reservation", id_reservation);
         db.insert("utilisateur_reservation", null, values);
+    }
+
+    public ArrayList<Reservation> getReservations(int user_id) {
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        String selectionArg[] = {String.valueOf(user_id)};
+
+        try (Cursor result = sqLiteDatabase.rawQuery("SELECT * FROM reservations WHERE id_utilisateur = ?", selectionArg)) {
+            if (result.getCount() != 0) {
+                while (result.moveToNext()) {
+                    int id_reservation = result.getInt(0);
+                    String nom = result.getString(1);
+                    int no_tel = result.getInt(2);
+                    String date_heure = result.getString(3);
+                    int nb_personnes = result.getInt(4);
+                    String note = result.getString(5);
+                    int id_utilisateur = result.getInt(8);
+
+                    Reservation newReservation = new Reservation();
+                    newReservation.set_id_reservation(id_reservation);
+                    newReservation.set_nom(nom);
+                    newReservation.set_no_tel(no_tel);
+                    newReservation.set_date_heure(date_heure);
+                    newReservation.set_nb_personnes(nb_personnes);
+                    newReservation.set_nb_personnes(nb_personnes);
+                    newReservation.set_note(note);
+                    newReservation.set_id_utilisateur(id_utilisateur);
+                    Reservation.reservationArrayList.add(newReservation);
+                }
+                return Reservation.reservationArrayList;
+            }
+        }
+        return null;
+    }
+
+    public Reservation getReservation(int reservation_id, int user_id) {
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        String selectionArg[] = {String.valueOf(user_id), String.valueOf(reservation_id)};
+        Reservation newReservation = new Reservation();
+
+        try (Cursor result = sqLiteDatabase.rawQuery("SELECT * FROM reservations WHERE id_utilisateur = ? and id_reservation = ?", selectionArg)) {
+            if (result.moveToFirst()) {
+                int id_reservation = result.getInt(0);
+                String nom = result.getString(1);
+                int no_tel = result.getInt(2);
+                String date_heure = result.getString(3);
+                int nb_personnes = result.getInt(4);
+                String note = result.getString(5);
+                int id_utilisateur = result.getInt(8);
+
+                newReservation.set_id_reservation(id_reservation);
+                newReservation.set_nom(nom);
+                newReservation.set_no_tel(no_tel);
+                newReservation.set_date_heure(date_heure);
+                newReservation.set_nb_personnes(nb_personnes);
+                newReservation.set_note(note);
+                newReservation.set_id_utilisateur(id_utilisateur);
+                return newReservation;
+            }
+        }
+        return null;
+    }
+
+    public void updateReservations(Reservation reservation) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String clause = "id_reservation = ? and id_utilisateur = ?";
+        String selectionArg[] = {String.valueOf(reservation.get_id_reservation()), String.valueOf(reservation.get_id_utilisateur())};
+        ContentValues values = new ContentValues();
+        values.put("nom", reservation.get_nom());
+        values.put("no_tel", reservation.get_no_tel());
+        values.put("date_heure", reservation.get_date_heure());
+        values.put("nb_personnes", reservation.get_nb_personnes());
+        values.put("note", reservation.get_note());
+
+        db.update("reservations", values, clause, selectionArg);
+    }
+
+    public void deleteReservation(int id_reservation) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String clause = "id_reservation = ?";
+        String selectionArg[] = {String.valueOf(id_reservation)};
+
+        db.delete("reservations", clause, selectionArg);
     }
 }

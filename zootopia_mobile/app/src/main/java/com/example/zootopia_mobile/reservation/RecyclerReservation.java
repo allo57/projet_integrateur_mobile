@@ -39,8 +39,7 @@ public class RecyclerReservation extends RecyclerView.Adapter<RecyclerReservatio
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        Log.e("TEST", "Response: " + _reservations.get(position).toString());
-        holder.numero.setText("Numéro de la réservation : " + _reservations.get(position).get_id_reservation());
+        holder.numero.setText("Numéro de la réservation : " + this._reservations.get(position).get_id_reservation());
         holder.nom.setText("Nom de la réservation : " + this._reservations.get(position).get_nom());
         holder.no_tel.setText("Numéro de la contact : " + this._reservations.get(position).get_no_tel());
         holder.modifier.setImageResource(R.drawable.edit);
@@ -50,16 +49,22 @@ public class RecyclerReservation extends RecyclerView.Adapter<RecyclerReservatio
 
         holder.infoTransaction.setOnClickListener(v-> {
             Intent intent = new Intent(context, DetailReservtion.class);
+            intent.putExtra("id_reservation", this._reservations.get(position).get_id_reservation());
+            intent.putExtra("id_utilisateur", this._reservations.get(position).get_id_utilisateur());
             context.startActivity(intent);
         });
 
         holder.modifier.setOnClickListener(v-> {
             Intent intent = new Intent(context, ModifierReservation.class);
+            intent.putExtra("id_reservation", this._reservations.get(position).get_id_reservation());
+            intent.putExtra("id_utilisateur", this._reservations.get(position).get_id_utilisateur());
             context.startActivity(intent);
         });
 
         holder.supprimer.setOnClickListener(v-> {
             Intent intent = new Intent(context, SupprimerReservation.class);
+            intent.putExtra("id_reservation", this._reservations.get(position).get_id_reservation());
+            intent.putExtra("id_utilisateur", this._reservations.get(position).get_id_utilisateur());
             context.startActivity(intent);
         });
     }
