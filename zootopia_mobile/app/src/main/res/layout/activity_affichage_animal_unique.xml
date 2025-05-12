@@ -10,6 +10,7 @@
         android:id="@+id/headerLayout"
         android:layout_width="match_parent"
         android:layout_height="120dp"
+        android:paddingTop="24dp"
         android:background="#D5E8D4"
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent"
@@ -54,7 +55,6 @@
         </RelativeLayout>
     </LinearLayout>
 
-    <!-- Contenu scrollable avec infos + recyclerView -->
     <ScrollView
         android:id="@+id/scrollViewContent"
         android:layout_width="0dp"
@@ -86,14 +86,14 @@
                 android:id="@+id/imageViewAnimal"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
-                android:scaleType="centerCrop"
                 android:layout_marginLeft="24dp"
-                android:layout_marginRight="24dp"
                 android:layout_marginTop="8dp"
-                android:src="@drawable/ic_launcher_foreground"
+                android:layout_marginRight="24dp"
+                android:layout_marginBottom="16dp"
                 android:background="@drawable/rounded_border"
                 android:clipToOutline="true"
-                android:layout_marginBottom="16dp" />
+                android:scaleType="centerCrop"
+                android:src="@drawable/animal_default" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -125,7 +125,6 @@
                     android:textSize="14sp" />
             </LinearLayout>
 
-            <!-- RecyclerView INSIDE scroll (attention si long) -->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
@@ -138,7 +137,7 @@
         </LinearLayout>
     </ScrollView>
 
-    <!-- Footer fixe -->
+    <!-- Footer -->
     <LinearLayout
         android:id="@+id/footerLayout"
         android:layout_width="0dp"
