@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/lion" />
+        android:src="@drawable/animal_default" />
 
     <Button
         android:id="@+id/buttonNomAnimal"

@@ -12,6 +12,7 @@
         android:id="@+id/headerLayout"
         android:layout_width="match_parent"
         android:layout_height="120dp"
+        android:paddingTop="24dp"
         android:background="#D5E8D4"
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent">
@@ -56,12 +57,12 @@
     <!-- RECYCLER VIEW -->
 
     <!-- FOOTER -->
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewAnimaux"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="410dp"
+        android:layout_height="540dp"
         android:padding="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/footerLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
