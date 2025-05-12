@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         // REDDIT
         ImageButton btnReddit = findViewById(R.id.btnReddit);
         btnReddit.setOnClickListener(v -> {
-            Uri uri = Uri.parse("https://www.reddit.com/user/YOUR_USERNAME");
+            Uri uri = Uri.parse("https://www.reddit.com");
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             intent.setPackage("com.reddit.frontpage");
 
