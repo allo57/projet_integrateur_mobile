@@ -12,6 +12,13 @@
         android:layout_height="match_parent"
         android:background="#F1F7ED">
 
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="111dp"
+            android:background="#D5E8D4">
+
+        </FrameLayout>
+
         <ImageView
             android:id="@+id/imageLoutres"
             android:layout_width="270dp"

@@ -15,6 +15,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.zootopia_mobile.magasin.ListeItem;
+
 public class menuNavigation extends AppCompatActivity implements View.OnClickListener {
 
     private ImageButton buttonFermerNav;
@@ -60,5 +62,25 @@ public class menuNavigation extends AppCompatActivity implements View.OnClickLis
             Intent intent = new Intent(menuNavigation.this, ZooLocation.class);
             startActivity(intent);
         }
-    }
-}
+//        else if (v.getId()==R.id.imageButtonAnimaux){
+//            Intent intent = new Intent(menuNavigation.this, Animaux.class);
+//            startActivity(intent);
+//        }
+        else if (v.getId()==R.id.imageButtonBilletterie){
+            Intent intent = new Intent(menuNavigation.this, ListeItem.class);
+            startActivity(intent);
+//        }else if (v.getId()==R.id.imageButtonAPropos){
+//            Intent intent = new Intent(menuNavigation.this, Informations.class);
+//            startActivity(intent);
+//        }else if (v.getId()==R.id.buttonInscription){
+//            Intent intent = new Intent(menuNavigation.this, Inscription.class);
+//            startActivity(intent);
+//        }else if (v.getId()==R.id.buttonSeConnecter){
+//            Intent intent = new Intent(menuNavigation.this, Connection.class);
+//            startActivity(intent);
+//        }else if (v.getId()==R.id.buttonAIdeEnLigne){
+//            Intent intent = new Intent(menuNavigation.this, Aide.class);
+//            startActivity(intent);
+//        }
+        }
+    }}
