@@ -9,6 +9,7 @@ import com.example.zootopia_mobile.reservation.ResponseReservation;
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -24,10 +25,10 @@ public interface ApiService {
     Call<ResponseReservation> getUserReservations(@Path("id") String id);
 
     @POST("ajoutReservation")
-    Call<ResponseReservation> addReservation();
+    Call<ResponseReservation> addReservation(@Body Reservation post);
 
     @POST("modifierReservation")
-    Call<ResponseReservation> editReservation();
+    Call<ResponseReservation> editReservation(@Body Reservation post);
 
     @GET("supprimerReservation/{user_id}&{reservation_id}")
     Call<ResponseReservation> deleteReservation(@Path("user_id") int user_id, @Path("reservation_id") int reservation_id);

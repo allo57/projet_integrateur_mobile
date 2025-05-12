@@ -30,6 +30,8 @@ public class Reservation {
         this.id_etat_reservation = 0;
         this.id_utilisateur = 0;
     }
+
+    // Pour post
     public Reservation (String nom, int no_tel, int nb_personnes, String date, String heure, String note) {
         set_nom(nom);
         set_no_tel(no_tel);

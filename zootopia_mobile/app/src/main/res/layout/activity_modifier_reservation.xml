@@ -51,6 +51,18 @@
                     android:layout_weight="1" />
 
                 <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="TextView" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <TextView
                     android:id="@+id/label_nb_personnes"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -96,7 +108,7 @@
                 android:orientation="vertical">
 
                 <EditText
-                    android:id="@+id/nom"
+                    android:id="@+id/reservation_modif_nom"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -113,7 +125,7 @@
                     android:layout_weight="1" />
 
                 <EditText
-                    android:id="@+id/nb_personnes"
+                    android:id="@+id/reservation_modif_no_tel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -130,7 +142,24 @@
                     android:layout_weight="1" />
 
                 <EditText
-                    android:id="@+id/date"
+                    android:id="@+id/reservation_modif_nb_personnes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_border"
+                    android:ems="10"
+                    android:gravity="center_horizontal"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:textSize="16sp" />
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <EditText
+                    android:id="@+id/reservation_modif_date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -166,7 +195,7 @@
             android:textSize="16sp" />
 
         <EditText
-            android:id="@+id/note"
+            android:id="@+id/reservation_modif_note"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0"
