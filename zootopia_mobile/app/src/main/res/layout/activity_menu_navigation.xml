@@ -6,12 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".menuNavigation"
-    android:background="#F1F7ED">
+    android:background="#D5E8D4">
 
     <FrameLayout
         android:layout_width="410dp"
         android:layout_height="847dp"
         android:background="#F1F7ED"
+
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints">
 
