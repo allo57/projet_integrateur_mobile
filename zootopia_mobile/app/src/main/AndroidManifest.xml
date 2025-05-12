@@ -14,6 +14,7 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Zootopia_mobile"
@@ -43,6 +44,13 @@
             android:name=".reservation.DetailReservtion"
             android:exported="false" />
         <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
             android:name=".reservation.ListeReservation"
             android:exported="false" />
         <activity
@@ -51,7 +59,7 @@
         <activity
             android:name=".reservation.AjouterReservation"
             android:exported="false" />
-        tools:targetApi="31">
+            tools:targetApi="31">
 
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
@@ -79,6 +87,8 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            android:name=".menuNavigation"
+            android:exported="true">
         </activity>
 
         <meta-data
