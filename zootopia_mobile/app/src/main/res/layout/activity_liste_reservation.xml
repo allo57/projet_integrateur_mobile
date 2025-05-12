@@ -11,11 +11,12 @@
     tools:context=".reservation.ListeReservation">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="wrap_content"
+        android:id="@+id/liste_reservation"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/annuler"
+        android:id="@+id/ajouter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/green_button"

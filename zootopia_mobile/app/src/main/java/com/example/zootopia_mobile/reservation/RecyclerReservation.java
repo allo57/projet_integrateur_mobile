@@ -1,26 +1,96 @@
 package com.example.zootopia_mobile.reservation;
 
-import android.os.Bundle;
+import android.content.Context;
 
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import android.content.Intent;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.zootopia_mobile.R;
 
-public class RecyclerReservation extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.List;
+
+public class RecyclerReservation extends RecyclerView.Adapter<RecyclerReservation.MyViewHolder>{
+    private List<Reservation> _reservations;
+    private Context context;
+
+    public RecyclerReservation(Context context, List<Reservation> reservations) {
+        this.context = context;
+        this._reservations = reservations != null ? reservations : new ArrayList<>();
+    }
+
+    @NonNull
+    @Override
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View itemView = LayoutInflater.from(context)
+                .inflate(R.layout.activity_recycler_reservation, parent, false);
+        return new MyViewHolder(itemView);
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_recycler_reservation);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+        holder.numero.setText("Numéro de la réservation : " + this._reservations.get(position).get_id_reservation());
+        holder.nom.setText("Nom de la réservation : " + this._reservations.get(position).get_nom());
+        holder.no_tel.setText("Numéro de la contact : " + this._reservations.get(position).get_no_tel());
+        holder.modifier.setImageResource(R.drawable.edit);
+        holder.modifier.setBackground(null);
+        holder.supprimer.setImageResource(R.drawable.delete);
+        holder.supprimer.setBackground(null);
+
+        holder.infoTransaction.setOnClickListener(v-> {
+            Intent intent = new Intent(context, DetailReservtion.class);
+            intent.putExtra("id_reservation", this._reservations.get(position).get_id_reservation());
+            intent.putExtra("id_utilisateur", this._reservations.get(position).get_id_utilisateur());
+            context.startActivity(intent);
         });
+
+        holder.modifier.setOnClickListener(v-> {
+            Intent intent = new Intent(context, ModifierReservation.class);
+            intent.putExtra("id_reservation", this._reservations.get(position).get_id_reservation());
+            intent.putExtra("id_utilisateur", this._reservations.get(position).get_id_utilisateur());
+            context.startActivity(intent);
+        });
+
+        holder.supprimer.setOnClickListener(v-> {
+            Intent intent = new Intent(context, SupprimerReservation.class);
+            intent.putExtra("id_reservation", this._reservations.get(position).get_id_reservation());
+            intent.putExtra("id_utilisateur", this._reservations.get(position).get_id_utilisateur());
+            context.startActivity(intent);
+        });
+    }
+
+    @Override
+    public int getItemCount() {
+        return this._reservations.size();
+    }
+
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
+        LinearLayout infoTransaction;
+        TextView numero;
+        TextView nom;
+        TextView no_tel;
+        ImageButton modifier;
+        ImageButton supprimer;
+
+
+        public MyViewHolder(View itemView) {
+            super(itemView);
+            infoTransaction = itemView.findViewById(R.id.infoTransaction);
+            numero = itemView.findViewById(R.id.numero);
+            nom = itemView.findViewById(R.id.nom);
+            no_tel = itemView.findViewById(R.id.no_tel);
+            modifier = itemView.findViewById(R.id.modifier);
+            supprimer = itemView.findViewById(R.id.supprimer);;
+        }
     }
 }
