@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
-
+    xmlns:tools="http://schemas.android.com/tools" >
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
     <application
         android:allowBackup="true"
@@ -17,25 +18,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Zootopia_mobile"
-        android:usesCleartextTraffic="true"
-        tools:targetApi="31">
+        tools:targetApi="31" >
         <activity
-            android:name=".reservation.SupprimerReservation"
-            android:exported="false" />
-        <activity
-            android:name=".animaux.AffichageAnimalUnique"
-            android:exported="false" />
-        <activity
-            android:name=".animaux.RecylerAnimaux"
-            android:exported="false" />
-        <activity
-            android:name=".animaux.AffichageAnimaux"
-            android:exported="false" />
-        <activity
-            android:name=".activite.Activite"
-            android:exported="false" />
-        <activity
-            android:name=".activite.RecyclerActivite"
+            android:name=".reservation.RecyclerReservation"
             android:exported="false" />
         <activity
             android:name=".magasin.RecyclerPanier"
@@ -66,12 +51,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+            android:name=".reservation.ListeReservation"
+            android:exported="false" />
         <activity
             android:name=".reservation.ModifierReservation"
             android:exported="false" />
         <activity
             android:name=".reservation.AjouterReservation"
             android:exported="false" />
+            tools:targetApi="31">
+
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 
@@ -88,16 +77,24 @@
             android:exported="false"
             android:label="@string/title_activity_zoo_location" />
         <activity
-            android:name=".reservation.ListeReservation"
+            android:name=".menuNavigation"
             android:exported="false" />
         <activity
+            android:name=".MainActivity"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
             android:name=".menuNavigation"
             android:exported="true">
         </activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDem2ibU_mpZSlVD1RF6Ere9rWOA97VtO8" />
+            android:value="AIzaSyDem2ibU_mpZSlVD1RF6Ere9rWOA97VtO8"/>
+
     </application>
 
 </manifest>

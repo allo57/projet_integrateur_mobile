@@ -9,14 +9,16 @@
     android:background="#F1F7ED">
 
     <FrameLayout
-        android:id="@+id/frameLayout"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="#F1F7ED"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        android:layout_height="match_parent"
+        android:background="#F1F7ED">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="111dp"
+            android:background="#D5E8D4">
+
+        </FrameLayout>
 
         <ImageView
             android:id="@+id/imageLoutres"
@@ -44,81 +46,16 @@ Prêt à commencer votre safari? Explorez notre carte interactive, découvrez no
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
             android:layout_marginRight="140dp"
+            android:layout_marginTop="20dp"
             android:background="@null"
             app:srcCompat="@drawable/lion" />
-
         <ImageView
             android:id="@+id/imageViewZootopia"
             android:layout_width="150dp"
             android:layout_height="100dp"
             android:layout_gravity="center_horizontal"
-            app:srcCompat="@drawable/zootopia" />
+            app:srcCompat="@drawable/zootopia"/>
 
     </FrameLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="#2e4058"
-        android:paddingLeft="30dp"
-        android:paddingTop="20dp"
-        android:paddingBottom="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <ImageButton
-            android:id="@+id/btnFacebook"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:background="@null"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
-            android:src="@drawable/facebook" />
-
-        <ImageButton
-            android:id="@+id/btnInstagram"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:background="@null"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
-            android:layout_marginLeft="10dp"
-            android:src="@drawable/instagram" />
-
-        <ImageButton
-            android:id="@+id/btnReddit"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:background="@null"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
-            android:layout_marginLeft="10dp"
-            android:src="@drawable/reddit" />
-
-        <ImageButton
-            android:id="@+id/btnPinterest"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:background="@null"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
-            android:layout_marginLeft="10dp"
-            android:src="@drawable/pinterest" />
-
-        <ImageButton
-            android:id="@+id/btnTwitter"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:background="@null"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
-            android:layout_marginLeft="10dp"
-            android:src="@drawable/twitter" />
-
-    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
