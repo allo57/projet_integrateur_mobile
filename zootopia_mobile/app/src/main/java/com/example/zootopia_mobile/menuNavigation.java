@@ -14,6 +14,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.zootopia_mobile.activite.Activite;
 import com.example.zootopia_mobile.animaux.AffichageAnimaux;
+import com.example.zootopia_mobile.magasin.ListeItem;
 
 public class menuNavigation extends AppCompatActivity implements View.OnClickListener {
 
@@ -57,18 +58,33 @@ public class menuNavigation extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
-        if (v.getId()==R.id.imageButtonFermerNav) {
+        if (v.getId() == R.id.imageButtonFermerNav) {
             Intent intent = new Intent(menuNavigation.this, MainActivity.class);
             startActivity(intent);
-        }else if(v.getId() == R.id.imageButtonCalenActivit){
-            Intent intent = new Intent(menuNavigation.this, Activite.class);
-            startActivity(intent);
-        } else if (v.getId()==R.id.imageButtonLocalisation) {
+        } else if (v.getId() == R.id.imageButtonLocalisation) {
             Intent intent = new Intent(menuNavigation.this, ZooLocation.class);
             startActivity(intent);
-        } else if (v.getId()==R.id.imageButtonAnimaux) {
-            Intent intent = new Intent(menuNavigation.this, AffichageAnimaux.class);
+        }
+//        else if (v.getId()==R.id.imageButtonAnimaux){
+//            Intent intent = new Intent(menuNavigation.this, Animaux.class);
+//            startActivity(intent);
+//        }
+        else if (v.getId() == R.id.imageButtonBilletterie) {
+            Intent intent = new Intent(menuNavigation.this, ListeItem.class);
             startActivity(intent);
+//        }else if (v.getId()==R.id.imageButtonAPropos){
+//            Intent intent = new Intent(menuNavigation.this, Informations.class);
+//            startActivity(intent);
+//        }else if (v.getId()==R.id.buttonInscription){
+//            Intent intent = new Intent(menuNavigation.this, Inscription.class);
+//            startActivity(intent);
+//        }else if (v.getId()==R.id.buttonSeConnecter){
+//            Intent intent = new Intent(menuNavigation.this, Connection.class);
+//            startActivity(intent);
+//        }else if (v.getId()==R.id.buttonAIdeEnLigne){
+//            Intent intent = new Intent(menuNavigation.this, Aide.class);
+//            startActivity(intent);
+//        }
         }
     }
 }
