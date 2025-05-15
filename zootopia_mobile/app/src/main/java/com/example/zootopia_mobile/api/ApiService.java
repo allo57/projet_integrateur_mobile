@@ -3,6 +3,8 @@ package com.example.zootopia_mobile.api;
 import com.example.zootopia_mobile.activite.ActiviteResponse;
 import com.example.zootopia_mobile.animaux.Animal;
 import com.example.zootopia_mobile.animaux.ReponseAnimaux;
+import com.example.zootopia_mobile.billets.BilletResponse;
+import com.example.zootopia_mobile.informations.InformationResponse;
 import com.example.zootopia_mobile.reservation.Reservation;
 import com.example.zootopia_mobile.reservation.ResponseReservation;
 
@@ -33,8 +35,11 @@ public interface ApiService {
     @GET("supprimerReservation/{user_id}&{reservation_id}")
     Call<ResponseReservation> deleteReservation(@Path("user_id") int user_id, @Path("reservation_id") int reservation_id);
 
-    //@GET("/billets")
-    //Call<> getBillets();
+    @GET("billets")
+    Call<BilletResponse> getBillets();
+
+    @GET("informations")
+    Call<InformationResponse> getInfos();
 }
 
 

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F2F6F2"
+    tools:context=".billets.Billets">
+
+    <!-- Header -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/headerLayout"
+        android:layout_width="412dp"
+        android:layout_height="92dp"
+        android:background="#F2F6F2"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="-1dp">
+
+        <ImageButton
+            android:id="@+id/imageButtonFermerNav"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:background="@null"
+            android:contentDescription="Close Button"
+            android:src="@drawable/remove"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.714" />
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="158dp"
+            android:layout_height="51dp"
+            android:layout_marginEnd="124dp"
+            android:contentDescription="ZootopiaLogo"
+            android:src="@drawable/zootopia"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.853" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Content -->
+
+    <!-- Payment Button -->
+
+
+    <!-- Bottom Navigation -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="390dp"
+        android:layout_height="737dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="38dp"
+        app:layout_constraintBottom_toBottomOf="@+id/footerLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.476"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/headerLayout"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <LinearLayout
+        android:id="@+id/footerLayout"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:background="#D5E8D4"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        android:translationZ="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageButton
+            android:id="@+id/btnPaw"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:src="@drawable/paws" />
+
+        <ImageButton
+            android:id="@+id/btnMap"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:src="@drawable/map" />
+
+        <ImageButton
+            android:id="@+id/btnPanier"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:src="@drawable/panier" />
+
+        <ImageButton
+            android:id="@+id/btnActivite"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:src="@drawable/activity" />
+
+        <ImageButton
+            android:id="@+id/btnReservation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:adjustViewBounds="true"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:src="@drawable/info" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

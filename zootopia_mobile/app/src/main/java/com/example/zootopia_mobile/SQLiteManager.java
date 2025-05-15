@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import com.example.zootopia_mobile.reservation.Reservation;
 
@@ -137,7 +136,7 @@ public class SQLiteManager extends SQLiteOpenHelper
         values.put("nom", nom);
         values.put("description", description);
         values.put("prix", prix);
-        db.insert("billets", null, values);
+        db.insert("com/example/zootopia_mobile/billets", null, values);
     }
 
     public void ajoutReservation(Reservation reservation) {
