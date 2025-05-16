@@ -62,10 +62,11 @@ public class AjouterReservation extends AppCompatActivity implements View.OnClic
                                                         date.getText().toString(),
                                                         "17:30",
                                                         note.getText().toString()
-        );
+        );*/
 
+        ReservationPost new_reservation = new ReservationPost("nom", "(123) 123-1234", 1, "2025-12-24", "12:04:12", "note", 1, 1);
         ApiService apiService = RetrofitInstance.getApi();
-        Call<ResponseReservation> call = apiService.addReservation();
+        Call<ResponseReservation> call = apiService.addReservation(new_reservation);
 
         call.enqueue(new Callback<ResponseReservation>() {
             @Override
@@ -92,6 +93,6 @@ public class AjouterReservation extends AppCompatActivity implements View.OnClic
                 Log.e("API", "Erreur : " + t.getMessage());
 
             }
-        });*/
+        });
     }
 }

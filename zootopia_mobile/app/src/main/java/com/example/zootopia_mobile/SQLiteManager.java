@@ -202,7 +202,6 @@ public class SQLiteManager extends SQLiteOpenHelper
                     newReservation.set_no_tel(no_tel);
                     newReservation.set_date_heure(date_heure);
                     newReservation.set_nb_personnes(nb_personnes);
-                    newReservation.set_nb_personnes(nb_personnes);
                     newReservation.set_note(note);
                     newReservation.set_id_utilisateur(id_utilisateur);
                     Reservation.reservationArrayList.add(newReservation);

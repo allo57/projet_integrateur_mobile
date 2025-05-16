@@ -32,12 +32,13 @@ public class Reservation {
     }
 
     // Pour post
-    public Reservation (String nom, int no_tel, int nb_personnes, String date, String heure, String note) {
+    public Reservation (String nom, int no_tel, int nb_personnes, String date, String heure, String note, int id_user) {
         set_nom(nom);
         set_no_tel(no_tel);
         set_nb_personnes(nb_personnes);
-        this.date_heure = date + " " + heure;
+        set_date_heure(date + " " + heure);
         set_note(note);
+        set_id_utilisateur(id_user);
     }
 
     public int get_id_reservation() {

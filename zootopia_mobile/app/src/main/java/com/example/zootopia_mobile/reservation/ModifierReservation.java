@@ -3,6 +3,7 @@ package com.example.zootopia_mobile.reservation;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -15,6 +16,14 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.zootopia_mobile.R;
 import com.example.zootopia_mobile.SQLiteManager;
+import com.example.zootopia_mobile.api.ApiService;
+import com.example.zootopia_mobile.api.RetrofitInstance;
+
+import java.io.IOException;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ModifierReservation extends AppCompatActivity implements View.OnClickListener{
     Context context = this;
@@ -44,10 +53,12 @@ public class ModifierReservation extends AppCompatActivity implements View.OnCli
         if (v.getId() == R.id.enregistrer_modification) {
 
             SQLiteManager sqLiteManager = SQLiteManager.instanceOfDatabase(context);
-            Reservation updated_reservation = new Reservation();
-            updated_reservation.set_id_reservation(1);
+            //Reservation updated_reservation = new Reservation();
+            //updated_reservation.set_id_reservation(1);
 
-            sqLiteManager.updateReservations(updated_reservation);
+            //sqLiteManager.updateReservations(updated_reservation);
+
+            sendData();
 
             Intent intent = new Intent(ModifierReservation.this, ListeReservation.class);
             startActivity(intent);
@@ -56,5 +67,48 @@ public class ModifierReservation extends AppCompatActivity implements View.OnCli
         else if (v.getId() == R.id.annuler_modification) {
             finish();
         }
+    }
+
+    public void sendData() {
+        /*EditText nom = findViewById(R.id.reservation_ajout_nom);
+        EditText no_tel = findViewById(R.id.reservation_ajout_no_tel);
+        EditText nb_personnes = findViewById(R.id.reservation_ajout_nb_personnes);
+        EditText date = findViewById(R.id.reservation_ajout_date);
+        Spinner heure = findViewById(R.id.reservation_ajout_heure);
+        EditText note = findViewById(R.id.reservation_ajout_note);
+        int tel = Integer.parseInt(no_tel.getText().toString());
+        int nbr_personnes = Integer.parseInt(nb_personnes.getText().toString());*/
+
+        ReservationPost new_reservation = new ReservationPost("nom", "(123) 123-1234", 1, "2025-12-24", "12:04:12", "note", 1, 1);
+        new_reservation.setId_reservation(1);
+        ApiService apiService = RetrofitInstance.getApi();
+        Call<ResponseReservation> call = apiService.editReservation(new_reservation);
+
+        call.enqueue(new Callback<ResponseReservation>() {
+            @Override
+            public void onResponse(Call<ResponseReservation> call, Response<ResponseReservation> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    Log.e("TEST", "Added");
+                    Intent intent = new Intent(ModifierReservation.this, ListeReservation.class);
+                    startActivity(intent);
+                } else {
+                    Log.e("API", "Code d'erreur HTTP : " + response.code());
+                    if (response.errorBody() != null) {
+                        try {
+                            Log.e("API", "Erreur body : " + response.errorBody().string());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        Log.e("API", "Erreur body null");
+                    }
+                }
+            }
+            @Override
+            public void onFailure(Call<ResponseReservation> call, Throwable t) {
+                Log.e("API", "Erreur : " + t.getMessage());
+
+            }
+        });
     }
 }
