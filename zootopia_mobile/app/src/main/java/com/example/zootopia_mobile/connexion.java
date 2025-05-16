@@ -51,10 +51,7 @@ public class connexion extends AppCompatActivity {
                 prefs.edit().putBoolean("loggedIn", true).apply();
 
                 int idUtilisateur = dbHelper.getIdUser(courriel, mdp);
-
-                if (idUtilisateur != -1) {
-                    inscription.userId = idUtilisateur;
-                }
+                inscription.userId = idUtilisateur;
 
                 Toast.makeText(connexion.this, "Connexion réussie !", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(connexion.this, menuNavigation.class);

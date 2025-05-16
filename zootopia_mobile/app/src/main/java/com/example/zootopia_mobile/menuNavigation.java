@@ -71,7 +71,7 @@ public class menuNavigation extends AppCompatActivity implements View.OnClickLis
         buttonInscription.setOnClickListener(this);
         buttonConnexion.setOnClickListener(this);
 
-        if (loggedIn) {
+        if (loggedIn & inscription.userId != -1) {
             buttonInscription.setText("Mon compte");
             buttonConnexion.setText("Déconnexion");
         }
@@ -110,7 +110,7 @@ public class menuNavigation extends AppCompatActivity implements View.OnClickLis
             Intent intent = new Intent(menuNavigation.this, Informations.class);
             startActivity(intent);
         }else if (v.getId()==R.id.buttonInscription) {
-            if (loggedIn) {
+            if (loggedIn & inscription.userId != -1) {
                 Intent intent = new Intent(menuNavigation.this, monCompte.class);
                 startActivity(intent);
             } else {
@@ -118,7 +118,7 @@ public class menuNavigation extends AppCompatActivity implements View.OnClickLis
                 startActivity(intent);
             }
         } else if (v.getId()==R.id.buttonSeConnecter){
-            if (loggedIn) {
+            if (loggedIn & inscription.userId != -1) {
                 SharedPreferences prefs = getSharedPreferences("myPrefs", MODE_PRIVATE);
                 prefs.edit().putBoolean("loggedIn", false).apply();
                 Intent intent = new Intent(menuNavigation.this, menuNavigation.class);
