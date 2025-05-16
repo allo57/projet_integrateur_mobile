@@ -123,6 +123,29 @@ public class SQLiteManager extends SQLiteOpenHelper
         values.put("password", password);
         db.insert("users", null, values);
     }
+    public User getUser(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        User user = null;
+        String[] selectionArgs = { String.valueOf(id) };
+
+        Cursor cursor = db.rawQuery("SELECT * FROM users WHERE id = ?", selectionArgs);
+
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                int userId = cursor.getInt(cursor.getColumnIndexOrThrow("id"));
+                String username = cursor.getString(cursor.getColumnIndexOrThrow("name"));
+                String code_postal = cursor.getString(cursor.getColumnIndexOrThrow("code_postal"));
+                String no_tel = cursor.getString(cursor.getColumnIndexOrThrow("no_tel"));
+                String email = cursor.getString(cursor.getColumnIndexOrThrow("email"));
+                String password = cursor.getString(cursor.getColumnIndexOrThrow("password"));
+
+                user = new User(userId, code_postal, no_tel, username, email, password);
+            }
+            cursor.close();
+        }
+
+        return user;
+    }
 
     public int getIdUser(String courriel, String motdepasse) {
         SQLiteDatabase db = this.getReadableDatabase();

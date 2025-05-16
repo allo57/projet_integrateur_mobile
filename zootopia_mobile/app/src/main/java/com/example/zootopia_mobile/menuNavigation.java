@@ -111,7 +111,8 @@ public class menuNavigation extends AppCompatActivity implements View.OnClickLis
             startActivity(intent);
         }else if (v.getId()==R.id.buttonInscription) {
             if (loggedIn) {
-                Toast.makeText(menuNavigation.this, "Mon compte...", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(menuNavigation.this, monCompte.class);
+                startActivity(intent);
             } else {
                 Intent intent = new Intent(menuNavigation.this, inscription.class);
                 startActivity(intent);
