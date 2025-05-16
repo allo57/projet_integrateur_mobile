@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -107,15 +108,20 @@ public class menuNavigation extends AppCompatActivity implements View.OnClickLis
         }else if (v.getId()==R.id.imageButtonAPropos){
             Intent intent = new Intent(menuNavigation.this, Informations.class);
             startActivity(intent);
-        }else if (v.getId()==R.id.buttonInscription){
-            Intent intent = new Intent(menuNavigation.this, inscription.class);
-            startActivity(intent);
+        }else if (v.getId()==R.id.buttonInscription) {
+            if (loggedIn) {
+                Toast.makeText(menuNavigation.this, "Mon compte...", Toast.LENGTH_SHORT).show();
+            } else {
+                Intent intent = new Intent(menuNavigation.this, inscription.class);
+                startActivity(intent);
+            }
         } else if (v.getId()==R.id.buttonSeConnecter){
             if (loggedIn) {
                 SharedPreferences prefs = getSharedPreferences("myPrefs", MODE_PRIVATE);
                 prefs.edit().putBoolean("loggedIn", false).apply();
                 Intent intent = new Intent(menuNavigation.this, menuNavigation.class);
                 startActivity(intent);
+                Toast.makeText(menuNavigation.this, "Déconnexion réussie !", Toast.LENGTH_SHORT).show();
             } //else {
                 //Intent intent = new Intent(menuNavigation.this, Connection.class);
                 //startActivity(intent);
