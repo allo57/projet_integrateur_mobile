@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".animaux.AffichageAnimaux">
 
-    <!-- HEADER -->
     <LinearLayout
         android:id="@+id/headerLayout"
         android:layout_width="match_parent"

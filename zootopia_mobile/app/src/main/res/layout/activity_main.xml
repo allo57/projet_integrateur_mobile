@@ -69,7 +69,7 @@ Prêt à commencer votre safari? Explorez notre carte interactive, découvrez no
         android:paddingBottom="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        >
 
         <ImageButton
             android:id="@+id/btnFacebook"

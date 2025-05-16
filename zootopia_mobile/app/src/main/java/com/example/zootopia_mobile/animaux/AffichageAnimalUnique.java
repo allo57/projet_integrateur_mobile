@@ -39,7 +39,7 @@ public class AffichageAnimalUnique extends AppCompatActivity implements View.OnC
         //header
         ImageButton buttonNav = findViewById(R.id.imageButtonFermerNav);
         buttonNav.setOnClickListener(v -> {
-            Intent intent = new Intent(AffichageAnimalUnique.this, menuNavigation.class);
+            Intent intent = new Intent(AffichageAnimalUnique.this, AffichageAnimaux.class);
             startActivity(intent);
         });
 

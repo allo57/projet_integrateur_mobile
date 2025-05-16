@@ -1,6 +1,7 @@
 package com.example.zootopia_mobile;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -30,15 +31,21 @@ public class menuNavigation extends AppCompatActivity implements View.OnClickLis
     private ImageButton imageButtonLocalisation;
     private ImageButton imageButtonReservation;
     private Button buttonInscription;
+    private Button buttonConnexion;
     private Button buttonSeConnecter;
     private Button buttonAIdeEnLigne;
 
+    private SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_menu_navigation);
+
+        // pour gérer si le user est connecté ou non
+        prefs = getSharedPreferences("myPrefs", MODE_PRIVATE);
+        boolean loggedIn = prefs.getBoolean("loggedIn", false);
 
         //Différents buttons
         buttonFermerNav = (ImageButton) findViewById(R.id.imageButtonFermerNav);
@@ -48,6 +55,8 @@ public class menuNavigation extends AppCompatActivity implements View.OnClickLis
         imageButtonAnimaux = (ImageButton) findViewById(R.id.imageButtonAnimaux);
         imageButtonReservation = (ImageButton) findViewById(R.id.imageButtonReservations);
         imageButtonAPropos = (ImageButton) findViewById(R.id.imageButtonAPropos);
+        buttonInscription = (Button) findViewById(R.id.buttonInscription);
+        buttonConnexion = (Button) findViewById(R.id.buttonSeConnecter);
 
         //On set le OnClickListener
         buttonFermerNav.setOnClickListener(this);
@@ -57,7 +66,13 @@ public class menuNavigation extends AppCompatActivity implements View.OnClickLis
         imageButtonBilletterie.setOnClickListener(this);
         imageButtonReservation.setOnClickListener(this);
         imageButtonAPropos.setOnClickListener(this);
+        buttonInscription.setOnClickListener(this);
+        buttonConnexion.setOnClickListener(this);
 
+        if (loggedIn) {
+            buttonInscription.setText("Mon compte");
+            buttonConnexion.setText("Déconnexion");
+        }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -88,7 +103,10 @@ public class menuNavigation extends AppCompatActivity implements View.OnClickLis
         }else if (v.getId()==R.id.imageButtonAPropos){
             Intent intent = new Intent(menuNavigation.this, Informations.class);
             startActivity(intent);
-//        }else if (v.getId()==R.id.buttonSeConnecter){
+        }else if (v.getId()==R.id.buttonInscription){
+            Intent intent = new Intent(menuNavigation.this, inscription.class);
+            startActivity(intent);
+            // } else if (v.getId()==R.id.buttonSeConnecter){
 //            Intent intent = new Intent(menuNavigation.this, Connection.class);
 //            startActivity(intent);
 //        }else if (v.getId()==R.id.buttonAIdeEnLigne){

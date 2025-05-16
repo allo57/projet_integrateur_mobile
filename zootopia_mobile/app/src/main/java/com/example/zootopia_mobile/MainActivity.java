@@ -2,6 +2,7 @@ package com.example.zootopia_mobile;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         // Créer l'API
         // ApiService apiService = ApiClient.getClient().create(ApiService.class);
 
@@ -32,10 +34,11 @@ public class MainActivity extends AppCompatActivity {
         SQLiteManager db = SQLiteManager.instanceOfDatabase(this);
         SQLiteDatabase database = db.getWritableDatabase();
 
-        db.ajoutUser("Test", "A1A1A1", "1234567890", 1, "test@email.com", "pass123");
-        db.ajoutUser("Heidi", "J1J 1J1", "(566) 569-5656", 1, "heidi@gmail.com", "user1234");
+        // db.ajoutUser("Test", "A1A1A1", "1234567890", 1, "test@email.com", "pass123");
+        // db.ajoutUser("Heidi", "J1J 1J1", "(566) 569-5656", 1, "heidi@gmail.com", "user1234");
 
         // db.deleteUser("Test");
+        // db.deleteUser("Heidi");
 
         ImageButton buttonNav = (ImageButton) findViewById(R.id.imageButtonPaw);
 
