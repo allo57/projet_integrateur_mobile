@@ -83,6 +83,10 @@ public class menuNavigation extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
+        // pour gérer si le user est connecté ou non
+        prefs = getSharedPreferences("myPrefs", MODE_PRIVATE);
+        boolean loggedIn = prefs.getBoolean("loggedIn", false);
+
         if (v.getId() == R.id.imageButtonFermerNav) {
             Intent intent = new Intent(menuNavigation.this, MainActivity.class);
             startActivity(intent);
@@ -106,9 +110,17 @@ public class menuNavigation extends AppCompatActivity implements View.OnClickLis
         }else if (v.getId()==R.id.buttonInscription){
             Intent intent = new Intent(menuNavigation.this, inscription.class);
             startActivity(intent);
-            // } else if (v.getId()==R.id.buttonSeConnecter){
-//            Intent intent = new Intent(menuNavigation.this, Connection.class);
-//            startActivity(intent);
+        } else if (v.getId()==R.id.buttonSeConnecter){
+            if (loggedIn) {
+                SharedPreferences prefs = getSharedPreferences("myPrefs", MODE_PRIVATE);
+                prefs.edit().putBoolean("loggedIn", false).apply();
+                Intent intent = new Intent(menuNavigation.this, menuNavigation.class);
+                startActivity(intent);
+            } //else {
+                //Intent intent = new Intent(menuNavigation.this, Connection.class);
+                //startActivity(intent);
+            //}
+
 //        }else if (v.getId()==R.id.buttonAIdeEnLigne){
 //            Intent intent = new Intent(menuNavigation.this, Aide.class);
 //            startActivity(intent);
