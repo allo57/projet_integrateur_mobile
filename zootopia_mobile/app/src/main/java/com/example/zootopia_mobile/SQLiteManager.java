@@ -5,10 +5,13 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
+import com.example.zootopia_mobile.billets.Billet;
 import com.example.zootopia_mobile.reservation.Reservation;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SQLiteManager extends SQLiteOpenHelper
 {
@@ -183,7 +186,7 @@ public class SQLiteManager extends SQLiteOpenHelper
         values.put("nom", nom);
         values.put("description", description);
         values.put("prix", prix);
-        db.insert("com/example/zootopia_mobile/billets", null, values);
+        db.insert("billets", null, values);
     }
 
     public void ajoutReservation(Reservation reservation) {
@@ -308,4 +311,36 @@ public class SQLiteManager extends SQLiteOpenHelper
 
         db.delete("reservations", clause, selectionArg);
     }
+
+    public List<Billet> getBilletsPourTransaction(long id_transaction, int id_utilisateur) {
+        List<Billet> billets = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String query = "SELECT b.id_billet, b.nom, b.description, b.prix " +
+                "FROM billets b " +
+                "INNER JOIN billets_transactions bt ON b.id_billet = bt.id_billet " +
+                "INNER JOIN transactions t ON bt.id_transaction = t.id_transaction " +
+                "WHERE t.id_transaction = ? AND t.id_utilisateur = ?";
+
+        Cursor cursor = db.rawQuery(query, new String[]{
+                String.valueOf(id_transaction),
+                String.valueOf(id_utilisateur)
+        });
+
+        if (cursor.moveToFirst()) {
+            do {
+                int id = cursor.getInt(cursor.getColumnIndexOrThrow("id_billet"));
+                String nom = cursor.getString(cursor.getColumnIndexOrThrow("nom"));
+                String description = cursor.getString(cursor.getColumnIndexOrThrow("description"));
+                double prix = cursor.getDouble(cursor.getColumnIndexOrThrow("prix"));
+
+                billets.add(new Billet(id, nom, description, prix));
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        return billets;
+    }
+
+
 }
