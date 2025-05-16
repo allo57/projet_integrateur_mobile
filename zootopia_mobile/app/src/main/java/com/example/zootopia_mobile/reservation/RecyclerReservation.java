@@ -40,8 +40,13 @@ public class RecyclerReservation extends RecyclerView.Adapter<RecyclerReservatio
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.numero.setText("Numéro de la réservation : " + this._reservations.get(position).get_id_reservation());
+        StringBuilder no_tel = new StringBuilder("(" + this._reservations.get(position).get_no_tel());
+        no_tel.insert(4,") ");
+        no_tel.insert(9,"-");
+
+
         holder.nom.setText("Nom de la réservation : " + this._reservations.get(position).get_nom());
-        holder.no_tel.setText("Numéro de la contact : " + this._reservations.get(position).get_no_tel());
+        holder.no_tel.setText("Numéro de la contact : " + no_tel.toString());
         holder.modifier.setImageResource(R.drawable.edit);
         holder.modifier.setBackground(null);
         holder.supprimer.setImageResource(R.drawable.delete);
