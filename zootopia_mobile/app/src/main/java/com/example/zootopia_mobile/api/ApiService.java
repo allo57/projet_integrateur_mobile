@@ -5,7 +5,6 @@ import com.example.zootopia_mobile.animaux.Animal;
 import com.example.zootopia_mobile.animaux.ReponseAnimaux;
 import com.example.zootopia_mobile.billets.BilletResponse;
 import com.example.zootopia_mobile.informations.InformationResponse;
-import com.example.zootopia_mobile.reservation.Reservation;
 import com.example.zootopia_mobile.reservation.ReservationPost;
 import com.example.zootopia_mobile.reservation.ResponseReservation;
 

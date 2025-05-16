@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,10 +38,26 @@ public class ModifierReservation extends AppCompatActivity implements View.OnCli
         EditText nom = findViewById(R.id.reservation_modif_nom);
         EditText no_tel = findViewById(R.id.reservation_modif_no_tel);
         EditText nb_personnes = findViewById(R.id.reservation_modif_nb_personnes);
-        EditText date = findViewById(R.id.reservation_modif_no_tel);
-        EditText heure = findViewById(R.id.reservation_modif_no_tel);
+        EditText date = findViewById(R.id.reservation_modif_date);
         EditText note = findViewById(R.id.reservation_modif_note);
 
+        Spinner heure = findViewById(R.id.reservation_modif_heure);
+        ArrayAdapter<String> heureAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,  getResources().getStringArray(R.array.liste_heure));
+        heureAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        heure.setAdapter(heureAdapter);
+
+        Intent data = getIntent();
+        int id_reservation = data.getIntExtra("id_reservation", 0);
+        int id_user = data.getIntExtra("id_utilisateur", 0);
+
+        SQLiteManager sqLiteManager = SQLiteManager.instanceOfDatabase(context);
+        Reservation reservation = sqLiteManager.getReservation(id_reservation, id_user);
+
+        nom.setText(reservation.get_nom());
+        no_tel.setText(String.valueOf(reservation.get_no_tel()));
+        nb_personnes.setText(String.valueOf(reservation.get_nb_personnes()));
+        date.setText(reservation.get_date());
+        note.setText(reservation.get_note());
 
         AppCompatButton save = findViewById(R.id.enregistrer_modification);
         save.setOnClickListener(this);
@@ -53,10 +71,10 @@ public class ModifierReservation extends AppCompatActivity implements View.OnCli
         if (v.getId() == R.id.enregistrer_modification) {
 
             SQLiteManager sqLiteManager = SQLiteManager.instanceOfDatabase(context);
-            //Reservation updated_reservation = new Reservation();
-            //updated_reservation.set_id_reservation(1);
+            Reservation updated_reservation = new Reservation();
+            updated_reservation.set_id_reservation(1);
 
-            //sqLiteManager.updateReservations(updated_reservation);
+            sqLiteManager.updateReservations(updated_reservation);
 
             sendData();
 
@@ -70,17 +88,30 @@ public class ModifierReservation extends AppCompatActivity implements View.OnCli
     }
 
     public void sendData() {
-        /*EditText nom = findViewById(R.id.reservation_ajout_nom);
-        EditText no_tel = findViewById(R.id.reservation_ajout_no_tel);
-        EditText nb_personnes = findViewById(R.id.reservation_ajout_nb_personnes);
-        EditText date = findViewById(R.id.reservation_ajout_date);
-        Spinner heure = findViewById(R.id.reservation_ajout_heure);
-        EditText note = findViewById(R.id.reservation_ajout_note);
-        int tel = Integer.parseInt(no_tel.getText().toString());
-        int nbr_personnes = Integer.parseInt(nb_personnes.getText().toString());*/
+        Intent data = getIntent();
+        int id_reservation = data.getIntExtra("id_reservation", 0);
+        int add_id_user = data.getIntExtra("id_utilisateur", 0);
 
-        ReservationPost new_reservation = new ReservationPost("nom", "(123) 123-1234", 1, "2025-12-24", "12:04:12", "note", 1, 1);
-        new_reservation.setId_reservation(1);
+        Log.e("id", String.valueOf(id_reservation));
+        EditText nom = findViewById(R.id.reservation_modif_nom);
+        EditText no_tel = findViewById(R.id.reservation_modif_no_tel);
+        EditText nb_personnes = findViewById(R.id.reservation_modif_nb_personnes);
+        EditText date = findViewById(R.id.reservation_modif_date);
+        Spinner heure = findViewById(R.id.reservation_modif_heure);
+        EditText note = findViewById(R.id.reservation_modif_note);
+
+        String add_nom = nom.getText().toString();
+        StringBuilder add_no_tel = new StringBuilder("(" + no_tel.getText().toString());
+        add_no_tel.insert(4,") ");
+        add_no_tel.insert(9,"-");
+
+        String add_date = date.getText().toString();
+        String add_heure = heure.getSelectedItem().toString();
+        int add_nb_personnes = Integer.parseInt(nb_personnes.getText().toString());
+        String add_note = note.getText().toString();
+
+        ReservationPost new_reservation = new ReservationPost(add_nom, add_no_tel.toString(), add_nb_personnes, add_date, add_heure, add_note, 1, add_id_user);
+        new_reservation.setId_reservation(id_reservation);
         ApiService apiService = RetrofitInstance.getApi();
         Call<ResponseReservation> call = apiService.editReservation(new_reservation);
 
