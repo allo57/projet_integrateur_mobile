@@ -124,6 +124,30 @@ public class SQLiteManager extends SQLiteOpenHelper
         db.insert("users", null, values);
     }
 
+    public int getIdUser(String courriel, String motdepasse) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] selectionArgs = {courriel, motdepasse};
+        Cursor cursor = db.rawQuery("SELECT id FROM users WHERE email = ? AND password = ?", selectionArgs);
+
+        int id = -1;
+        if (cursor.moveToFirst()) {
+            id = cursor.getInt(0);
+        }
+        cursor.close();
+        return id;
+    }
+    public boolean verifierUtilisateur(String courriel, String motdepasse) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] selectionArgs = {courriel, motdepasse};
+
+        try (Cursor result = db.rawQuery(
+                "SELECT * FROM users WHERE email = ? AND password = ?", selectionArgs)) {
+            return result.moveToFirst();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
     public void deleteUser(String name) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete("users", "name = ?", new String[]{name});

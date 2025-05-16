@@ -20,6 +20,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".connexion"
+            android:exported="false" />
+        <activity
             android:name=".inscription"
             android:exported="false" />
         <activity

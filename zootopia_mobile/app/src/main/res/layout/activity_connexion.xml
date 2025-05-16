@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F1F7ED"
-    tools:context=".inscription">
+    tools:context=".connexion">
 
     <LinearLayout
         android:id="@+id/headerLayout"
@@ -66,83 +66,40 @@
         android:id="@+id/formContainer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="30dp"
-        android:layout_marginHorizontal="24dp"
-        android:orientation="vertical"
         android:background="@android:color/white"
-        android:padding="20dp"
         android:elevation="4dp"
-        app:layout_constraintTop_toBottomOf="@+id/headerLayout"
-        app:layout_constraintStart_toStartOf="parent"
+        android:orientation="vertical"
+        android:padding="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" >
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/headerLayout"
+        app:layout_constraintVertical_bias="0.266">
 
         <TextView
-            android:id="@+id/nomTextView"
+            android:id="@+id/courrielConnexion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
-            android:text="Nom complet :"
+            android:text="Courriel :"
             android:textSize="16sp" />
 
         <EditText
-            android:id="@+id/editNom"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="text" />
-
-        <TextView
-            android:id="@+id/no_telTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:text="Numéro de téléphone : "
-            android:textSize="16sp" />
-
-        <EditText
-            android:id="@+id/editPhone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="phone" />
-
-        <TextView
-            android:id="@+id/courrielTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:text="Courriel : "
-            android:textSize="16sp" />
-
-        <EditText
-            android:id="@+id/editEmail"
+            android:id="@+id/editConnexionEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textEmailAddress" />
 
-        <TextView
-            android:id="@+id/code_postalTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:text="Code postal : "
-            android:textSize="16sp" />
-
-        <EditText
-            android:id="@+id/editPostal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPostalAddress" />
 
         <TextView
             android:id="@+id/passwordTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="60dp"
+            android:paddingTop="20dp"
             android:text="Mot de passe :"
             android:textSize="16sp" />
 
@@ -153,20 +110,23 @@
             android:ems="10"
             android:inputType="textPassword" />
 
-        <TextView
-            android:id="@+id/confTextView"
-            android:layout_width="match_parent"
+        <Button
+            android:id="@+id/buttonForgotPassword"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:text="Confirmation de mot de passe :"
-            android:textSize="16sp" />
+            android:backgroundTint="#00FDF8F8"
+            android:text="Mot de passe oublié"
+            android:textAlignment="viewStart"
+            android:textColor="#A20229FF" />
 
-        <EditText
-            android:id="@+id/editPasswordConf"
-            android:layout_width="match_parent"
+        <Button
+            android:id="@+id/buttonInscription2"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPassword" />
+            android:backgroundTint="#00FDF8F8"
+            android:text="Inscrivez-vous ici"
+            android:textAlignment="viewStart"
+            android:textColor="#A20229FF" />
 
         <Button
             android:id="@+id/buttonConnexion"
@@ -174,10 +134,73 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:backgroundTint="#D5E8D4"
-            android:text="S'inscrire"
+            android:text="Se connecter"
             android:textColor="#564E4E"
             android:textSize="20sp"
             android:textStyle="bold" />
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#2e4058"
+        android:paddingLeft="30dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        >
+
+        <ImageButton
+            android:id="@+id/btnFacebook"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            android:src="@drawable/facebook" />
+
+        <ImageButton
+            android:id="@+id/btnInstagram"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/instagram" />
+
+        <ImageButton
+            android:id="@+id/btnReddit"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/reddit" />
+
+        <ImageButton
+            android:id="@+id/btnPinterest"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/pinterest" />
+
+        <ImageButton
+            android:id="@+id/btnTwitter"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/twitter" />
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

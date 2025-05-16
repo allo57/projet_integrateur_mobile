@@ -47,6 +47,7 @@ public class menuNavigation extends AppCompatActivity implements View.OnClickLis
         // pour gérer si le user est connecté ou non
         prefs = getSharedPreferences("myPrefs", MODE_PRIVATE);
         boolean loggedIn = prefs.getBoolean("loggedIn", false);
+        int currentUserId = inscription.userId;
 
         //Différents buttons
         buttonFermerNav = (ImageButton) findViewById(R.id.imageButtonFermerNav);
@@ -122,10 +123,10 @@ public class menuNavigation extends AppCompatActivity implements View.OnClickLis
                 Intent intent = new Intent(menuNavigation.this, menuNavigation.class);
                 startActivity(intent);
                 Toast.makeText(menuNavigation.this, "Déconnexion réussie !", Toast.LENGTH_SHORT).show();
-            } //else {
-                //Intent intent = new Intent(menuNavigation.this, Connection.class);
-                //startActivity(intent);
-            //}
+            } else {
+                Intent intent = new Intent(menuNavigation.this, connexion.class);
+                startActivity(intent);
+            }
 
 //        }else if (v.getId()==R.id.buttonAIdeEnLigne){
 //            Intent intent = new Intent(menuNavigation.this, Aide.class);

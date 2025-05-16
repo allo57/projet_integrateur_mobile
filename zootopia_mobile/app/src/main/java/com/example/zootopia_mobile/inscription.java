@@ -3,7 +3,6 @@ package com.example.zootopia_mobile;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -11,14 +10,10 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-
-import com.example.zootopia_mobile.activite.Activite;
-import com.example.zootopia_mobile.SQLiteManager;
 
 public class inscription extends AppCompatActivity {
+
+    public static int userId = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +28,7 @@ public class inscription extends AppCompatActivity {
         });
 
         // Gestion inscription
-        Button buttonConf = findViewById(R.id.buttonConfInscription);
+        Button buttonConf = findViewById(R.id.buttonConnexion);
         buttonConf.setOnClickListener(v -> {
             EditText nomEdit = findViewById(R.id.editNom);
             EditText postalEdit = findViewById(R.id.editPostal);
@@ -66,6 +61,14 @@ public class inscription extends AppCompatActivity {
 
             SharedPreferences prefs = getSharedPreferences("myPrefs", MODE_PRIVATE);
             prefs.edit().putBoolean("loggedIn", true).apply();
+
+            int idUtilisateur = db.getIdUser(email, password);
+            if (idUtilisateur != -1) {
+                inscription.userId = idUtilisateur;
+            } else {
+                Toast.makeText(inscription.this, "Erreur lors de la récupération de l'ID utilisateur", Toast.LENGTH_SHORT).show();
+                return;  // stop si problème
+            }
 
             Toast.makeText(inscription.this, "Connexion réussie !", Toast.LENGTH_SHORT).show();
 
