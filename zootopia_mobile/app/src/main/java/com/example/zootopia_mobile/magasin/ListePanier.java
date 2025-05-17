@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
@@ -23,6 +24,7 @@ import com.example.zootopia_mobile.activite.ActiviteAdapter;
 import com.example.zootopia_mobile.animaux.AffichageAnimaux;
 import com.example.zootopia_mobile.billets.Billet;
 import com.example.zootopia_mobile.inscription;
+import com.example.zootopia_mobile.menuNavigation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,22 +32,32 @@ import java.util.List;
 public class ListePanier extends AppCompatActivity implements View.OnClickListener{
 
     private RecyclerView recyclerView;
-    private ActiviteAdapter adapter;
     private ImageButton boutonActivite;
     private ImageButton boutonMap;
     private ImageButton boutonAnimaux;
     private ImageButton boutonPanier;
     private ImageButton boutonReservation;
+    private Button paiement;
     public static long idTransaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         SharedPreferences prefs = getSharedPreferences("session", MODE_PRIVATE);
-        //idTransaction = prefs.getLong("id_transaction", 2);
 
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_liste_panier);
+        ImageButton buttonNav = findViewById(R.id.imageButtonFermerNav);
+        buttonNav.setOnClickListener(v -> {
+            Intent intent = new Intent(ListePanier.this, menuNavigation.class);
+            startActivity(intent);
+        });
+
+        Button paiement = findViewById(R.id.paiement);
+        buttonNav.setOnClickListener(v -> {
+            Intent intent = new Intent(ListePanier.this, Transaction.class);
+            startActivity(intent);
+        });
 
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -64,14 +76,11 @@ public class ListePanier extends AppCompatActivity implements View.OnClickListen
         boutonAnimaux.setOnClickListener(this);
 
         SQLiteManager dbHelper = new SQLiteManager(this);
-        idTransaction = prefs.getLong("id_transaction", 2);
         int currentUserId = inscription.userId;
+        idTransaction = dbHelper.getTransactionUtilisateur(currentUserId);
         List<Billet> billets = dbHelper.getBilletsPourTransaction(idTransaction, currentUserId);
-        Log.d("DEBUG_BILLETS", "Billets récupérés : " + billets.size());
-        Log.d("DEBUG_ID", "idTransaction récupéré : " + idTransaction);
-        Log.d("DEBUG_USER", "iduser récupéré : " + currentUserId);
 
-        PanierAdapter adapter = new PanierAdapter(billets);
+        PanierAdapter adapter = new PanierAdapter(billets, dbHelper, idTransaction);
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);

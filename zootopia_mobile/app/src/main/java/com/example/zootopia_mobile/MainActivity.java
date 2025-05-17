@@ -41,8 +41,8 @@ public class MainActivity extends AppCompatActivity {
         // db.deleteUser(5);
 
         //db.ajoutBillet( 1, "Billet pour enfants", "enfant", 15.99);
-        db.ajoutTransaction(2, "15 mai 2025", 21);
-        db.ajoutBilletTransaction(2, 2, 1, 1);
+        //db.ajoutTransaction(2, "15 mai 2025", 21);
+        //db.ajoutBilletTransaction(2, 2, 1, 1);
 
         ImageButton buttonNav = (ImageButton) findViewById(R.id.imageButtonPaw);
 

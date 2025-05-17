@@ -42,16 +42,34 @@
                 android:contentDescription="Zootopia Logo"
                 android:src="@drawable/zootopia" />
 
-            <TextView
-                android:id="@+id/titre_panier"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/panier_header"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:layout_marginStart="20dp"
-                android:layout_marginBottom="8dp"
-                android:text="PANIER"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:orientation="horizontal"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/titre_panier"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PANIER"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/paiement"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Passer au paiement"
+                    android:textSize="14sp"
+                    android:layout_marginStart="126dp"
+                    android:backgroundTint="@color/blancActivite"
+                    android:textColor="@color/black"/>
+            </LinearLayout>
 
         </RelativeLayout>
 

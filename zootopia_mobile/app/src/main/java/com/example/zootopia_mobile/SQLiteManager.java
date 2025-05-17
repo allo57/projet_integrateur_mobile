@@ -356,5 +356,28 @@ public class SQLiteManager extends SQLiteOpenHelper
         return billets;
     }
 
+    public long getTransactionUtilisateur(int id_utilisateur) {
+        long id_transaction = 0;
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String query = "SELECT id_transaction FROM transactions WHERE id_utilisateur = ?";
+        Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(id_utilisateur)});
+
+        if (cursor.moveToFirst()) {
+            id_transaction = cursor.getLong(0);
+        }
+
+        cursor.close();
+        return id_transaction;
+    }
+
+    public void supprimerBilletTransaction(long idTransaction, int idBillet) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String whereClause = "id_transaction = ? AND id_billet = ?";
+        String[] whereArgs = new String[]{String.valueOf(idTransaction), String.valueOf(idBillet)};
+        db.delete("billets_transactions", whereClause, whereArgs);
+        db.close();
+    }
+
 
 }

@@ -27,6 +27,7 @@ import com.example.zootopia_mobile.informations.Information;
 import com.example.zootopia_mobile.informations.InformationAdapter;
 import com.example.zootopia_mobile.informations.InformationResponse;
 import com.example.zootopia_mobile.informations.Informations;
+import com.example.zootopia_mobile.magasin.ListePanier;
 import com.example.zootopia_mobile.menuNavigation;
 
 import java.io.IOException;
@@ -111,7 +112,7 @@ public class Informations extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         Intent intent = null;
         if (v.getId() == R.id.btnPanier) {
-            // intent = new Intent(Activite.this, Panier.class);
+            intent = new Intent(Informations.this, ListePanier.class);
             // startActivity(intent);
         } else if (v.getId() == R.id.btnActivite) {
             // Intent pour ouvrir la page Activité

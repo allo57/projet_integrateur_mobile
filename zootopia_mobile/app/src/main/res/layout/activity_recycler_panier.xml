@@ -5,7 +5,8 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="16dp"
-    android:background="#FCFFFA">
+    android:layout_margin="8dp"
+    android:background="@drawable/rectangle">
 
     <TextView
         android:id="@+id/nomProduit"
@@ -31,11 +32,42 @@
         android:textSize="16sp"
         android:layout_marginTop="4dp" />
 
-    <Button
-        android:id="@+id/btn_remove"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Retirer du panier"
-        android:layout_marginTop="8dp" />
+        android:orientation="horizontal"
+        android:background="@drawable/borderpanier"
+        android:padding="4dp">
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_decrease"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:text="-"
+            android:textColor="@color/black"
+            android:background="@drawable/bouton_carre" />
+
+        <TextView
+            android:id="@+id/quantite"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="1"
+            android:textSize="16sp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_increase"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:text="+"
+            android:textColor="@color/black"
+            android:background="@drawable/bouton_carre" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_remove"
+            android:text="Retirer du panier"
+            android:layout_marginStart="70dp"
+            android:layout_width="160dp"
+            android:layout_height="40dp"/>
+    </LinearLayout>
 </LinearLayout>
