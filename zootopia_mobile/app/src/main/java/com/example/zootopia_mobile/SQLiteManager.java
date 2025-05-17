@@ -174,9 +174,10 @@ public class SQLiteManager extends SQLiteOpenHelper
         }
     }
 
-    public void deleteUser(String name) {
+    public void deleteUser(int id) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete("users", "name = ?", new String[]{name});
+        String stringid = String.valueOf(id);
+        db.delete("users", "id = ?", new String[]{stringid});
     }
 
     public void ajoutBillet(long id_billet, String nom, String description, double prix) {

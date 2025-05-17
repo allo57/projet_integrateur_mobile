@@ -82,6 +82,7 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalView
 
                         @Override
                         public void onLoadCleared(Drawable placeholder) {
+                            holder.imageView.setImageDrawable(placeholder);
                         }
                     });
         }

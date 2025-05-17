@@ -37,8 +37,8 @@ public class MainActivity extends AppCompatActivity {
         // db.ajoutUser("Test", "A1A1A1", "1234567890", 1, "test@email.com", "pass123");
         // db.ajoutUser("Heidi", "J1J 1J1", "(566) 569-5656", 1, "heidi@gmail.com", "user1234");
 
-        // db.deleteUser("Test");
-        // db.deleteUser("Heidi");
+        // db.deleteUser(3);
+        // db.deleteUser(5);
 
         //db.ajoutBillet( 1, "Billet pour enfants", "enfant", 15.99);
         db.ajoutTransaction(2, "15 mai 2025", 21);
