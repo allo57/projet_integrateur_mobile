@@ -65,9 +65,6 @@ public class inscription extends AppCompatActivity {
             int idUtilisateur = db.getIdUser(email, password);
             if (idUtilisateur != -1) {
                 inscription.userId = idUtilisateur;
-            } else {
-                Toast.makeText(inscription.this, "Erreur lors de la récupération de l'ID utilisateur", Toast.LENGTH_SHORT).show();
-                return;  // stop si problème
             }
 
             Toast.makeText(inscription.this, "Connexion réussie !", Toast.LENGTH_SHORT).show();

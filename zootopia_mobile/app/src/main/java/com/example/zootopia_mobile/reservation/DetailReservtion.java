@@ -42,7 +42,10 @@ public class DetailReservtion extends AppCompatActivity {
         id_reservation.setText(String.valueOf(reservation.get_id_reservation()));
         nom.setText(reservation.get_nom());
 
-        String tel = String.valueOf(reservation.get_no_tel());
+        StringBuilder tel = new StringBuilder("(" + String.valueOf(reservation.get_no_tel()));
+        tel.insert(4,") ");
+        tel.insert(9,"-");
+
         no_tel.setText(tel);
 
         nb_personnes.setText(String.valueOf(reservation.get_nb_personnes()));

@@ -40,6 +40,10 @@ public class MainActivity extends AppCompatActivity {
         // db.deleteUser("Test");
         // db.deleteUser("Heidi");
 
+        //db.ajoutBillet( 1, "Billet pour enfants", "enfant", 15.99);
+        db.ajoutTransaction(2, "15 mai 2025", 21);
+        db.ajoutBilletTransaction(2, 2, 1, 1);
+
         ImageButton buttonNav = (ImageButton) findViewById(R.id.imageButtonPaw);
 
         buttonNav.setOnClickListener(new View.OnClickListener() {
