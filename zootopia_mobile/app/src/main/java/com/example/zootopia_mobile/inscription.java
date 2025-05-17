@@ -44,11 +44,37 @@ public class inscription extends AppCompatActivity {
             String password = passwordEdit.getText().toString();
             String passwordConf = passwordConfEdit.getText().toString();
 
+            // Champs vide
             if (nom.isEmpty() || postal.isEmpty() || phone.isEmpty() || email.isEmpty() || password.isEmpty() || passwordConf.isEmpty()) {
                 Toast.makeText(inscription.this, "Veuillez remplir tous les champs.", Toast.LENGTH_SHORT).show();
                 return;
             }
 
+            // Nom complet
+            if (!nom.matches("^[A-ZÀ-Ú][a-zà-ú]+([ -][A-ZÀ-Ú][a-zà-ú]+)*$")) {
+                Toast.makeText(inscription.this, "Nom complet invalide.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // (000) 000-0000
+            if (!phone.matches("^\\(\\d{3}\\) \\d{3}-\\d{4}$")) {
+                Toast.makeText(inscription.this, "Numéro de téléphone invalide. Format attendu : (000) 000-0000", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            //@ et un domaine
+            if (!email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[a-z]{2,6}$")) {
+                Toast.makeText(inscription.this, "Adresse courriel invalide.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // A1A 1A1
+            if (!postal.matches("^[A-Z]\\d[A-Z] \\d[A-Z]\\d$")) {
+                Toast.makeText(inscription.this, "Code postal invalide. Format attendu : A1A 1A1", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Mot de passe identiques
             if (!password.equals(passwordConf)) {
                 Toast.makeText(inscription.this, "Les mots de passe ne sont pas identiques.", Toast.LENGTH_SHORT).show();
                 return;
