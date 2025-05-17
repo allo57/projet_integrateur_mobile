@@ -19,6 +19,15 @@ import java.util.List;
 import android.content.Context;
 import android.content.Intent;
 import android.widget.Button;
+
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
+import android.os.Environment;
+import com.bumptech.glide.request.target.CustomTarget;
+import com.bumptech.glide.request.transition.Transition;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalViewHolder> {
 
     private List<Animal> animaux;
@@ -48,10 +57,34 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalView
         holder.buttonNomAnimal.setText(animal.getNom());
         holder.descriptionTextView.setText(couperTexte(animal.getDescription(), 25));
 
-        Glide.with(holder.itemView.getContext())
-                .load("http://10.0.2.2:8000/img/" + animal.getImage())
-                .placeholder(R.drawable.animal_default)
-                .into(holder.imageView);
+        String imageFileName = animal.getImage();
+        File localImageFile = new File(context.getFilesDir(), imageFileName);
+
+        //ouverture première fois est rough, mais après ça va
+        if (localImageFile.exists()) {
+            Glide.with(context)
+                    .load(localImageFile)
+                    .placeholder(R.drawable.animal_default)
+                    .into(holder.imageView);
+        } else {
+            String imageUrl = "http://10.0.2.2:8000/img/" + imageFileName;
+
+            Glide.with(context)
+                    .asBitmap()
+                    .load(imageUrl)
+                    .placeholder(R.drawable.animal_default)
+                    .into(new CustomTarget<Bitmap>() {
+                        @Override
+                        public void onResourceReady(@NonNull Bitmap resource, Transition<? super Bitmap> transition) {
+                            holder.imageView.setImageBitmap(resource);
+                            saveImageToInternalStorage(resource, imageFileName);
+                        }
+
+                        @Override
+                        public void onLoadCleared(Drawable placeholder) {
+                        }
+                    });
+        }
 
         holder.buttonNomAnimal.setOnClickListener(v -> {
             Intent intent = new Intent(context, AffichageAnimalUnique.class);
@@ -72,6 +105,15 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalView
 
     private String couperTexte(String texte, int longueurMax) {
         return texte.length() > longueurMax ? texte.substring(0, longueurMax) + "..." : texte;
+    }
+
+    private void saveImageToInternalStorage(Bitmap bitmap, String fileName) {
+        File file = new File(context.getFilesDir(), fileName);
+        try (FileOutputStream out = new FileOutputStream(file)) {
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     static class AnimalViewHolder extends RecyclerView.ViewHolder {
