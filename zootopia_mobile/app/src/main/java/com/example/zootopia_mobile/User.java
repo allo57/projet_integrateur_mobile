@@ -17,7 +17,6 @@ public class User {
         this.password = password;
     }
 
-    // Getters
     public int getId() { return id; }
     public String getCodePostal() { return codePostal; }
     public String getNoTel() { return noTel; }
@@ -25,7 +24,6 @@ public class User {
     public String getEmail() { return email; }
     public String getPassword() { return password; }
 
-    // Setters
     public void setCodePostal(String codePostal) { this.codePostal = codePostal; }
     public void setNoTel(String noTel) { this.noTel = noTel; }
     public void setName(String name) { this.name = name; }

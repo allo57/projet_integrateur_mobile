@@ -23,6 +23,7 @@ public class monCompte extends AppCompatActivity {
 
         TextView infos = findViewById(R.id.textViewInformations);
         Button boutonSupprimer = findViewById(R.id.buttonSupprimerCompte);
+        Button boutonModifier = findViewById(R.id.buttonModifCompte);
         ImageButton buttonNav = findViewById(R.id.imageButtonFermerNav);
 
         buttonNav.setOnClickListener(v -> {
@@ -34,6 +35,14 @@ public class monCompte extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(monCompte.this, confirmationSuppresionCompte.class);
+                startActivity(intent);
+            }
+        });
+
+        boutonModifier.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(monCompte.this, modificationCompte.class);
                 startActivity(intent);
             }
         });

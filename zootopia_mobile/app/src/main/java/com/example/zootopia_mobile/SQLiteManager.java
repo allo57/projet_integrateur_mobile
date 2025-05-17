@@ -150,6 +150,19 @@ public class SQLiteManager extends SQLiteOpenHelper
         return user;
     }
 
+    public void updateUser(int id, String nom, String tel, String email, String postal, String password) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("name", nom);
+        values.put("code_postal", postal);
+        values.put("no_tel", tel);
+        values.put("email", email);
+        values.put("password", password);
+
+        db.update("users", values, "id = ?", new String[]{String.valueOf(id)});
+        db.close();
+    }
+
     public int getIdUser(String courriel, String motdepasse) {
         SQLiteDatabase db = this.getReadableDatabase();
         String[] selectionArgs = {courriel, motdepasse};
