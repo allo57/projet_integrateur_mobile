@@ -32,21 +32,6 @@
             android:name=".connexion"
             android:exported="false" />
         <activity
-            android:name=".inscription"
-            android:exported="false" />
-        <activity
-            android:name=".informations.RecyclerInformations"
-            android:exported="false" />
-        <activity
-            android:name=".informations.Informations"
-            android:exported="false" />
-        <activity
-            android:name=".billets.RecyclerBillet"
-            android:exported="false" />
-        <activity
-            android:name=".billets.Billets"
-            android:exported="false" />
-        <activity
             android:name=".reservation.SupprimerReservation"
             android:exported="false" />
         <activity
@@ -90,7 +75,6 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -120,7 +104,8 @@
             android:exported="false" />
         <activity
             android:name=".menuNavigation"
-            android:exported="true" />
+            android:exported="true">
+        </activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
