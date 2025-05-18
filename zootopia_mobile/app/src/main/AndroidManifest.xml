@@ -32,6 +32,21 @@
             android:name=".connexion"
             android:exported="false" />
         <activity
+            android:name=".inscription"
+            android:exported="false" />
+        <activity
+            android:name=".informations.RecyclerInformations"
+            android:exported="false" />
+        <activity
+            android:name=".informations.Informations"
+            android:exported="false" />
+        <activity
+            android:name=".billets.RecyclerBillet"
+            android:exported="false" />
+        <activity
+            android:name=".billets.Billets"
+            android:exported="false" />
+        <activity
             android:name=".reservation.SupprimerReservation"
             android:exported="false" />
         <activity
@@ -75,6 +90,7 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -95,17 +111,16 @@
              project's local.properties file (e.g. MAPS_API_KEY=Aiza...), and replace the
              "YOUR_API_KEY" string in this file with "${MAPS_API_KEY}".
         -->
-        <activity
-            android:name=".ZooLocation"
-            android:exported="false"
-            android:label="@string/title_activity_zoo_location" />
-        <activity
-            android:name=".reservation.ListeReservation"
-            android:exported="false" />
-        <activity
-            android:name=".menuNavigation"
-            android:exported="true">
-        </activity>
+            <activity
+                android:name=".ZooLocation"
+                android:exported="false"
+                android:label="@string/title_activity_zoo_location" />
+            <activity
+                android:name=".reservation.ListeReservation"
+                android:exported="false" />
+            <activity
+                android:name=".menuNavigation"
+                android:exported="true" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
