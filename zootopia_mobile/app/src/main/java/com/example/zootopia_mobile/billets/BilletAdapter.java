@@ -60,7 +60,6 @@ public class BilletAdapter extends RecyclerView.Adapter<BilletAdapter.BilletView
 
         private int quantiteValue = 1;
 
-
         public BilletViewHolder(@NonNull View itemView) {
             super(itemView);
             description = itemView.findViewById(R.id.description);

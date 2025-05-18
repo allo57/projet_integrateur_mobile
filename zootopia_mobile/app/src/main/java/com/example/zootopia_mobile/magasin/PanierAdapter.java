@@ -17,11 +17,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PanierAdapter extends RecyclerView.Adapter<PanierAdapter.PanierViewHolder> {
-    private static List<Billet> billets;
+    private static List<BilletPanier> billets;
     private SQLiteManager dbHelper;
     private long idTransaction;
 
-    public PanierAdapter(List<Billet> billets, SQLiteManager dbHelper, long idTransaction) {
+    public PanierAdapter(List<BilletPanier> billets, SQLiteManager dbHelper, long idTransaction) {
         this.billets = billets != null ? billets : new ArrayList<>();
         this.dbHelper = dbHelper;
         this.idTransaction = idTransaction;
@@ -37,7 +37,7 @@ public class PanierAdapter extends RecyclerView.Adapter<PanierAdapter.PanierView
 
     @Override
     public void onBindViewHolder(@NonNull PanierViewHolder holder, int position) {
-        Billet billet = billets.get(position);
+        BilletPanier billet = billets.get(position);
         holder.bind(billet, position);
     }
 
@@ -72,31 +72,33 @@ public class PanierAdapter extends RecyclerView.Adapter<PanierAdapter.PanierView
             btnDecrease = itemView.findViewById(R.id.btn_decrease);
             quantite = itemView.findViewById(R.id.quantite);
         }
-        public void bind(Billet billet, int position) {
+        public void bind(BilletPanier billetPanier, int position) {
+            Billet billet = billetPanier.getBillet();
             nomProduit.setText("Nom du produit: " + billet.getNom());
             description.setText("Description: " + billet.getDescription());
             prix.setText("Prix: " + billet.getPrix() + "$");
 
-            quantiteValue = 1;
+            quantiteValue = billetPanier.getQuantite();
             quantite.setText(String.valueOf(quantiteValue));
 
             btnIncrease.setOnClickListener(v -> {
                 quantiteValue++;
                 quantite.setText(String.valueOf(quantiteValue));
+                billetPanier.setQuantite(quantiteValue);
             });
 
             btnDecrease.setOnClickListener(v -> {
                 if (quantiteValue > 1) {
                     quantiteValue--;
                     quantite.setText(String.valueOf(quantiteValue));
+                    billetPanier.setQuantite(quantiteValue);
                 }
             });
 
             btnRemove.setOnClickListener(v -> {
                 int pos = getAdapterPosition();
                 if (pos != RecyclerView.NO_POSITION) {
-                    Billet billetASupprimer = billets.get(pos);
-                    dbHelper.supprimerBilletTransaction(idTransaction, billetASupprimer.getId_billet());
+                    dbHelper.supprimerBilletTransaction(idTransaction, billet.getId_billet());
                     removeItem(pos);
                 }
             });

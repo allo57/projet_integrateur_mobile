@@ -24,6 +24,7 @@ import com.example.zootopia_mobile.activite.Activite;
 import com.example.zootopia_mobile.animaux.AffichageAnimaux;
 import com.example.zootopia_mobile.api.ApiService;
 import com.example.zootopia_mobile.api.RetrofitInstance;
+import com.example.zootopia_mobile.magasin.ListePanier;
 import com.example.zootopia_mobile.menuNavigation;
 
 import java.io.IOException;
@@ -108,7 +109,7 @@ public class Billets extends AppCompatActivity implements View.OnClickListener{
     public void onClick(View v) {
         Intent intent = null;
         if (v.getId() == R.id.btnPanier) {
-            // intent = new Intent(Activite.this, Panier.class);
+            intent = new Intent(Billets.this, ListePanier.class);
             // startActivity(intent);
         } else if (v.getId() == R.id.btnActivite) {
             // Intent pour ouvrir la page Activité

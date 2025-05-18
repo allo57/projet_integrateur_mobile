@@ -1,5 +1,7 @@
 package com.example.zootopia_mobile;
 
+import static java.time.MonthDay.now;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -8,6 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
 
 import com.example.zootopia_mobile.billets.Billet;
+import com.example.zootopia_mobile.magasin.BilletPanier;
 import com.example.zootopia_mobile.reservation.Reservation;
 
 import java.util.ArrayList;
@@ -326,34 +329,32 @@ public class SQLiteManager extends SQLiteOpenHelper
         db.delete("reservations", clause, selectionArg);
     }
 
-    public List<Billet> getBilletsPourTransaction(long id_transaction, int id_utilisateur) {
-        List<Billet> billets = new ArrayList<>();
-        SQLiteDatabase db = this.getReadableDatabase();
+    public List<BilletPanier> getBilletsPourTransaction(long idTransaction, int idUtilisateur) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        List<BilletPanier> billetsPanier = new ArrayList<>();
 
-        String query = "SELECT b.id_billet, b.nom, b.description, b.prix " +
-                "FROM billets b " +
-                "INNER JOIN billets_transactions bt ON b.id_billet = bt.id_billet " +
-                "INNER JOIN transactions t ON bt.id_transaction = t.id_transaction " +
-                "WHERE t.id_transaction = ? AND t.id_utilisateur = ?";
+        String query = "SELECT b.id_billet, b.nom, b.description, b.prix, bt.quantity " +
+                "FROM billets b JOIN billets_transactions bt ON b.id_billet = bt.id_billet " +
+                "WHERE bt.id_transaction = ?";
 
-        Cursor cursor = db.rawQuery(query, new String[]{
-                String.valueOf(id_transaction),
-                String.valueOf(id_utilisateur)
-        });
+        Cursor cursor = db.rawQuery(query, new String[]{ String.valueOf(idTransaction) });
 
         if (cursor.moveToFirst()) {
             do {
-                int id = cursor.getInt(cursor.getColumnIndexOrThrow("id_billet"));
-                String nom = cursor.getString(cursor.getColumnIndexOrThrow("nom"));
-                String description = cursor.getString(cursor.getColumnIndexOrThrow("description"));
-                double prix = cursor.getDouble(cursor.getColumnIndexOrThrow("prix"));
+                int idBillet = cursor.getInt(cursor.getColumnIndex("id_billet"));
+                String nom = cursor.getString(cursor.getColumnIndex("nom"));
+                String description = cursor.getString(cursor.getColumnIndex("description"));
+                double prix = cursor.getDouble(cursor.getColumnIndex("prix"));
+                int quantite = cursor.getInt(cursor.getColumnIndex("quantity"));
 
-                billets.add(new Billet(id, nom, description, prix));
+                Billet billet = new Billet(idBillet, nom, description, prix);
+                BilletPanier billetPanier = new BilletPanier(billet, quantite);
+                billetsPanier.add(billetPanier);
             } while (cursor.moveToNext());
         }
 
         cursor.close();
-        return billets;
+        return billetsPanier;
     }
 
     public long getTransactionUtilisateur(int id_utilisateur) {
@@ -379,5 +380,35 @@ public class SQLiteManager extends SQLiteOpenHelper
         db.close();
     }
 
+    public void ajouterTransaction(long idTransaction, int idBillet, int quantite, int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
 
+        ContentValues values = new ContentValues();
+        values.put("quantity", quantite);
+
+        int rowsUpdated = db.update("billets_transactions", values,
+                "id_transaction = ? AND id_billet = ?",
+                new String[]{String.valueOf(idTransaction), String.valueOf(idBillet)});
+
+        if (rowsUpdated == 0) {
+            values.put("id_transaction", idTransaction);
+            values.put("id_billet", idBillet);
+            db.insert("billets_transactions", null, values);
+        }
+
+        boolean existeDeja = false;
+        Cursor cursor = db.rawQuery("SELECT * FROM transactions WHERE id_transaction = ?", new String[]{String.valueOf(idTransaction)});
+        if (cursor.moveToFirst()) {
+            existeDeja = true;
+        }
+        cursor.close();
+
+        if (!existeDeja) {
+            ContentValues values1 = new ContentValues();
+            values1.put("id_transaction", idTransaction);
+            values1.put("date_heure", String.valueOf(now()));
+            values1.put("id_utilisateur", id);
+            db.insert("transactions", null, values1);
+        }
+    }
 }
