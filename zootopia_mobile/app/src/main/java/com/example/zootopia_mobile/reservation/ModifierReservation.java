@@ -4,22 +4,30 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.zootopia_mobile.R;
 import com.example.zootopia_mobile.SQLiteManager;
+import com.example.zootopia_mobile.ZooLocation;
+import com.example.zootopia_mobile.activite.Activite;
+import com.example.zootopia_mobile.animaux.AffichageAnimaux;
 import com.example.zootopia_mobile.api.ApiService;
 import com.example.zootopia_mobile.api.RetrofitInstance;
+import com.example.zootopia_mobile.informations.Informations;
+import com.example.zootopia_mobile.magasin.ListeItem;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 
 import java.io.IOException;
 
@@ -35,6 +43,13 @@ public class ModifierReservation extends AppCompatActivity implements View.OnCli
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_modifier_reservation);
 
+        Intent data = getIntent();
+        int id_reservation = data.getIntExtra("id_reservation", 0);
+        int id_user = data.getIntExtra("id_utilisateur", 0);
+
+        TextView title = findViewById(R.id.titre_modifier_reservation);
+        title.setText("Numéro de la réservation : " + String.valueOf(id_reservation));
+
         EditText nom = findViewById(R.id.reservation_modif_nom);
         EditText no_tel = findViewById(R.id.reservation_modif_no_tel);
         EditText nb_personnes = findViewById(R.id.reservation_modif_nb_personnes);
@@ -46,10 +61,6 @@ public class ModifierReservation extends AppCompatActivity implements View.OnCli
         heureAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         heure.setAdapter(heureAdapter);
 
-        Intent data = getIntent();
-        int id_reservation = data.getIntExtra("id_reservation", 0);
-        int id_user = data.getIntExtra("id_utilisateur", 0);
-
         SQLiteManager sqLiteManager = SQLiteManager.instanceOfDatabase(context);
         Reservation reservation = sqLiteManager.getReservation(id_reservation, id_user);
 
@@ -59,11 +70,44 @@ public class ModifierReservation extends AppCompatActivity implements View.OnCli
         date.setText(reservation.get_date());
         note.setText(reservation.get_note());
 
+        ImageButton retour = findViewById(R.id.retour_liste_reservation);
+        retour.setOnClickListener(this);
+
         AppCompatButton save = findViewById(R.id.enregistrer_modification);
         save.setOnClickListener(this);
 
         AppCompatButton annuler = findViewById(R.id.annuler_modification);
         annuler.setOnClickListener(this);
+
+        BottomNavigationView navigationView = findViewById(R.id.navigation);
+        navigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int id = item.getItemId();
+
+                if (id == R.id.menu_animaux) {
+                    Intent intent = new Intent(ModifierReservation.this, AffichageAnimaux.class);
+                    startActivity(intent);
+                }
+                else if (id == R.id.menu_activites) {
+                    Intent intent = new Intent(ModifierReservation.this, Activite.class);
+                    startActivity(intent);
+                }
+                else if (id == R.id.menu_panier) {
+                    Intent intent = new Intent(ModifierReservation.this, ListeItem.class);
+                    startActivity(intent);
+                }
+                else if (id == R.id.menu_carte) {
+                    Intent intent = new Intent(ModifierReservation.this, ZooLocation.class);
+                    startActivity(intent);
+                }
+                else if (id == R.id.menu_info) {
+                    Intent intent = new Intent(ModifierReservation.this, Informations.class);
+                    startActivity(intent);
+                }
+                return false;
+            }
+        });
     }
 
     @Override
@@ -82,7 +126,7 @@ public class ModifierReservation extends AppCompatActivity implements View.OnCli
             startActivity(intent);
             finish();
         }
-        else if (v.getId() == R.id.annuler_modification) {
+        else if (v.getId() == R.id.annuler_modification || v.getId() == R.id.retour_liste_reservation) {
             finish();
         }
     }

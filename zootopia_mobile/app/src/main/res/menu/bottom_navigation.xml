@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_animaux"
+        android:icon="@drawable/animal_default" />
+
+    <item
+        android:id="@+id/menu_carte"
+        android:icon="@drawable/map" />
+
+    <item
+        android:id="@+id/menu_panier"
+        android:icon="@drawable/panier" />
+
+    <item
+        android:id="@+id/menu_activites"
+        android:icon="@drawable/activity" />
+
+    <item
+        android:id="@+id/menu_info"
+        android:icon="@drawable/info" />
+</menu>

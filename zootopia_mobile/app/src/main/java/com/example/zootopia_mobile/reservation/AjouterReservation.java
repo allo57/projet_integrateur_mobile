@@ -3,18 +3,28 @@ package com.example.zootopia_mobile.reservation;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
 import com.example.zootopia_mobile.R;
+import com.example.zootopia_mobile.ZooLocation;
+import com.example.zootopia_mobile.activite.Activite;
+import com.example.zootopia_mobile.animaux.AffichageAnimaux;
 import com.example.zootopia_mobile.api.ApiService;
 import com.example.zootopia_mobile.api.RetrofitInstance;
+import com.example.zootopia_mobile.informations.Informations;
+import com.example.zootopia_mobile.magasin.ListeItem;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,8 +52,41 @@ public class AjouterReservation extends AppCompatActivity implements View.OnClic
 
         AppCompatButton ajouter = findViewById(R.id.ajout_reservation);
         AppCompatButton annuler = findViewById(R.id.annuler_ajout);
+        ImageButton retour = findViewById(R.id.retour_liste_reservation);
+
+        retour.setOnClickListener(this);
         ajouter.setOnClickListener(this);
         annuler.setOnClickListener(this);
+
+        BottomNavigationView navigationView = findViewById(R.id.navigation);
+        navigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int id = item.getItemId();
+
+                if (id == R.id.menu_animaux) {
+                    Intent intent = new Intent(AjouterReservation.this, AffichageAnimaux.class);
+                    startActivity(intent);
+                }
+                else if (id == R.id.menu_activites) {
+                    Intent intent = new Intent(AjouterReservation.this, Activite.class);
+                    startActivity(intent);
+                }
+                else if (id == R.id.menu_panier) {
+                    Intent intent = new Intent(AjouterReservation.this, ListeItem.class);
+                    startActivity(intent);
+                }
+                else if (id == R.id.menu_carte) {
+                    Intent intent = new Intent(AjouterReservation.this, ZooLocation.class);
+                    startActivity(intent);
+                }
+                else if (id == R.id.menu_info) {
+                    Intent intent = new Intent(AjouterReservation.this, Informations.class);
+                    startActivity(intent);
+                }
+                return false;
+            }
+        });
     }
 
     @Override
@@ -55,7 +98,7 @@ public class AjouterReservation extends AppCompatActivity implements View.OnClic
             startActivity(intent);
             finish();
         }
-        else if (v.getId() == R.id.annuler_ajout) {
+        else if (v.getId() == R.id.annuler_ajout || v.getId() == R.id.retour_liste_reservation) {
             finish();
         }
     }

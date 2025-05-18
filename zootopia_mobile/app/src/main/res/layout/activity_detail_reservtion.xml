@@ -10,10 +10,39 @@
     android:orientation="vertical"
     tools:context=".reservation.DetailReservtion">
 
-    <Space
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1" />
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="25dp"
+        android:layout_weight="0"
+        android:background="#D5E8D4">
+
+        <ImageButton
+            android:id="@+id/retour_liste_reservation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@null"
+            android:contentDescription="Close Button"
+            android:src="@drawable/remove" />
+
+        <ImageView
+            android:id="@+id/imageZootopiaNav"
+            android:layout_width="140dp"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="134dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="134dp"
+            android:layout_marginBottom="10dp"
+            android:contentDescription="Zootopia Logo"
+            android:src="@drawable/zootopia" />
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/titre"
@@ -25,249 +54,205 @@
         android:textStyle="bold" />
 
     <LinearLayout
+        android:id="@+id/detail_reservation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="3"
-        android:orientation="horizontal">
+        android:layout_margin="20px"
+        android:layout_weight="0"
+        android:background="@drawable/detail"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingLeft="20px"
+        android:paddingRight="20px">
 
-        <Space
-            android:layout_width="wrap_content"
+        <TableLayout
+            android:id="@+id/table"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="0">
 
-        <LinearLayout
-            android:id="@+id/detail_reservation"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="3"
-            android:background="@drawable/detail"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:paddingLeft="20px"
-            android:paddingRight="20px">
-
-            <Space
+            <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_height="match_parent"
+                android:layout_margin="20px">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:orientation="horizontal">
-
-                <LinearLayout
+                <TextView
+                    android:id="@+id/label_nom"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:gravity="center_vertical"
+                    android:text="Numéro de réservation"
+                    android:textSize="14sp" />
 
-                    <TextView
-                        android:id="@+id/label_nom"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:text="Numéro de réservation"
-                        android:textSize="14sp" />
-
-                    <Space
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1" />
-
-                    <TextView
-                        android:id="@+id/label_prix"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:text="Nom de la réservation"
-                        android:textSize="14sp" />
-
-                    <Space
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1" />
-
-                    <TextView
-                        android:id="@+id/label_no_tel"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:text="Numéro de téléphone"
-                        android:textSize="14sp" />
-
-                    <Space
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1" />
-
-                    <TextView
-                        android:id="@+id/label_nb_personnes"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:text="Nombre de personnes"
-                        android:textSize="14sp" />
-
-                    <Space
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1" />
-
-                    <TextView
-                        android:id="@+id/label_date"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:text="Date de la réservation"
-                        android:textSize="14sp" />
-
-                    <Space
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1" />
-
-                    <TextView
-                        android:id="@+id/label_heure"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:text="Heure de la réservation"
-                        android:textSize="14sp" />
-
-                </LinearLayout>
-
-                <LinearLayout
+                <TextView
+                    android:id="@+id/detail_id_reservation"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:gravity="center_vertical"
+                    android:textAlignment="textEnd"
+                    android:textSize="14sp" />
+            </TableRow>
 
-                    <TextView
-                        android:id="@+id/detail_id_reservation"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:textAlignment="textEnd"
-                        android:textSize="14sp" />
-
-                    <Space
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1" />
-
-                    <TextView
-                        android:id="@+id/detail_nom"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:textAlignment="textEnd"
-                        android:textSize="14sp" />
-
-                    <Space
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1" />
-
-                    <TextView
-                        android:id="@+id/detail_no_tel"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:textAlignment="viewEnd"
-                        android:textSize="14sp" />
-
-                    <Space
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1" />
-
-                    <TextView
-                        android:id="@+id/detail_nb_personnes"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:textAlignment="viewEnd"
-                        android:textSize="14sp" />
-
-                    <Space
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1" />
-
-                    <TextView
-                        android:id="@+id/detail_date"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:textAlignment="textEnd"
-                        android:textSize="14sp" />
-
-                    <Space
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1" />
-
-                    <TextView
-                        android:id="@+id/detail_heure"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:textAlignment="textEnd"
-                        android:textSize="14sp" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/label_note"
+            <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10px"
-                android:layout_weight="0"
-                android:text="Note :"
-                android:textSize="14sp" />
+                android:layout_height="match_parent"
+                android:layout_margin="20px">
 
-            <EditText
-                android:id="@+id/detail_note"
+                <TextView
+                    android:id="@+id/label_prix"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="Nom de la réservation"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/detail_nom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:textAlignment="textEnd"
+                    android:textSize="14sp" />
+            </TableRow>
+
+            <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0"
-                android:background="@drawable/rounded_border"
-                android:ems="10"
-                android:inputType="text"
-                android:minHeight="200px"
-                android:textSize="14sp" />
+                android:layout_height="match_parent"
+                android:layout_margin="20px">
 
-            <Space
+                <TextView
+                    android:id="@+id/label_no_tel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="Numéro de téléphone"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/detail_no_tel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:textAlignment="viewEnd"
+                    android:textSize="14sp" />
+            </TableRow>
+
+            <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_height="match_parent"
+                android:layout_margin="20px">
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/label_nb_personnes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="Nombre de personnes"
+                    android:textSize="14sp" />
 
-        <Space
-            android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/detail_nb_personnes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:textAlignment="viewEnd"
+                    android:textSize="14sp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="20px">
+
+                <TextView
+                    android:id="@+id/label_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="Date de la réservation"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/detail_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:textAlignment="textEnd"
+                    android:textSize="14sp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="20px">
+
+                <TextView
+                    android:id="@+id/label_heure"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="Heure de la réservation"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/detail_heure"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:textAlignment="textEnd"
+                    android:textSize="14sp" />
+            </TableRow>
+        </TableLayout>
+
+        <TextView
+            android:id="@+id/label_note"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_marginBottom="10px"
+            android:layout_weight="0"
+            android:text="Note :"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/detail_note"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30px"
+            android:layout_weight="0"
+            android:background="@drawable/rounded_border"
+            android:ems="10"
+            android:inputType="text"
+            android:minHeight="200px"
+            android:padding="5dp"
+            android:textSize="14sp" />
+
     </LinearLayout>
 
-    <Space
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1" />
+        android:layout_height="match_parent">
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="#D5E8D4"
+            app:menu="@menu/bottom_navigation">
+
+        </com.google.android.material.bottomnavigation.BottomNavigationView>
+    </RelativeLayout>
+
 </LinearLayout>

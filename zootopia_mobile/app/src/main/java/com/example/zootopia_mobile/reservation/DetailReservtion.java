@@ -3,19 +3,26 @@ package com.example.zootopia_mobile.reservation;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.zootopia_mobile.R;
 import com.example.zootopia_mobile.SQLiteManager;
+import com.example.zootopia_mobile.ZooLocation;
+import com.example.zootopia_mobile.activite.Activite;
+import com.example.zootopia_mobile.animaux.AffichageAnimaux;
+import com.example.zootopia_mobile.informations.Informations;
+import com.example.zootopia_mobile.magasin.ListeItem;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 
-public class DetailReservtion extends AppCompatActivity {
+public class DetailReservtion extends AppCompatActivity  implements View.OnClickListener{
     Context context = this;
 
     @Override
@@ -31,6 +38,9 @@ public class DetailReservtion extends AppCompatActivity {
         TextView date = findViewById(R.id.detail_date);
         TextView heure = findViewById(R.id.detail_heure);
         TextView note = findViewById(R.id.detail_note);
+
+        ImageButton retour = findViewById(R.id.retour_liste_reservation);
+        retour.setOnClickListener(this);
 
         Intent data = getIntent();
         int reservation_id = data.getIntExtra("id_reservation", 0);
@@ -52,5 +62,41 @@ public class DetailReservtion extends AppCompatActivity {
         date.setText(reservation.get_date());
         heure.setText(reservation.get_heure());
         note.setText(reservation.get_note());
+
+        BottomNavigationView navigationView = findViewById(R.id.navigation);
+        navigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int id = item.getItemId();
+
+                if (id == R.id.menu_animaux) {
+                    Intent intent = new Intent(DetailReservtion.this, AffichageAnimaux.class);
+                    startActivity(intent);
+                }
+                else if (id == R.id.menu_activites) {
+                    Intent intent = new Intent(DetailReservtion.this, Activite.class);
+                    startActivity(intent);
+                }
+                else if (id == R.id.menu_panier) {
+                    Intent intent = new Intent(DetailReservtion.this, ListeItem.class);
+                    startActivity(intent);
+                }
+                else if (id == R.id.menu_carte) {
+                    Intent intent = new Intent(DetailReservtion.this, ZooLocation.class);
+                    startActivity(intent);
+                }
+                else if (id == R.id.menu_info) {
+                    Intent intent = new Intent(DetailReservtion.this, Informations.class);
+                    startActivity(intent);
+                }
+                return false;
+            }
+        });
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        finish();
     }
 }

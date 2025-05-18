@@ -10,6 +10,38 @@
     android:orientation="vertical"
     tools:context=".reservation.ListeReservation">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:background="#D5E8D4">
+
+        <ImageButton
+            android:id="@+id/retour_liste_reservation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@null"
+            android:contentDescription="Close Button"
+            android:src="@drawable/remove" />
+
+        <ImageView
+            android:id="@+id/imageZootopiaNav"
+            android:layout_width="140dp"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="134dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="134dp"
+            android:layout_marginBottom="10dp"
+            android:contentDescription="Zootopia Logo"
+            android:src="@drawable/zootopia" />
+    </RelativeLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/liste_reservation"
         android:layout_width="match_parent"
@@ -19,6 +51,23 @@
         android:id="@+id/ajouter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
         android:background="@drawable/green_button"
         android:text="Ajouter une réservation" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="#D5E8D4"
+            app:menu="@menu/bottom_navigation" />
+
+    </RelativeLayout>
+
 </LinearLayout>

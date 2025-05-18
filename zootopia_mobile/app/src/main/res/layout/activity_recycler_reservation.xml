@@ -20,14 +20,10 @@
             android:id="@+id/infoTransaction"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_margin="20px"
             android:layout_weight="1"
             android:orientation="vertical"
             android:paddingLeft="20px">
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:minHeight="32px" />
 
             <TextView
                 android:id="@+id/numero"
