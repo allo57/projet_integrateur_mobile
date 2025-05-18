@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.zootopia_mobile.R;
+import com.example.zootopia_mobile.SQLiteManager;
 import com.example.zootopia_mobile.ZooLocation;
 import com.example.zootopia_mobile.billets.Billets;
 import com.example.zootopia_mobile.billets.BilletAdapter;
@@ -104,6 +105,7 @@ public class Billets extends AppCompatActivity implements View.OnClickListener{
             }
         });
     }
+
 
     @Override
     public void onClick(View v) {

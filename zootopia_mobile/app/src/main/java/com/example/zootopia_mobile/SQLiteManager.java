@@ -7,6 +7,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.zootopia_mobile.billets.Billet;
@@ -199,11 +200,22 @@ public class SQLiteManager extends SQLiteOpenHelper
     public void ajoutBillet(long id_billet, String nom, String description, double prix) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put("id_billet", id_billet);
-        values.put("nom", nom);
-        values.put("description", description);
-        values.put("prix", prix);
-        db.insert("billets", null, values);
+
+        boolean existeDeja = false;
+        Cursor cursor = db.rawQuery("SELECT * FROM billets WHERE id_billet = ?", new String[]{String.valueOf(id_billet)});
+        if (cursor.moveToFirst()) {
+            existeDeja = true;
+        }
+        cursor.close();
+
+        if (!existeDeja){
+            values.put("id_billet", id_billet);
+            values.put("nom", nom);
+            values.put("description", description);
+            values.put("prix", prix);
+            db.insert("billets", null, values);
+        }
+
     }
 
     public void ajoutReservation(Reservation reservation) {
@@ -378,6 +390,122 @@ public class SQLiteManager extends SQLiteOpenHelper
         String[] whereArgs = new String[]{String.valueOf(idTransaction), String.valueOf(idBillet)};
         db.delete("billets_transactions", whereClause, whereArgs);
         db.close();
+    }
+
+    /**
+     * Ajoute un billet au panier de l'utilisateur
+     *
+     * @param userId ID de l'utilisateur
+     * @param billetId ID du billet à ajouter
+     * @param quantite Nombre de billets à ajouter
+     * @return true si l'opération a réussi, false sinon
+     */
+    public boolean ajouterBilletAuPanier(int userId, int billetId, int quantite) {
+        // Vérifier si l'utilisateur est connecté
+        if (userId == -1) {
+            return false;
+        }
+
+        // Obtenir l'ID de transaction actuelle pour l'utilisateur
+        long idTransaction = getTransactionUtilisateur(userId);
+
+        // Si aucune transaction n'existe, en créer une nouvelle
+        if (idTransaction == 0) {
+            idTransaction = creerNouvelleTransaction(userId);
+            if (idTransaction == -1) {
+                return false; // Échec de la création de transaction
+            }
+        }
+
+        // Vérifier si le billet existe déjà dans le panier
+        BilletPanier billetExistant = getBilletDansPanier(idTransaction, billetId);
+
+        if (billetExistant != null) {
+            // Le billet existe déjà, mettre à jour la quantité
+            int nouvelleQuantite = billetExistant.getQuantite() + quantite;
+            return updateQuantiteBillet(idTransaction, billetId, nouvelleQuantite);
+        } else {
+            // Ajouter un nouveau billet au panier en utilisant la méthode existante
+            ajouterTransaction(idTransaction, billetId, quantite, userId);
+            return true;
+        }
+    }
+
+    /**
+     * Récupère un billet spécifique dans le panier
+     * @param idTransaction ID de la transaction
+     * @param billetId ID du billet
+     * @return L'objet BilletPanier s'il existe, null sinon
+     */
+    public BilletPanier getBilletDansPanier(long idTransaction, int billetId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        BilletPanier billetPanier = null;
+
+        String query = "SELECT b.id_billet, b.nom, b.description, b.prix, bt.quantity " +
+                "FROM billets b JOIN billets_transactions bt ON b.id_billet = bt.id_billet " +
+                "WHERE bt.id_transaction = ? AND b.id_billet = ?";
+
+        Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(idTransaction), String.valueOf(billetId)});
+
+        if (cursor.moveToFirst()) {
+            int id = cursor.getInt(cursor.getColumnIndex("id_billet"));
+            String nom = cursor.getString(cursor.getColumnIndex("nom"));
+            String description = cursor.getString(cursor.getColumnIndex("description"));
+            double prix = cursor.getDouble(cursor.getColumnIndex("prix"));
+            int quantite = cursor.getInt(cursor.getColumnIndex("quantity"));
+
+            Billet billet = new Billet(id, nom, description, prix);
+            billetPanier = new BilletPanier(billet, quantite);
+        }
+
+        cursor.close();
+        db.close();
+
+        return billetPanier;
+    }
+
+    /**
+     * Met à jour la quantité d'un billet dans le panier
+     * @param idTransaction ID de la transaction
+     * @param billetId ID du billet
+     * @param nouvelleQuantite Nouvelle quantité du billet
+     * @return true si la mise à jour est réussie, false sinon
+     */
+    public boolean updateQuantiteBillet(long idTransaction, int billetId, int nouvelleQuantite) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("quantity", nouvelleQuantite);
+
+        int rowsAffected = db.update(
+                "billets_transactions",
+                values,
+                "id_transaction = ? AND id_billet = ?",
+                new String[]{String.valueOf(idTransaction), String.valueOf(billetId)}
+        );
+
+        db.close();
+        return rowsAffected > 0;
+    }
+
+    /**
+     * Crée une nouvelle transaction pour un utilisateur
+     * @param userId ID de l'utilisateur
+     * @return ID de la nouvelle transaction
+     */
+    public long creerNouvelleTransaction(int userId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        long idTransaction = System.currentTimeMillis(); // Génère un ID unique basé sur le temps
+
+        ContentValues values = new ContentValues();
+        values.put("id_transaction", idTransaction);
+        values.put("date_heure", String.valueOf(System.currentTimeMillis()));
+        values.put("id_utilisateur", userId);
+
+        long result = db.insert("transactions", null, values);
+        db.close();
+
+        return (result != -1) ? idTransaction : -1;
     }
 
     public void ajouterTransaction(long idTransaction, int idBillet, int quantite, int id) {

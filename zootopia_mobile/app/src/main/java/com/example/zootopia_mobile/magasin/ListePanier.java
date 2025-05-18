@@ -3,6 +3,7 @@ package com.example.zootopia_mobile.magasin;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -64,8 +65,9 @@ public class ListePanier extends AppCompatActivity implements View.OnClickListen
 
         int currentUserId = inscription.userId;
         idTransaction = dbHelper.getTransactionUtilisateur(currentUserId);
+        Log.d("ListePanier", "ID Transaction : " + idTransaction);
         List<BilletPanier> billetsPanier = dbHelper.getBilletsPourTransaction(idTransaction, currentUserId);
-
+        Log.d("ListePanier", "Billets dans le panier : " + billetsPanier.size());
         if (billetsPanier.isEmpty()) {
             panierVideTextView.setVisibility(View.VISIBLE);
             if (currentUserId != -1) {
