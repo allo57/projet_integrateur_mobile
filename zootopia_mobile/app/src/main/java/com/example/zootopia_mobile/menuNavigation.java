@@ -121,6 +121,7 @@ public class menuNavigation extends AppCompatActivity implements View.OnClickLis
             if (loggedIn & inscription.userId != -1) {
                 SharedPreferences prefs = getSharedPreferences("myPrefs", MODE_PRIVATE);
                 prefs.edit().putBoolean("loggedIn", false).apply();
+                inscription.userId = -1;
                 Intent intent = new Intent(menuNavigation.this, menuNavigation.class);
                 startActivity(intent);
                 Toast.makeText(menuNavigation.this, "Déconnexion réussie !", Toast.LENGTH_SHORT).show();

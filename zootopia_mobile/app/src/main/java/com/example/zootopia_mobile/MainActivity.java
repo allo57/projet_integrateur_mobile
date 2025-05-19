@@ -40,11 +40,11 @@ public class MainActivity extends AppCompatActivity {
         // db.deleteUser(3);
         // db.deleteUser(5);
 
-       // db.ajoutBillet( 1, "Billet pour enfants", "enfant", 15.99);
-       // db.ajoutBillet( 2, "Billet pour adultes", "adulte", 20.99);
-       // db.ajoutTransaction(3, "15 mai 2025", 3);
-       // db.ajoutBilletTransaction(3, 3, 1, 1);
-       // db.ajoutBilletTransaction(4, 3, 2, 2);
+       db.ajoutBillet( 1, "Billet pour enfants", "enfant", 15.99);
+       db.ajoutBillet( 2, "Billet pour adultes", "adulte", 20.99);
+       db.ajoutTransaction(3, "15 mai 2025", 3);
+       db.ajoutBilletTransaction(3, 3, 1, 1);
+       db.ajoutBilletTransaction(4, 3, 2, 2);
 
         ImageButton buttonNav = (ImageButton) findViewById(R.id.imageButtonPaw);
 
