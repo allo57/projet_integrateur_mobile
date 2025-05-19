@@ -53,22 +53,31 @@ public class ListeReservation extends AppCompatActivity implements View.OnClickL
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        String user_id = "1";
         ApiService apiService = RetrofitInstance.getApi();
-        Call<ResponseReservation> call = apiService.getUserReservations("1");
+        Call<ResponseReservation> call = apiService.getUserReservations(user_id);
 
         call.enqueue(new Callback<ResponseReservation>() {
             @Override
             public void onResponse(Call<ResponseReservation> call, Response<ResponseReservation> response) {
+                SQLiteManager sqLiteManager = SQLiteManager.instanceOfDatabase(context);
                 if (response.isSuccessful() && response.body() != null) {
                     List<Reservation> liste = response.body().getUserReservations();
-                    Log.e("TEST", "Response: " + liste.toString());
                     adapter = new RecyclerReservation(context, liste);
                     recyclerView.setAdapter(adapter);
 
-                    SQLiteManager sqLiteManager = SQLiteManager.instanceOfDatabase(context);
                     for (int i = 0; i < liste.size(); i++) {
-                        sqLiteManager.ajoutReservation(liste.get(i));
+                        Reservation reservation = sqLiteManager.getReservation(liste.get(i).get_id_reservation(), liste.get(i).get_id_utilisateur());
+
+                        if (!reservation.equals(liste.get(i))) {
+                            // Ajoute les nouvelles données et modifie les anciennes données
+
+                        }
+                        else {
+                            sqLiteManager.ajoutReservation(liste.get(i));
+                        }
                     }
+
 
 
                 } else {
@@ -76,13 +85,17 @@ public class ListeReservation extends AppCompatActivity implements View.OnClickL
                     if (response.errorBody() != null) {
                         try {
                             Log.e("API", "Erreur body : " + response.errorBody().string());
-                            // Ajoute les nouvelles données et modifie les anciennes données
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
                     } else {
                         Log.e("API", "Erreur body null");
                         // Check if la base de données n'est pas nulle
+
+
+
+
+
                     }
                 }
             }
@@ -90,7 +103,6 @@ public class ListeReservation extends AppCompatActivity implements View.OnClickL
             @Override
             public void onFailure(Call<ResponseReservation> call, Throwable t) {
                 Log.e("API", "Erreur : " + t.getMessage());
-
             }
         });
 

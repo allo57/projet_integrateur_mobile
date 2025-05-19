@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -30,6 +31,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 import java.io.IOException;
+import java.util.regex.Pattern;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -48,7 +50,7 @@ public class ModifierReservation extends AppCompatActivity implements View.OnCli
         int id_user = data.getIntExtra("id_utilisateur", 0);
 
         TextView title = findViewById(R.id.titre_modifier_reservation);
-        title.setText("Numéro de la réservation : " + String.valueOf(id_reservation));
+        title.setText("Modification de la réservation : " + String.valueOf(id_reservation));
 
         EditText nom = findViewById(R.id.reservation_modif_nom);
         EditText no_tel = findViewById(R.id.reservation_modif_no_tel);
@@ -121,10 +123,6 @@ public class ModifierReservation extends AppCompatActivity implements View.OnCli
             sqLiteManager.updateReservations(updated_reservation);
 
             sendData();
-
-            Intent intent = new Intent(ModifierReservation.this, ListeReservation.class);
-            startActivity(intent);
-            finish();
         }
         else if (v.getId() == R.id.annuler_modification || v.getId() == R.id.retour_liste_reservation) {
             finish();
@@ -145,14 +143,33 @@ public class ModifierReservation extends AppCompatActivity implements View.OnCli
         EditText note = findViewById(R.id.reservation_modif_note);
 
         String add_nom = nom.getText().toString();
-        StringBuilder add_no_tel = new StringBuilder("(" + no_tel.getText().toString());
-        add_no_tel.insert(4,") ");
-        add_no_tel.insert(9,"-");
+        String add_no_tel = no_tel.getText().toString();
 
         String add_date = date.getText().toString();
         String add_heure = heure.getSelectedItem().toString();
         int add_nb_personnes = Integer.parseInt(nb_personnes.getText().toString());
         String add_note = note.getText().toString();
+
+        Pattern regex_nom = Pattern.compile("^[A-ZÀ-Ú][a-zà-ú]+([ -][A-ZÀ-Ú][a-zà-ú]+)*$");
+        Pattern regex_no_tel = Pattern.compile("/^\\(\\d{3}\\) \\d{3}-\\d{4}$/g");
+        Pattern regex_date = Pattern.compile("/^\\d{2}/\\d{2}/\\d{4}$/g");
+
+        if (add_nom.isEmpty() || add_no_tel.isEmpty() || add_nb_personnes < 1 || add_date.isEmpty() || add_heure.isEmpty()) {
+            Toast.makeText(ModifierReservation.this, "Un ou plusieurs champs sont incomplets.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        else if (!regex_nom.matcher(add_nom).matches()) {
+            Toast.makeText(ModifierReservation.this, "Le format du nom n'est pas valide.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        else if (!regex_no_tel.matcher(add_no_tel).matches()) {
+            Toast.makeText(ModifierReservation.this, "Le format du numéro de téléphone n'est pas valide.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        else if (!regex_date.matcher(add_date).matches()) {
+            Toast.makeText(ModifierReservation.this, "Le format de date n'est pas valide.", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
         ReservationPost new_reservation = new ReservationPost(add_nom, add_no_tel.toString(), add_nb_personnes, add_date, add_heure, add_note, 1, add_id_user);
         new_reservation.setId_reservation(id_reservation);
@@ -185,5 +202,9 @@ public class ModifierReservation extends AppCompatActivity implements View.OnCli
 
             }
         });
+
+        Intent intent = new Intent(ModifierReservation.this, ListeReservation.class);
+        startActivity(intent);
+        finish();
     }
 }

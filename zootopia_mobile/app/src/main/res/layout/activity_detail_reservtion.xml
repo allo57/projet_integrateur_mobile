@@ -220,23 +220,21 @@
             android:id="@+id/label_note"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="15px"
             android:layout_marginBottom="10px"
             android:layout_weight="0"
             android:text="Note :"
             android:textSize="14sp" />
 
-        <EditText
+        <TextView
             android:id="@+id/detail_note"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="30px"
-            android:layout_weight="0"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/rounded_border"
-            android:ems="10"
-            android:inputType="text"
-            android:minHeight="200px"
-            android:padding="5dp"
-            android:textSize="14sp" />
+            android:minHeight="75dp" />
 
     </LinearLayout>
 
@@ -250,9 +248,9 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:background="#D5E8D4"
-            app:menu="@menu/bottom_navigation">
-
-        </com.google.android.material.bottomnavigation.BottomNavigationView>
+            app:labelVisibilityMode="unlabeled"
+            app:itemActiveIndicatorStyle="@android:color/transparent"
+            app:menu="@menu/bottom_navigation" />
     </RelativeLayout>
 
 </LinearLayout>

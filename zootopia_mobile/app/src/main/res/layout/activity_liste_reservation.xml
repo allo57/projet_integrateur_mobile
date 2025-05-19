@@ -14,6 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
+        android:layout_marginBottom="10dp"
         android:background="#D5E8D4">
 
         <ImageButton
@@ -66,7 +67,9 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:background="#D5E8D4"
-            app:menu="@menu/bottom_navigation" />
+            app:menu="@menu/bottom_navigation"
+            app:itemActiveIndicatorStyle="@android:color/transparent"
+            app:labelVisibilityMode="unlabeled" />
 
     </RelativeLayout>
 

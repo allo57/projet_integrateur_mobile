@@ -90,6 +90,7 @@
                     android:background="@drawable/rounded_border"
                     android:ems="10"
                     android:gravity="center_horizontal"
+                    android:hint="John Doe"
                     android:inputType="text"
                     android:textAlignment="center"
                     android:textSize="16sp" />
@@ -118,6 +119,7 @@
                     android:background="@drawable/rounded_border"
                     android:ems="10"
                     android:gravity="center_horizontal"
+                    android:hint="(000) 000-0000"
                     android:inputType="text"
                     android:textAlignment="center"
                     android:textSize="16sp" />
@@ -174,6 +176,7 @@
                     android:background="@drawable/rounded_border"
                     android:ems="10"
                     android:gravity="center_horizontal"
+                    android:hint="11/09/2001"
                     android:inputType="date"
                     android:textAlignment="center"
                     android:textSize="16sp" />
@@ -238,7 +241,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
         android:layout_weight="0"
-        android:background="@drawable/border"
+        android:background="@drawable/green_button"
         android:text="Enregistrer"
         android:textColor="@color/black" />
 
@@ -247,7 +250,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0"
-        android:background="@drawable/border"
+        android:background="@drawable/green_button"
         android:text="Annuler"
         android:textColor="@color/black" />
 
@@ -261,7 +264,9 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:background="#D5E8D4"
-            app:menu="@menu/bottom_navigation" />
+            app:menu="@menu/bottom_navigation"
+            app:itemActiveIndicatorStyle="@android:color/transparent"
+            app:labelVisibilityMode="unlabeled" />
     </RelativeLayout>
 
 </LinearLayout>
