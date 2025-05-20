@@ -111,15 +111,6 @@
             android:inputType="textPassword" />
 
         <Button
-            android:id="@+id/buttonForgotPassword"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#00FDF8F8"
-            android:text="Mot de passe oublié"
-            android:textAlignment="viewStart"
-            android:textColor="#A20229FF" />
-
-        <Button
             android:id="@+id/buttonInscription2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
