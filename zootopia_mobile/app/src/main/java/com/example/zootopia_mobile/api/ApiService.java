@@ -3,7 +3,7 @@
 /***************************************************
  *
  * Fichier : ApiClient.java
- * Auteur : Tous
+ * Auteur : Sarah-Maude Gagné & Heidi Lavoie
  * Fonctionnalité : Gestion API
  * Date : 8 mai 2025
  *

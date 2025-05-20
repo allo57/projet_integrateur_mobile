@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    * Fichier : activity_recycler_animaux.xml
+    * Auteur : Heidi Lavoie
+    * Fonctionnalité : Affichage d'un animal
+    * Date : 9 mai 2025
+-->
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
