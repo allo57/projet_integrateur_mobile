@@ -12,14 +12,14 @@ public class ReservationPost {
     int statut;
     int id_utilisateur;
 
-    public ReservationPost(String nom, String no_tel, int nb_personnes, String date, String heure, String note, int statut, int id_user) {
+    public ReservationPost(String nom, String no_tel, int nb_personnes, String date, String heure, String note, int id_user) {
         setName(nom);
         setTelephone(no_tel);
         setNb_personnes(nb_personnes);
         setDate(date);
         setHeure(heure);
         setNote(note);
-        setStatut(statut);
+        setStatut(1);
         setId_utilisateur(id_user);
         setDescription("");
     }

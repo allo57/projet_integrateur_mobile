@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class Reservation {
     private int id_reservation;
     private String nom;
-    private int no_tel;
+    private long no_tel;
     private String date_heure;
     private int nb_personnes;
     private String note;
@@ -32,7 +32,7 @@ public class Reservation {
     }
 
     // Pour post
-    public Reservation (String nom, int no_tel, int nb_personnes, String date, String heure, String note, int id_user) {
+    public Reservation (String nom, long no_tel, int nb_personnes, String date, String heure, String note, int id_user) {
         set_nom(nom);
         set_no_tel(no_tel);
         set_nb_personnes(nb_personnes);
@@ -57,11 +57,11 @@ public class Reservation {
         this.nom = nom;
     }
 
-    public int get_no_tel() {
+    public long get_no_tel() {
         return this.no_tel;
     }
 
-    public void set_no_tel(int no_tel) {
+    public void set_no_tel(long no_tel) {
         this.no_tel = no_tel;
     }
 
@@ -121,10 +121,20 @@ public class Reservation {
     }
 
     public String get_date() {
-        DateTimeFormatter objFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter objFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         DateTimeFormatter currentFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         LocalDateTime dateTime = LocalDateTime.parse(date_heure, currentFormat);
         return dateTime.format(objFormat).toString();
+    }
+
+    public boolean equals(Reservation r2) {
+        return this.get_nom() == r2.get_nom() &&
+        this.get_no_tel() == r2.get_no_tel() &&
+        this.get_date_heure() == r2.get_date_heure() &&
+        this.get_nb_personnes() == r2.get_nb_personnes() &&
+        this.get_note() == r2.get_note() &&
+        this.get_description() == r2.get_description() &&
+        this.get_id_etat_reservation() == r2.get_id_etat_reservation();
     }
 
     @Override

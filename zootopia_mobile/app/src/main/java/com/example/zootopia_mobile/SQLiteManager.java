@@ -21,7 +21,7 @@ public class SQLiteManager extends SQLiteOpenHelper
 {
     private static SQLiteManager sqLiteManager;
     private static final String DATABASE_NAME = "Zootopia";
-    private static final int DATABASE_VERSION = 5;
+    private static final int DATABASE_VERSION = 6;
 
     public SQLiteManager(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -269,7 +269,7 @@ public class SQLiteManager extends SQLiteOpenHelper
                 while (result.moveToNext()) {
                     int id_reservation = result.getInt(0);
                     String nom = result.getString(1);
-                    int no_tel = result.getInt(2);
+                    long no_tel = result.getLong(2);
                     String date_heure = result.getString(3);
                     int nb_personnes = result.getInt(4);
                     String note = result.getString(5);
@@ -300,7 +300,7 @@ public class SQLiteManager extends SQLiteOpenHelper
             if (result.moveToFirst()) {
                 int id_reservation = result.getInt(0);
                 String nom = result.getString(1);
-                int no_tel = result.getInt(2);
+                long no_tel = result.getLong(2);
                 String date_heure = result.getString(3);
                 int nb_personnes = result.getInt(4);
                 String note = result.getString(5);

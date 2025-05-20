@@ -1,6 +1,11 @@
 package com.example.zootopia_mobile.reservation;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkCapabilities;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -16,6 +21,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
+import com.example.zootopia_mobile.NetworkConnection;
 import com.example.zootopia_mobile.R;
 import com.example.zootopia_mobile.ZooLocation;
 import com.example.zootopia_mobile.activite.Activite;
@@ -40,7 +46,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class AjouterReservation extends AppCompatActivity implements View.OnClickListener {
-
+    Context context = this;
     private static final Logger log = LoggerFactory.getLogger(AjouterReservation.class);
 
     @Override
@@ -96,7 +102,13 @@ public class AjouterReservation extends AppCompatActivity implements View.OnClic
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.ajout_reservation) {
-            sendData();
+            NetworkConnection network = new NetworkConnection();
+            if (!network.isConnected(context)) {
+                Toast.makeText(AjouterReservation.this, "Veuillez-vous connecter à l'internet pour pouvoir ajouter une réservation.", Toast.LENGTH_SHORT).show();
+            }
+            else {
+                sendData();
+            }
         }
         else if (v.getId() == R.id.annuler_ajout || v.getId() == R.id.retour_liste_reservation) {
             finish();
@@ -115,16 +127,29 @@ public class AjouterReservation extends AppCompatActivity implements View.OnClic
         String add_no_tel = no_tel.getText().toString();
         String add_date = date.getText().toString();
         String add_heure = heure.getSelectedItem().toString();
+        if (nb_personnes.getText().toString().isEmpty()) {
+            Toast.makeText(AjouterReservation.this, "Un ou plusieurs champs sont incomplets.", Toast.LENGTH_SHORT).show();
+            return;
+        }
         int add_nb_personnes = Integer.parseInt(nb_personnes.getText().toString());
         String add_note = note.getText().toString();
-        int add_id_user = 1;
+        if (add_note == null) {
+            add_note = "";
+        }
+
+        Intent data = getIntent();
+        int add_id_user = data.getIntExtra("id_utilisateur", 0);
 
         Pattern regex_nom = Pattern.compile("^[A-ZÀ-Ú][a-zà-ú]+([ -][A-ZÀ-Ú][a-zà-ú]+)*$");
-        Pattern regex_no_tel = Pattern.compile("/^\\(\\d{3}\\) \\d{3}-\\d{4}$/g");
-        Pattern regex_date = Pattern.compile("/^\\d{2}/\\d{2}/\\d{4}$/g");
+        Pattern regex_no_tel = Pattern.compile("^\\(\\d{3}\\) \\d{3}-\\d{4}$");
+        Pattern regex_date = Pattern.compile("^\\d{4}-\\d{2}-\\d{2}$");
 
-        if (add_nom.isEmpty() || add_no_tel.isEmpty() || add_nb_personnes < 1 || add_date.isEmpty() || add_heure.isEmpty()) {
+        if (add_nom.isEmpty() || add_no_tel.isEmpty() || add_date.isEmpty() || add_heure.isEmpty()) {
             Toast.makeText(AjouterReservation.this, "Un ou plusieurs champs sont incomplets.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        else if (add_nb_personnes < 1) {
+            Toast.makeText(AjouterReservation.this, "Une réservation requis au moins une personne", Toast.LENGTH_SHORT).show();
             return;
         }
         else if (!regex_nom.matcher(add_nom).matches()) {
@@ -140,7 +165,7 @@ public class AjouterReservation extends AppCompatActivity implements View.OnClic
             return;
         }
 
-        ReservationPost new_reservation = new ReservationPost(add_nom, add_no_tel, add_nb_personnes, add_date, add_heure, add_note, 1, add_id_user);
+        ReservationPost new_reservation = new ReservationPost(add_nom, add_no_tel, add_nb_personnes, add_date, add_heure, add_note, add_id_user);
         ApiService apiService = RetrofitInstance.getApi();
         Call<ResponseReservation> call = apiService.addReservation(new_reservation);
 
