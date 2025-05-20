@@ -1,3 +1,14 @@
+
+
+/***************************************************
+ *
+ * Fichier : ApiClient.java
+ * Auteur : Tous
+ * Fonctionnalité : Gestion API
+ * Date : 8 mai 2025
+ *
+ ***************************************************/
+
 package com.example.zootopia_mobile.api;
 
 import retrofit2.Retrofit;

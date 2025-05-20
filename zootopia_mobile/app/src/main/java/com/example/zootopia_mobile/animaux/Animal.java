@@ -1,3 +1,14 @@
+
+
+/***************************************************
+ *
+ * Fichier : Animal.java
+ * Auteur : Heidi Lavoie
+ * Fonctionnalité : Code de la classe Animal
+ * Date : 8 mai 2025
+ *
+ ***************************************************/
+
 package com.example.zootopia_mobile.animaux;
 
 public class Animal {

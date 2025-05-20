@@ -1,3 +1,13 @@
+
+/***************************************************
+ *
+ * Fichier : AffichageAnimaux.java
+ * Auteur : Heidi Lavoie
+ * Fonctionnalité : Code de l'affichage de tous les animaux
+ * Date : 8 mai 2025
+ *
+ ***************************************************/
+
 package com.example.zootopia_mobile.animaux;
 
 import android.content.ActivityNotFoundException;
@@ -92,7 +102,6 @@ public class AffichageAnimaux extends AppCompatActivity implements View.OnClickL
         Intent intent = null;
         if (v.getId() == R.id.btnPanier) {
             intent = new Intent(AffichageAnimaux.this, ListePanier.class);
-            // startActivity(intent);
         } else if (v.getId() == R.id.btnActivite) {
             // Intent pour ouvrir la page Activité
             intent = new Intent(AffichageAnimaux.this, Activite.class);

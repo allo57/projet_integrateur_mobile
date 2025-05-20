@@ -1,3 +1,14 @@
+
+
+/***************************************************
+ *
+ * Fichier : AnimalAdapter.java
+ * Auteur : Heidi Lavoie
+ * Fonctionnalité : Code pour l'adapter d'animal
+ * Date : 8 mai 2025
+ *
+ ***************************************************/
+
 package com.example.zootopia_mobile.animaux;
 
 import android.content.Context;

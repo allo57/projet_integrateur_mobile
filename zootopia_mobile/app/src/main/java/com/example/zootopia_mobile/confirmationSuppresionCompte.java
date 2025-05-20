@@ -1,3 +1,13 @@
+
+/***************************************************
+ *
+ * Fichier : confirmationSuppresionCompte.java
+ * Auteur : Heidi Lavoie
+ * Fonctionnalité : Code de l'affichage de la confirmation de suppression de compte
+ * Date : 17 mai 2025
+ *
+ ***************************************************/
+
 package com.example.zootopia_mobile;
 
 import android.content.Intent;

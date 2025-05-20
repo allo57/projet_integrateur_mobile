@@ -1,3 +1,13 @@
+
+/***************************************************
+ *
+ * Fichier : RecyclerAnimaux.java
+ * Auteur : Heidi Lavoie
+ * Fonctionnalité : Code du recycler des animaux
+ * Date : 9 mai 2025
+ *
+ ***************************************************/
+
 package com.example.zootopia_mobile.animaux;
 
 import android.os.Bundle;

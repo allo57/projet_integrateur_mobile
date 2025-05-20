@@ -1,5 +1,13 @@
 package com.example.zootopia_mobile;
 
+/***************************************************
+ *
+ * Fichier : User.java
+ * Auteur : Heidi Lavoie
+ * Fonctionnalité : Code de la classe User
+ * Date : 17 mai 2025
+ *
+ ***************************************************/
 public class User {
     private int id;
     private String codePostal;

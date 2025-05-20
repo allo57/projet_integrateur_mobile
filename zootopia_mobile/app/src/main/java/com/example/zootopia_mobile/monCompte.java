@@ -1,3 +1,13 @@
+
+/***************************************************
+ *
+ * Fichier : monCompte.java
+ * Auteur : Heidi Lavoie
+ * Fonctionnalité : Code de l'affichage du compte de l'utilisateur connecté
+ * Date : 16 mai 2025
+ *
+ ***************************************************/
+
 package com.example.zootopia_mobile;
 
 import android.content.Intent;

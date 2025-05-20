@@ -1,3 +1,15 @@
+
+
+/***************************************************
+ *
+ * Fichier : inscription.java
+ * Auteur : Heidi Lavoie
+ * Fonctionnalité : Code de l'affichage du form d'inscription
+ * Date : 15 mai 2025
+ *
+ ***************************************************/
+
+
 package com.example.zootopia_mobile;
 
 import android.content.Intent;

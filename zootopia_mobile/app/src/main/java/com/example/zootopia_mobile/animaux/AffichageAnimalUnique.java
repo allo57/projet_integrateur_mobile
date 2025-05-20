@@ -1,3 +1,13 @@
+/***************************************************
+ *
+ * Fichier : AffichageAnimalUnique.java
+ * Auteur : Heidi Lavoie
+ * Fonctionnalité : Code de l'affichage d'un animal précis
+ * Date : 9 mai 2025
+ *
+ ***************************************************/
+
+
 package com.example.zootopia_mobile.animaux;
 
 import android.content.Intent;
@@ -17,6 +27,7 @@ import com.bumptech.glide.Glide;
 import com.example.zootopia_mobile.R;
 import com.example.zootopia_mobile.ZooLocation;
 import com.example.zootopia_mobile.activite.Activite;
+import com.example.zootopia_mobile.magasin.ListePanier;
 import com.example.zootopia_mobile.menuNavigation;
 
 import java.time.LocalDate;
@@ -103,8 +114,7 @@ public class AffichageAnimalUnique extends AppCompatActivity implements View.OnC
     public void onClick(View v) {
         Intent intent = null;
         if (v.getId() == R.id.btnPanier) {
-            // intent = new Intent(Activite.this, Panier.class);
-            // startActivity(intent);
+            intent = new Intent(AffichageAnimalUnique.this, ListePanier.class);
         } else if (v.getId() == R.id.btnActivite) {
             // Intent pour ouvrir la page Activité
             intent = new Intent(AffichageAnimalUnique.this, Activite.class);
