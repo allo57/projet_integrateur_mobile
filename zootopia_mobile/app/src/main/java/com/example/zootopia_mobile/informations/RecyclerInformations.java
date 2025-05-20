@@ -1,3 +1,11 @@
+/***************************************************
+ *
+ * Fichier : RecyclerInformations.java
+ * Auteur : Samuel Cloutier
+ * Fonctionnalité : Code du recycler d'Information
+ * Date : 8 mai 2025
+ *
+ ***************************************************/
 package com.example.zootopia_mobile.informations;
 
 import android.os.Bundle;

@@ -1,3 +1,11 @@
+/***************************************************
+ *
+ * Fichier : Informations.java
+ * Auteur : Samuel Cloutier
+ * Fonctionnalité : Code de l'affichage des Informations
+ * Date : 8 mai 2025
+ *
+ ***************************************************/
 package com.example.zootopia_mobile.informations;
 
 import android.content.Intent;

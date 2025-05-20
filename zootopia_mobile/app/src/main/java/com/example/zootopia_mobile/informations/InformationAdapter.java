@@ -1,3 +1,11 @@
+/***************************************************
+ *
+ * Fichier : InformationAdapter.java
+ * Auteur : Samuel Cloutier
+ * Fonctionnalité : Code de l'adapter d'Information
+ * Date : 8 mai 2025
+ *
+ ***************************************************/
 package com.example.zootopia_mobile.informations;
 
 import android.util.Log;

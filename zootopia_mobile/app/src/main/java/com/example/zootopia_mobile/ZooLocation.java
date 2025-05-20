@@ -1,3 +1,11 @@
+/***************************************************
+ *
+ * Fichier : ZooLocation.java
+ * Auteur : Samuel Cloutier
+ * Fonctionnalité : Code pour aller chercher la localisation du Zoo
+ * Date : 8 mai 2025
+ *
+ ***************************************************/
 package com.example.zootopia_mobile;
 
 import static android.content.ContentValues.TAG;

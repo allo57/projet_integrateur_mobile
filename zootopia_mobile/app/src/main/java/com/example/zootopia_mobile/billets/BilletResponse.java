@@ -1,3 +1,11 @@
+/***************************************************
+ *
+ * Fichier : BilletResponse.java
+ * Auteur : Samuel Cloutier
+ * Fonctionnalité : Code pour chercher la réponse de l'api
+ * Date : 8 mai 2025
+ *
+ ***************************************************/
 package com.example.zootopia_mobile.billets;
 
 import com.example.zootopia_mobile.billets.Billet;

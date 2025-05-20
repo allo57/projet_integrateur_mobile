@@ -1,3 +1,11 @@
+/***************************************************
+ *
+ * Fichier : Billet.java
+ * Auteur : Samuel Cloutier
+ * Fonctionnalité : Code de l'objet Billet
+ * Date : 8 mai 2025
+ *
+ ***************************************************/
 package com.example.zootopia_mobile.billets;
 
 public class Billet {

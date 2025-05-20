@@ -1,3 +1,11 @@
+/***************************************************
+ *
+ * Fichier : Information.java
+ * Auteur : Samuel Cloutier
+ * Fonctionnalité : Code de l'objet Information
+ * Date : 8 mai 2025
+ *
+ ***************************************************/
 package com.example.zootopia_mobile.informations;
 
 public class Information {

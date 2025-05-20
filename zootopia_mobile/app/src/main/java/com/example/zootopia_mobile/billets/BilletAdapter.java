@@ -1,3 +1,11 @@
+/***************************************************
+ *
+ * Fichier : BilletAdapter.java
+ * Auteur : Samuel Cloutier
+ * Fonctionnalité : Code de l'adapteur du billet
+ * Date : 8 mai 2025
+ *
+ ***************************************************/
 package com.example.zootopia_mobile.billets;
 
 import android.util.Log;
