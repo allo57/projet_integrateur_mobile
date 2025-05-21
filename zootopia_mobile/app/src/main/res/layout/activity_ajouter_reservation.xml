@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    * Fichier : activity_ajouter_reservation
+    * Auteur : Jacob Perreault
+    * Fonctionnalité : Formulaire d'ajout d'une réservation
+    * Date : 9 mai 2025
+-->
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -212,9 +219,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="20px"
-                    android:layout_weight="1"
                     android:background="@drawable/rounded_border"
-                    android:gravity="center" />
+                    android:textAlignment="center" />
             </TableRow>
         </TableLayout>
 

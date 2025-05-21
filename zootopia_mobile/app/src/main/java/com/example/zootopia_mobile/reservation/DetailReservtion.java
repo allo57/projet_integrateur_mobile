@@ -1,3 +1,11 @@
+/***************************************************
+ *
+ * Fichier : DetailReservation
+ * Auteur : Jacob Perreault
+ * Fonctionnalité : Affiche les informations d'une réservation
+ * Date : 9 mai 2025
+ *
+ ***************************************************/
 package com.example.zootopia_mobile.reservation;
 
 import android.content.Context;

@@ -1,3 +1,11 @@
+/***************************************************
+ *
+ * Fichier : ModifierReservation
+ * Auteur : Jacob Perreault
+ * Fonctionnalité : Envoi les données entrées d'un réservation modifié par un utiliseur vers le serveur web
+ * Date : 9 mai 2025
+ *
+ ***************************************************/
 package com.example.zootopia_mobile.reservation;
 
 import android.content.Context;
@@ -126,7 +134,7 @@ public class ModifierReservation extends AppCompatActivity implements View.OnCli
         if (v.getId() == R.id.enregistrer_modification) {
             NetworkConnection network = new NetworkConnection();
             if (!network.isConnected(context)) {
-                Toast.makeText(ModifierReservation.this, "Veuillez-vous connecter à l'internet pour pouvoir ajouter une réservation.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ModifierReservation.this, "Veuillez-vous connecter à l'internet pour pouvoir modifier une réservation.", Toast.LENGTH_SHORT).show();
             }
             else {
                 sendData();

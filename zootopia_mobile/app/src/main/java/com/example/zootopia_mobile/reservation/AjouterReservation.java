@@ -1,3 +1,11 @@
+/***************************************************
+ *
+ * Fichier : AjouterReservation
+ * Auteur : Jacob Perreault
+ * Fonctionnalité : Envoi les données d'une réservation entrées vers le serveur web
+ * Date : 9 mai 2025
+ *
+ ***************************************************/
 package com.example.zootopia_mobile.reservation;
 
 import android.content.Context;

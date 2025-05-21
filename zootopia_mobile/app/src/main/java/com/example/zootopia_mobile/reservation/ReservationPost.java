@@ -1,3 +1,11 @@
+/***************************************************
+ *
+ * Fichier : ReservationPost
+ * Auteur : Jacob Perreault
+ * Fonctionnalité : Classe "clone" de la classe Réservation qui permet de faire les Post vers l'api. Parce que les nom de réception sont pas identique que lors des Get
+ * Date : 9 mai 2025
+ *
+ ***************************************************/
 package com.example.zootopia_mobile.reservation;
 
 public class ReservationPost {

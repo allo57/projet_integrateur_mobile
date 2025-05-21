@@ -1,3 +1,11 @@
+/***************************************************
+ *
+ * Fichier : SupprimereReservation
+ * Auteur : Jacob Perreault
+ * Fonctionnalité : Envoi un requête api vers le serveur web pour supprimer une réservation
+ * Date : 9 mai 2025
+ *
+ ***************************************************/
 package com.example.zootopia_mobile.reservation;
 
 import android.content.Context;

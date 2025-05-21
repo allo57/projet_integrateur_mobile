@@ -1,3 +1,11 @@
+/***************************************************
+ *
+ * Fichier : Reservation
+ * Auteur : Jacob Perreault
+ * Fonctionnalité : Classe qui permet la gestion d'une réservation
+ * Date : 9 mai 2025
+ *
+ ***************************************************/
 package com.example.zootopia_mobile.reservation;
 
 import android.util.Log;

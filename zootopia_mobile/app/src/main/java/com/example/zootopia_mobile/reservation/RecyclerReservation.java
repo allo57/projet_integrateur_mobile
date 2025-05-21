@@ -1,5 +1,14 @@
+/***************************************************
+ *
+ * Fichier : RecyclerReservation
+ * Auteur : Jacob Perreault
+ * Fonctionnalité : Ajoute le nom, le numéro de téléphone et le numéro de réservaton à une liste de réservation
+ * Date : 9 mai 2025
+ *
+ ***************************************************/
 package com.example.zootopia_mobile.reservation;
 
+import android.app.admin.NetworkEvent;
 import android.content.Context;
 
 import android.content.Intent;
@@ -10,11 +19,13 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.zootopia_mobile.NetworkConnection;
 import com.example.zootopia_mobile.R;
 
 import java.util.ArrayList;
@@ -67,10 +78,17 @@ public class RecyclerReservation extends RecyclerView.Adapter<RecyclerReservatio
         });
 
         holder.supprimer.setOnClickListener(v-> {
-            Intent intent = new Intent(context, SupprimerReservation.class);
-            intent.putExtra("id_reservation", this._reservations.get(position).get_id_reservation());
-            intent.putExtra("id_utilisateur", this._reservations.get(position).get_id_utilisateur());
-            context.startActivity(intent);
+            NetworkConnection network = new NetworkConnection();
+            if (network.isConnected(context)) {
+                Intent intent = new Intent(context, SupprimerReservation.class);
+                intent.putExtra("id_reservation", this._reservations.get(position).get_id_reservation());
+                intent.putExtra("id_utilisateur", this._reservations.get(position).get_id_utilisateur());
+                context.startActivity(intent);
+            }
+            else {
+                Toast.makeText(context, "Veuillez-vous connecter à l'internet pour pouvoir supprimer une réservation.", Toast.LENGTH_SHORT).show();
+            }
+
         });
     }
 

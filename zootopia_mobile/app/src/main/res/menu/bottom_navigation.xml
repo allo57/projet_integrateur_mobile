@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    * Fichier : bottom_navigation
+    * Auteur : Jacob Perreault
+    * Fonctionnalité : Menu de navigation
+    * Date : 9 mai 2025
+-->
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/menu_animaux"
-        android:icon="@drawable/animal_default" />
+        android:icon="@drawable/paws" />
 
     <item
         android:id="@+id/menu_carte"

@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    * Fichier : activity_recycler_reservation
+    * Auteur : Jacob Perreault
+    * Fonctionnalité : Layout d'affichage des information de base d'une réservation
+    * Date : 9 mai 2025
+-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"

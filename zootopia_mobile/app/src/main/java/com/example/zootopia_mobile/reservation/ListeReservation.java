@@ -1,3 +1,11 @@
+/***************************************************
+ *
+ * Fichier : ListeReservation
+ * Auteur : Jacob Perreault
+ * Fonctionnalité : Récupère les données du serveur web et les insère dans la base de données locale
+ * Date : 9 mai 2025
+ *
+ ***************************************************/
 package com.example.zootopia_mobile.reservation;
 
 import android.content.Context;
