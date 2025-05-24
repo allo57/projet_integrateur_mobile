@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    * Fichier : activity_recycler_activite.xml
+    * Auteur : Sarah-Maude Gagné
+    * Fonctionnalité : recycler des activités
+    * Date : 9 mai 2025
+-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -29,7 +35,7 @@
         android:id="@+id/titre_activite"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="ENTRAINEMENT DES LIONS"
+        android:text=""
         android:textSize="20sp"
         android:textStyle="bold"
         android:paddingTop="12dp"
@@ -39,7 +45,7 @@
         android:id="@+id/description_animal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Lorem ipsum dolor sit amet..."
+        android:text=""
         android:textSize="14sp"
         android:lineSpacingExtra="4dp" />
 
@@ -55,7 +61,7 @@
             android:id="@+id/tag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Non-payant"
+            android:text=""
             android:backgroundTint="@color/bleuActivite"
             android:textColor="@android:color/white"
             android:layout_marginEnd="8dp"
@@ -68,7 +74,7 @@
             android:id="@+id/infrastructure"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Non-payant"
+            android:text=""
             android:backgroundTint="@color/bleuActivite"
             android:textColor="@android:color/white"
             android:layout_marginEnd="8dp"

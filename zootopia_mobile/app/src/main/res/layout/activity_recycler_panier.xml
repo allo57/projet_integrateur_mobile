@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    * Fichier : activity_recycler_panier.xml
+    * Auteur : Sarah-Maude Gagné
+    * Fonctionnalité : recycler des produits du panier
+    * Date : 9 mai 2025
+-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/item_panier"
     android:layout_width="match_parent"
@@ -12,7 +18,7 @@
         android:id="@+id/nomProduit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Nom du produit :"
+        android:text="@string/nom_produit"
         android:textSize="18sp"
         android:textStyle="bold" />
 
@@ -20,7 +26,7 @@
         android:id="@+id/description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Description :"
+        android:text="@string/description"
         android:textSize="16sp"
         android:layout_marginTop="4dp" />
 
@@ -28,7 +34,7 @@
         android:id="@+id/prix"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Prix :"
+        android:text="@string/prix"
         android:textSize="16sp"
         android:layout_marginTop="4dp" />
 
@@ -65,7 +71,7 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_remove"
-            android:text="Retirer du panier"
+            android:text="@string/retirer_panier"
             android:layout_marginStart="70dp"
             android:layout_width="160dp"
             android:layout_height="40dp"/>

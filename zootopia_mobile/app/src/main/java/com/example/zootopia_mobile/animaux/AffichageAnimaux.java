@@ -1,4 +1,3 @@
-
 /***************************************************
  *
  * Fichier : AffichageAnimaux.java
@@ -30,6 +29,7 @@ import com.example.zootopia_mobile.ZooLocation;
 import com.example.zootopia_mobile.activite.Activite;
 import com.example.zootopia_mobile.api.ApiClient;
 import com.example.zootopia_mobile.api.ApiService;
+import com.example.zootopia_mobile.informations.Informations;
 import com.example.zootopia_mobile.magasin.ListePanier;
 import com.example.zootopia_mobile.menuNavigation;
 
@@ -112,8 +112,7 @@ public class AffichageAnimaux extends AppCompatActivity implements View.OnClickL
             // Intent pour afficher les animaux
             intent = new Intent(AffichageAnimaux.this, AffichageAnimaux.class);
         } else if (v.getId() == R.id.btnReservation) {
-            // intent = new Intent(Activite.this, Reservation.class);
-            // startActivity(intent);
+            intent = new Intent(AffichageAnimaux.this, Informations.class);
         }
 
         if (intent != null) {

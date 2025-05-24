@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    * Fichier : activity_confirmation.xml
+    * Auteur : Sarah-Maude Gagné
+    * Fonctionnalité : confirmation de la transaction
+    * Date : 16 mai 2025
+-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EDF2E8"
+    android:background="@color/confirmation_background"
     android:gravity="center"
     android:orientation="vertical"
     tools:context=".magasin.Confirmation">
@@ -23,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0"
             android:gravity="center"
-            android:text="Confirmation"
+            android:text="@string/confirmation"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -33,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0"
             android:gravity="center"
-            android:text="Votre achat a été effectué\navec succès!"
+            android:text="@string/texte_confirmation"
             android:layout_margin="20dp"/>
 
         <TextView
@@ -51,6 +57,6 @@
         android:layout_height="wrap_content"
         android:layout_weight="0"
         android:background="@drawable/white_rounded_border"
-        android:text="Retour au magasin"
+        android:text="@string/retour_magasin"
         android:textColor="@color/black" />
 </LinearLayout>

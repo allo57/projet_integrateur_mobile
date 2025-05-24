@@ -1,3 +1,11 @@
+/***************************************************
+ *
+ * Fichier : RecyclerActivite.java
+ * Auteur : Sarah-Maude Gagné
+ * Fonctionnalité : code du recycler des activités
+ * Date : 9 mai 2025
+ *
+ ***************************************************/
 package com.example.zootopia_mobile.activite;
 
 import android.os.Bundle;

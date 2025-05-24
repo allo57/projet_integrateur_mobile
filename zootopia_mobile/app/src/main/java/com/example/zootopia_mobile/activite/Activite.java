@@ -1,3 +1,12 @@
+/***************************************************
+ *
+ * Fichier : Activite.java
+ * Auteur : Sarah-Maude Gagné
+ * Fonctionnalité : Affichage des activités et connexion avec l'api
+ * Date : 9 mai 2025
+ *
+ ***************************************************/
+
 package com.example.zootopia_mobile.activite;
 
 import android.content.Intent;
@@ -16,6 +25,7 @@ import com.example.zootopia_mobile.ZooLocation;
 import com.example.zootopia_mobile.animaux.AffichageAnimaux;
 import com.example.zootopia_mobile.api.ApiService;
 import com.example.zootopia_mobile.api.RetrofitInstance;
+import com.example.zootopia_mobile.informations.Informations;
 import com.example.zootopia_mobile.magasin.ListePanier;
 import com.example.zootopia_mobile.menuNavigation;
 
@@ -103,7 +113,6 @@ public class Activite extends AppCompatActivity implements View.OnClickListener{
         Intent intent = null;
         if (v.getId() == R.id.btnPanier) {
             intent = new Intent(Activite.this, ListePanier.class);
-            startActivity(intent);
         } else if (v.getId() == R.id.btnActivite) {
             // Intent pour ouvrir la page Activité
             intent = new Intent(Activite.this, Activite.class);
@@ -114,8 +123,7 @@ public class Activite extends AppCompatActivity implements View.OnClickListener{
             // Intent pour afficher les animaux
             intent = new Intent(Activite.this, AffichageAnimaux.class);
         } else if (v.getId() == R.id.btnReservation) {
-            // intent = new Intent(Activite.this, Reservation.class);
-            // startActivity(intent);
+            intent = new Intent(Activite.this, Informations.class);
         }
 
         if (intent != null) {

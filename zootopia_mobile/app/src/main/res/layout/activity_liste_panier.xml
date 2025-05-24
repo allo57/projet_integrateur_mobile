@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    * Fichier : activity_liste_panier.xml
+    * Auteur : Sarah-Maude Gagné
+    * Fonctionnalité : affichage de la page du panier
+    * Date : 16 mai 2025
+-->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -11,7 +17,7 @@
         android:id="@+id/headerLayout"
         android:layout_width="match_parent"
         android:layout_height="120dp"
-        android:background="#D5E8D4"
+        android:background="@color/background"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/recyclerView"
         app:layout_constraintEnd_toEndOf="parent"
@@ -56,7 +62,7 @@
                     android:id="@+id/titre_panier"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="PANIER"
+                    android:text="@string/titre_panier"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -64,7 +70,7 @@
                     android:id="@+id/paiement"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Passer au paiement"
+                    android:text="@string/paiement"
                     android:textSize="14sp"
                     android:layout_marginStart="126dp"
                     android:backgroundTint="@color/blancActivite"
@@ -104,7 +110,7 @@
         android:layout_width="0dp"
         android:layout_height="70dp"
         android:layout_marginTop="8dp"
-        android:background="#D5E8D4"
+        android:background="@color/background"
         android:orientation="horizontal"
         android:gravity="center"
         android:padding="8dp"

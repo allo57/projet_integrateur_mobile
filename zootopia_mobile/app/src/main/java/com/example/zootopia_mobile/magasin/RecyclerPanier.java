@@ -1,3 +1,11 @@
+/***************************************************
+ *
+ * Fichier : RecyclerPanier.java
+ * Auteur : Sarah-Maude Gagné
+ * Fonctionnalité : recyclerview du panier
+ * Date : 18 mai 2025
+ *
+ ***************************************************/
 package com.example.zootopia_mobile.magasin;
 
 import android.os.Bundle;

@@ -1,3 +1,11 @@
+/***************************************************
+ *
+ * Fichier : PanierAdapter.java
+ * Auteur : Sarah-Maude Gagné
+ * Fonctionnalité : adapter du panier pour le recyclerview
+ * Date : 18 mai 2025
+ *
+ ***************************************************/
 package com.example.zootopia_mobile.magasin;
 
 import android.view.LayoutInflater;

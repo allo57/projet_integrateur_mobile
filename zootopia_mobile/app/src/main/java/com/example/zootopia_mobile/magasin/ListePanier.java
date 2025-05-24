@@ -1,3 +1,11 @@
+/***************************************************
+ *
+ * Fichier : ListePanier.java
+ * Auteur : Sarah-Maude Gagné
+ * Fonctionnalité : adapter de la page panier
+ * Date : 16 mai 2025
+ *
+ ***************************************************/
 package com.example.zootopia_mobile.magasin;
 
 import android.content.Intent;
@@ -19,6 +27,7 @@ import com.example.zootopia_mobile.SQLiteManager;
 import com.example.zootopia_mobile.ZooLocation;
 import com.example.zootopia_mobile.activite.Activite;
 import com.example.zootopia_mobile.animaux.AffichageAnimaux;
+import com.example.zootopia_mobile.informations.Informations;
 import com.example.zootopia_mobile.inscription;
 import com.example.zootopia_mobile.menuNavigation;
 
@@ -86,6 +95,7 @@ public class ListePanier extends AppCompatActivity implements View.OnClickListen
 
         paiement = findViewById(R.id.paiement);
         paiement.setOnClickListener(v -> {
+            if (!billetsPanier.isEmpty() & currentUserId != -1) {
             for (BilletPanier billetPanier : billetsPanier) {
                 int quantite = billetPanier.getQuantite();
                 int idBillet = billetPanier.getBillet().getId_billet();
@@ -93,6 +103,7 @@ public class ListePanier extends AppCompatActivity implements View.OnClickListen
             }
             Intent intent = new Intent(ListePanier.this, Confirmation.class);
             startActivity(intent);
+            }
         });
     }
     @Override
@@ -100,7 +111,6 @@ public class ListePanier extends AppCompatActivity implements View.OnClickListen
         Intent intent = null;
         if (v.getId() == R.id.btnPanier) {
             intent = new Intent(ListePanier.this, ListePanier.class);
-            startActivity(intent);
         } else if (v.getId() == R.id.btnActivite) {
             // Intent pour ouvrir la page Activité
             intent = new Intent(ListePanier.this, Activite.class);
@@ -111,8 +121,7 @@ public class ListePanier extends AppCompatActivity implements View.OnClickListen
             // Intent pour afficher les animaux
             intent = new Intent(ListePanier.this, AffichageAnimaux.class);
         } else if (v.getId() == R.id.btnReservation) {
-            // intent = new Intent(Activite.this, Reservation.class);
-            // startActivity(intent);
+            intent = new Intent(ListePanier.this, Informations.class);
         }
 
         if (intent != null) {

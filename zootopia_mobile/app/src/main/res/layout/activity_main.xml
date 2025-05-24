@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    * Fichier : activity_zoo_location.xml
+    * Auteur : Samuel Cloutier et Sarah-Maude Gagné
+    * Fonctionnalité : page accueil
+    * Date : 8 mai 2025
+-->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -63,7 +69,7 @@ Prêt à commencer votre safari? Explorez notre carte interactive, découvrez no
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:background="#2e4058"
+        android:background="@color/footer_background"
         android:paddingLeft="30dp"
         android:paddingTop="20dp"
         android:paddingBottom="20dp"

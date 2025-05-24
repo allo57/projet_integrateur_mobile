@@ -1,3 +1,11 @@
+/***************************************************
+ *
+ * Fichier : BilletPanier.java
+ * Auteur : Sarah-Maude Gagné
+ * Fonctionnalité : modèle des billets du panier
+ * Date : 18 mai 2025
+ *
+ ***************************************************/
 package com.example.zootopia_mobile.magasin;
 
 import com.example.zootopia_mobile.billets.Billet;

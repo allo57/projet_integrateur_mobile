@@ -1,5 +1,3 @@
-
-
 /***************************************************
  *
  * Fichier : ApiClient.java
@@ -28,7 +26,7 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface ApiService {
-    @GET("activites") //fin de l'url
+    @GET("activites")
     Call<ActiviteResponse> getActivites();
 
     @GET("animaux")

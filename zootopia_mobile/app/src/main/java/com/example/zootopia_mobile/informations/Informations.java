@@ -132,8 +132,7 @@ public class Informations extends AppCompatActivity implements View.OnClickListe
             // Intent pour afficher les animaux
             intent = new Intent(Informations.this, AffichageAnimaux.class);
         } else if (v.getId() == R.id.btnReservation) {
-            // intent = new Intent(Activite.this, Reservation.class);
-            // startActivity(intent);
+            intent = new Intent(Informations.this, Informations.class);
         }
 
         if (intent != null) {

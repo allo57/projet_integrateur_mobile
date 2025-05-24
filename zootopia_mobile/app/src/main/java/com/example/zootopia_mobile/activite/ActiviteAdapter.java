@@ -1,3 +1,11 @@
+/***************************************************
+ *
+ * Fichier : ActiviteAdapter.java
+ * Auteur : Sarah-Maude Gagné
+ * Fonctionnalité : Adapter pour le recyclerview de l'affichage des activités
+ * Date : 9 mai 2025
+ *
+ ***************************************************/
 package com.example.zootopia_mobile.activite;
 
 import android.view.LayoutInflater;
