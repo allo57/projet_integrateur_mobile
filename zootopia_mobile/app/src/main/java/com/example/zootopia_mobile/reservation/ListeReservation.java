@@ -54,6 +54,7 @@ public class ListeReservation extends AppCompatActivity implements View.OnClickL
     RecyclerReservation adapter;
 
     Context context = this;
+    private int user_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,13 +67,14 @@ public class ListeReservation extends AppCompatActivity implements View.OnClickL
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        String user_id = "1";
+        Intent data = getIntent();
+        this.user_id = data.getIntExtra("id_utilisateur", 0);
 
 
         NetworkConnection network = new NetworkConnection();
         if (network.isConnected(context)) {
             ApiService apiService = RetrofitInstance.getApi();
-            Call<ResponseReservation> call = apiService.getUserReservations(user_id);
+            Call<ResponseReservation> call = apiService.getUserReservations(String.valueOf(user_id));
 
             call.enqueue(new Callback<ResponseReservation>() {
                 @Override
@@ -86,10 +88,15 @@ public class ListeReservation extends AppCompatActivity implements View.OnClickL
                         if (liste.isEmpty()) {
                             TextView text = findViewById(R.id.vide);
                             text.setText("Veuillez ajouter une réservation");
-                            ArrayList<Reservation> old_list = sqLiteManager.getReservations(1);
+                            ArrayList<Reservation> old_list = sqLiteManager.getReservations(user_id);
 
-                            for (int i = 0; i < old_list.size(); i++) {
-                                sqLiteManager.deleteReservation(old_list.get(i).get_id_reservation());
+                            if (old_list != null) {
+                                if (!old_list.isEmpty()) {
+                                    for (int i = 0; i < old_list.size(); i++) {
+                                        sqLiteManager.deleteReservation(old_list.get(i).get_id_reservation());
+                                    }
+                                }
+
                             }
                         }
                         else {
@@ -104,10 +111,12 @@ public class ListeReservation extends AppCompatActivity implements View.OnClickL
                                 }
                             }
 
-                            ArrayList<Reservation> old_list = sqLiteManager.getReservations(1);
-                            if (old_list.size() > liste.size()) {
-                                for (int i = liste.size(); i < old_list.size(); i++) {
-                                    sqLiteManager.deleteReservation(old_list.get(i).get_id_reservation());
+                            ArrayList<Reservation> old_list = sqLiteManager.getReservations(user_id);
+                            if (old_list != null) {
+                                if (old_list.size() > liste.size()) {
+                                    for (int i = liste.size(); i < old_list.size(); i++) {
+                                        sqLiteManager.deleteReservation(old_list.get(i).get_id_reservation());
+                                    }
                                 }
                             }
                         }
@@ -124,10 +133,12 @@ public class ListeReservation extends AppCompatActivity implements View.OnClickL
                             Log.e("API", "Erreur body null");
                         }
                         // Vérifie si la base de données contient des réservations
-                        ArrayList<Reservation> reservations = sqLiteManager.getReservations(1);
-                        if (reservations.isEmpty()) {
-                            TextView text = findViewById(R.id.vide);
-                            text.setText("Veuillez ajouter une réservation");
+                        ArrayList<Reservation> reservations = sqLiteManager.getReservations(user_id);
+                        if (reservations != null) {
+                            if (reservations.isEmpty()) {
+                                TextView text = findViewById(R.id.vide);
+                                text.setText("Veuillez ajouter une réservation");
+                            }
                         }
                         else {
                             adapter = new RecyclerReservation(context, reservations);
