@@ -110,6 +110,7 @@ public class menuNavigation extends AppCompatActivity implements View.OnClickLis
         }
         else if (v.getId() == R.id.imageButtonReservations) {
             Intent intent = new Intent(menuNavigation.this, ListeReservation.class);
+            intent.putExtra("id_utilisateur", inscription.userId);
             startActivity(intent);
         }else if (v.getId()==R.id.imageButtonBilletterie){
             Intent intent = new Intent(menuNavigation.this, Billets.class);
